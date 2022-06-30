@@ -38,6 +38,7 @@ namespace MiniBug
         public FeedbackForm()
         {
             InitializeComponent();
+            this.Font = ApplicationSettings.GridFont;
         }
 
         private void FeedbackForm_Load(object sender, EventArgs e)

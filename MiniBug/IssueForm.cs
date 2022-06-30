@@ -3,12 +3,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MiniBug
@@ -38,6 +33,7 @@ namespace MiniBug
         public IssueForm(OperationType operation, MiniBug.Issue issue = null)
         {
             InitializeComponent();
+            this.Font = ApplicationSettings.GridFont;
 
             Operation = operation;
             
@@ -130,7 +126,9 @@ namespace MiniBug
                 lblID.Text = CurrentIssue.ID.ToString();
             }
 
-            txtDescription.Font = ApplicationSettings.FormDescriptionFieldFont;
+            //txtDescription.Font = ApplicationSettings.FormDescriptionFieldFont;
+            //txtDescription.Font = ApplicationSettings.GridFont;
+            lblID.Font = new Font(ApplicationSettings.GridFont, FontStyle.Bold);            // Bold
 
             // Resume the layout logic
             this.ResumeLayout();

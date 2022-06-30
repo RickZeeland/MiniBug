@@ -39,6 +39,7 @@ namespace MiniBug
         public ProjectForm(OperationType operation, string projectName = "", string projectFilename = "", string projectLocation = "")
         {
             InitializeComponent();
+            this.Font = ApplicationSettings.GridFont;
 
             Operation = operation;
 

@@ -1,16 +1,14 @@
 ﻿// Copyright(c) João Martiniano. All rights reserved.
+// Forked by RickZeeland.
 // Licensed under the MIT license.
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Newtonsoft.Json;
 
 namespace MiniBug
 {
@@ -35,6 +33,8 @@ namespace MiniBug
         {
             // Start by retrieving the application settings
             ApplicationSettings.Load();
+
+            this.Font = ApplicationSettings.GridFont;
 
             // Suspend the layout logic for the form, while the application is initializing
             this.SuspendLayout();
@@ -68,6 +68,19 @@ namespace MiniBug
             SetGridSortGlyph(GridType.All);
 
             SetAccessibilityInformation();
+        }
+
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
+            int projectsCount = Properties.Settings.Default.RecentProjectsNames.Count;
+
+            if (projectsCount == 1)
+            {
+                // Load the only project immediately
+                OpenProject(Properties.Settings.Default.RecentProjectsPaths[0]);
+                this.GridIssues.FirstDisplayedScrollingRowIndex = this.GridIssues.RowCount - 1;
+                this.tabPage1.Invalidate();
+            }
         }
 
         /// <summary>
@@ -421,9 +434,11 @@ namespace MiniBug
         /// <param name="filename">(optional) The file to open. If present, the project file is opened directly.</param>
         private void OpenProject(string filename = "")
         {
-            bool flag = (filename != string.Empty) ? true : false;
+            //bool flag = (filename != string.Empty) ? true : false;
+            bool flagValidFilename = !string.IsNullOrEmpty(filename);
 
-            if (filename == string.Empty)
+            //if (filename == string.Empty)
+            if (!flagValidFilename)
             {
                 openFileDialog1.Title = "Open Project";
                 openFileDialog1.Multiselect = false;
@@ -434,11 +449,16 @@ namespace MiniBug
                 if (openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
                     filename = openFileDialog1.FileName;
-                    flag = true;
+                    flagValidFilename = true;
                 }
             }
+            else if (!File.Exists(filename))
+            {
+                // Not found
+                return;
+            }
 
-            if (flag)
+            if (flagValidFilename)
             {
                 FileSystemOperationStatus status = FileSystemOperationStatus.None;
                 Project newProject = new Project();
@@ -625,6 +645,7 @@ namespace MiniBug
 
             if (frmSettings.ShowDialog() == DialogResult.OK)
             {
+                this.Font = ApplicationSettings.GridFont;
                 ApplySettingsToGrids();
             }
 
@@ -807,7 +828,7 @@ namespace MiniBug
 
             GridIssues.BackgroundColor = TabControl.DefaultBackColor;
             GridIssues.BorderStyle = BorderStyle.None;
-            GridIssues.Dock = DockStyle.Fill;
+            //GridIssues.Dock = DockStyle.Fill;
 
             GridIssues.AllowUserToAddRows = false;
             GridIssues.AllowUserToDeleteRows = false;
