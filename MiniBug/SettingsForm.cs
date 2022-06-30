@@ -2,13 +2,7 @@
 // Licensed under the MIT license.
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Text;
 
@@ -25,6 +19,8 @@ namespace MiniBug
         {
             // Suspend the layout logic for the form, while the application is initializing
             this.SuspendLayout();
+
+            this.Font = ApplicationSettings.GridFont;
 
             //this.Icon = MiniBug.Properties.Resources.
             this.AcceptButton = btOk;
@@ -214,7 +210,9 @@ namespace MiniBug
                 // If not valid, revert to the default font size
                 size = ApplicationSettings.GridFont.Size;
             }
+
             ApplicationSettings.GridFont = new Font(cboFont.SelectedItem.ToString(), size);
+            this.Font = ApplicationSettings.GridFont;
 
             // Gridlines
             ApplicationSettings.GridShowBorders = chkShowGridlines.Checked;

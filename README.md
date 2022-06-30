@@ -1,5 +1,13 @@
 # MiniBug - Issue Tracker and To-do List
 
+This is a fork of MiniBug for VS2019 and .NET 4.8.
+Some of the changes:
+- Removed missing MiniBug_TemporaryKey.pfx and signing from project
+- Default fontsize set to 10
+- Scale forms after changing fontsize in settings
+- Load project on startup if only one project exists
+
+
 MiniBug is a barebones, simple issue tracker and to-do list. It is a Windows desktop single-user application.
 
 <img src="Screenshots/main-window.png" alt="MiniBug main window">
@@ -24,8 +32,8 @@ Download the file <a href="minibug-MiniBug Sample Project.json">minibug-MiniBug 
 
 ## Prerequisites
 
-- Microsoft Windows 7 (maybe it works on older versions but I haven't tested)
-- Microsoft .NET Framework 4.6.1
+- Microsoft Windows 7 or higher
+- Microsoft .NET Framework 4.8
 
 # How To Use
 

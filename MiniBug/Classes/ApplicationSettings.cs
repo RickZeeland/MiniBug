@@ -63,7 +63,7 @@ namespace MiniBug
         /// <summary>
         /// DataGridView font name and size.
         /// </summary>
-        public static Font GridFont = new Font("Segoe UI", 8);
+        public static Font GridFont = new Font("Segoe UI", 10);
 
         /// <summary>
         /// Size of the colored rectangle in the status column of the DataGridViews.

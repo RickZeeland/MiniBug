@@ -52,6 +52,7 @@
             this.editProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.configureColumnsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.recentProjectsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,7 +72,6 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutMiniBugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.configureColumnsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.GridIssues)).BeginInit();
             this.TabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -87,9 +87,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GridIssues.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridIssues.Location = new System.Drawing.Point(6, 6);
+            this.GridIssues.Location = new System.Drawing.Point(7, 8);
+            this.GridIssues.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.GridIssues.Name = "GridIssues";
-            this.GridIssues.Size = new System.Drawing.Size(776, 327);
+            this.GridIssues.Size = new System.Drawing.Size(1008, 443);
             this.GridIssues.TabIndex = 0;
             this.GridIssues.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridIssues_CellDoubleClick);
             this.GridIssues.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GridIssues_CellFormatting);
@@ -106,21 +107,22 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TabControl.Controls.Add(this.tabPage1);
             this.TabControl.Controls.Add(this.tabPage2);
-            this.TabControl.Location = new System.Drawing.Point(2, 76);
+            this.TabControl.Location = new System.Drawing.Point(2, 99);
             this.TabControl.Margin = new System.Windows.Forms.Padding(0);
             this.TabControl.Name = "TabControl";
             this.TabControl.SelectedIndex = 0;
-            this.TabControl.Size = new System.Drawing.Size(799, 365);
+            this.TabControl.Size = new System.Drawing.Size(1035, 517);
             this.TabControl.TabIndex = 2;
             this.TabControl.SelectedIndexChanged += new System.EventHandler(this.TabControl_SelectedIndexChanged);
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.GridIssues);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 26);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(791, 339);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabPage1.Size = new System.Drawing.Size(1027, 487);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Issues";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -128,10 +130,11 @@
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.GridTasks);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 26);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(791, 339);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabPage2.Size = new System.Drawing.Size(1027, 487);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Tasks";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -139,9 +142,10 @@
             // GridTasks
             // 
             this.GridTasks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridTasks.Location = new System.Drawing.Point(6, 6);
+            this.GridTasks.Location = new System.Drawing.Point(7, 8);
+            this.GridTasks.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.GridTasks.Name = "GridTasks";
-            this.GridTasks.Size = new System.Drawing.Size(776, 343);
+            this.GridTasks.Size = new System.Drawing.Size(905, 449);
             this.GridTasks.TabIndex = 0;
             this.GridTasks.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridTasks_CellDoubleClick);
             this.GridTasks.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GridTasks_CellFormatting);
@@ -167,9 +171,9 @@
             this.IconCloneTask,
             this.toolStripSeparator5,
             this.IconConfigureColumns});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 25);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(801, 52);
+            this.toolStrip1.Size = new System.Drawing.Size(1037, 52);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -299,7 +303,8 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(801, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 3, 0, 3);
+            this.menuStrip1.Size = new System.Drawing.Size(1037, 25);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -319,7 +324,7 @@
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(37, 19);
             this.toolStripMenuItem1.Text = "&File";
             // 
             // newProjectToolStripMenuItem
@@ -356,6 +361,14 @@
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(182, 6);
+            // 
+            // configureColumnsToolStripMenuItem
+            // 
+            this.configureColumnsToolStripMenuItem.Image = global::MiniBug.Properties.Resources.ConfigureView_32x32;
+            this.configureColumnsToolStripMenuItem.Name = "configureColumnsToolStripMenuItem";
+            this.configureColumnsToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.configureColumnsToolStripMenuItem.Text = "Confi&gure Columns";
+            this.configureColumnsToolStripMenuItem.Click += new System.EventHandler(this.configureColumnsToolStripMenuItem_Click);
             // 
             // settingsToolStripMenuItem
             // 
@@ -404,7 +417,7 @@
             this.deleteIssueToolStripMenuItem,
             this.cloneIssueToolStripMenuItem});
             this.issuesToolStripMenuItem.Name = "issuesToolStripMenuItem";
-            this.issuesToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.issuesToolStripMenuItem.Size = new System.Drawing.Size(50, 19);
             this.issuesToolStripMenuItem.Text = "&Issues";
             // 
             // newIssueToolStripMenuItem
@@ -447,14 +460,14 @@
             this.deleteTaskToolStripMenuItem,
             this.cloneTaskToolStripMenuItem});
             this.tasksToolStripMenuItem.Name = "tasksToolStripMenuItem";
-            this.tasksToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.tasksToolStripMenuItem.Size = new System.Drawing.Size(46, 19);
             this.tasksToolStripMenuItem.Text = "&Tasks";
             // 
             // newTaskToolStripMenuItem
             // 
             this.newTaskToolStripMenuItem.Image = global::MiniBug.Properties.Resources.NewTask_32x32;
             this.newTaskToolStripMenuItem.Name = "newTaskToolStripMenuItem";
-            this.newTaskToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.newTaskToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.newTaskToolStripMenuItem.Text = "&New Task...";
             this.newTaskToolStripMenuItem.Click += new System.EventHandler(this.newTaskToolStripMenuItem_Click);
             // 
@@ -462,7 +475,7 @@
             // 
             this.editTaskToolStripMenuItem.Image = global::MiniBug.Properties.Resources.EditTask_32x32;
             this.editTaskToolStripMenuItem.Name = "editTaskToolStripMenuItem";
-            this.editTaskToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.editTaskToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.editTaskToolStripMenuItem.Text = "&Edit Task...";
             this.editTaskToolStripMenuItem.Click += new System.EventHandler(this.editTaskToolStripMenuItem_Click);
             // 
@@ -470,7 +483,7 @@
             // 
             this.deleteTaskToolStripMenuItem.Image = global::MiniBug.Properties.Resources.DeleteTask_32x32;
             this.deleteTaskToolStripMenuItem.Name = "deleteTaskToolStripMenuItem";
-            this.deleteTaskToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.deleteTaskToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.deleteTaskToolStripMenuItem.Text = "&Delete Task";
             this.deleteTaskToolStripMenuItem.Click += new System.EventHandler(this.deleteTaskToolStripMenuItem_Click);
             // 
@@ -478,7 +491,7 @@
             // 
             this.cloneTaskToolStripMenuItem.Image = global::MiniBug.Properties.Resources.CloneTask_32x32;
             this.cloneTaskToolStripMenuItem.Name = "cloneTaskToolStripMenuItem";
-            this.cloneTaskToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.cloneTaskToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.cloneTaskToolStripMenuItem.Text = "&Clone Task";
             this.cloneTaskToolStripMenuItem.Click += new System.EventHandler(this.cloneTaskToolStripMenuItem_Click);
             // 
@@ -487,7 +500,7 @@
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutMiniBugToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 19);
             this.helpToolStripMenuItem.Text = "&Help";
             // 
             // aboutMiniBugToolStripMenuItem
@@ -502,29 +515,23 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // configureColumnsToolStripMenuItem
-            // 
-            this.configureColumnsToolStripMenuItem.Image = global::MiniBug.Properties.Resources.ConfigureView_32x32;
-            this.configureColumnsToolStripMenuItem.Name = "configureColumnsToolStripMenuItem";
-            this.configureColumnsToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
-            this.configureColumnsToolStripMenuItem.Text = "Confi&gure Columns";
-            this.configureColumnsToolStripMenuItem.Click += new System.EventHandler(this.configureColumnsToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(801, 450);
+            this.ClientSize = new System.Drawing.Size(1037, 620);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.TabControl);
-            this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.Shown += new System.EventHandler(this.MainForm_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.GridIssues)).EndInit();
             this.TabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
