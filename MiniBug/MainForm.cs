@@ -146,9 +146,9 @@ namespace MiniBug
         /// </summary>
         private void InitializeTabControl()
         {
-            TabControl.Left = this.ClientRectangle.Left;
-            TabControl.Width = this.ClientRectangle.Width + 3;
-            TabControl.Height = this.ClientRectangle.Height - toolStrip1.Height - menuStrip1.Height + 1;
+            //TabControl.Left = this.ClientRectangle.Left;
+            //TabControl.Width = this.ClientRectangle.Width + 3;
+            //TabControl.Height = this.ClientRectangle.Height - toolStrip1.Height - menuStrip1.Height + 1;
         }
 
         /// <summary>

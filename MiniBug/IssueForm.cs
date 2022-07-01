@@ -72,6 +72,7 @@ namespace MiniBug
         {
             // Suspend the layout logic for the form, while the application is initializing
             this.SuspendLayout();
+            this.Font = ApplicationSettings.GridFont;
 
             this.Icon = MiniBug.Properties.Resources.Minibug;
             this.AcceptButton = btOk;
