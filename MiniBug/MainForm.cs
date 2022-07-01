@@ -39,7 +39,7 @@ namespace MiniBug
             // Suspend the layout logic for the form, while the application is initializing
             this.SuspendLayout();
 
-            this.Icon = MiniBug.Properties.Resources.Minibug;
+            this.Icon = Properties.Resources.Minibug;
             this.Text = "MiniBug Issue Tracker";
             this.MinimumSize = new Size(478, 303);
 
@@ -422,7 +422,7 @@ namespace MiniBug
                 this.Text = $"{frmProject.ProjectName} - MiniBug Issue Tracker";
 
                 // Add this project to the recent projects submenu and application settings
-                AddRecentProject(Program.SoftwareProject.Name, System.IO.Path.Combine(Program.SoftwareProject.Location, Program.SoftwareProject.Filename));
+                AddRecentProject(Program.SoftwareProject.Name, Path.Combine(Program.SoftwareProject.Location, Program.SoftwareProject.Filename));
             }
 
             SetControlsState();
@@ -434,10 +434,8 @@ namespace MiniBug
         /// <param name="filename">(optional) The file to open. If present, the project file is opened directly.</param>
         private void OpenProject(string filename = "")
         {
-            //bool flag = (filename != string.Empty) ? true : false;
             bool flagValidFilename = !string.IsNullOrEmpty(filename);
 
-            //if (filename == string.Empty)
             if (!flagValidFilename)
             {
                 openFileDialog1.Title = "Open Project";
