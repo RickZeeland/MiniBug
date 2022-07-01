@@ -97,6 +97,11 @@ namespace MiniBug
         public DateTime DateModified { get; set; }
 
         /// <summary>
+        /// Gets or sets the optional image file name.
+        /// </summary>
+        public string ImageFilename { get; set; } = string.Empty;
+
+        /// <summary>
         /// Creates a new issue.
         /// </summary>
         public Issue()

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.lblID = new System.Windows.Forms.Label();
             this.lblDateCreatedTitle = new System.Windows.Forms.Label();
@@ -48,6 +49,18 @@
             this.btCancel = new System.Windows.Forms.Button();
             this.lblDateCreated = new System.Windows.Forms.Label();
             this.lblDateModified = new System.Windows.Forms.Label();
+            this.buttonBrowseImage = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.textBoxImage = new System.Windows.Forms.TextBox();
+            this.labelImage = new System.Windows.Forms.Label();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -87,7 +100,7 @@
             // 
             this.label4.Location = new System.Drawing.Point(12, 44);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 13);
+            this.label4.Size = new System.Drawing.Size(56, 18);
             this.label4.TabIndex = 6;
             this.label4.Text = "&Summary:";
             // 
@@ -104,7 +117,7 @@
             // 
             this.label5.Location = new System.Drawing.Point(12, 79);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(42, 13);
+            this.label5.Size = new System.Drawing.Size(56, 17);
             this.label5.TabIndex = 8;
             this.label5.Text = "St&atus:";
             // 
@@ -120,7 +133,7 @@
             // 
             this.label6.Location = new System.Drawing.Point(334, 79);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(83, 13);
+            this.label6.Size = new System.Drawing.Size(83, 17);
             this.label6.TabIndex = 10;
             this.label6.Text = "&Priority:";
             // 
@@ -136,7 +149,7 @@
             // 
             this.label7.Location = new System.Drawing.Point(12, 114);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(48, 13);
+            this.label7.Size = new System.Drawing.Size(56, 18);
             this.label7.TabIndex = 12;
             this.label7.Text = "&Version:";
             // 
@@ -151,7 +164,7 @@
             // 
             this.label8.Location = new System.Drawing.Point(334, 114);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(83, 13);
+            this.label8.Size = new System.Drawing.Size(83, 25);
             this.label8.TabIndex = 14;
             this.label8.Text = "&Target Version:";
             // 
@@ -172,19 +185,17 @@
             // 
             // txtDescription
             // 
-            this.txtDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDescription.Location = new System.Drawing.Point(12, 164);
+            this.txtDescription.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtDescription.Location = new System.Drawing.Point(0, 0);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(876, 266);
+            this.txtDescription.Size = new System.Drawing.Size(873, 310);
             this.txtDescription.TabIndex = 17;
             // 
             // btOk
             // 
             this.btOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btOk.Location = new System.Drawing.Point(732, 436);
+            this.btOk.Location = new System.Drawing.Point(732, 546);
             this.btOk.Name = "btOk";
             this.btOk.Size = new System.Drawing.Size(75, 23);
             this.btOk.TabIndex = 18;
@@ -195,7 +206,7 @@
             // btCancel
             // 
             this.btCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btCancel.Location = new System.Drawing.Point(813, 436);
+            this.btCancel.Location = new System.Drawing.Point(813, 546);
             this.btCancel.Name = "btCancel";
             this.btCancel.Size = new System.Drawing.Size(75, 23);
             this.btCancel.TabIndex = 19;
@@ -221,16 +232,87 @@
             this.lblDateModified.TabIndex = 5;
             this.lblDateModified.Text = "label11";
             // 
+            // buttonBrowseImage
+            // 
+            this.buttonBrowseImage.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.buttonBrowseImage.Location = new System.Drawing.Point(613, 546);
+            this.buttonBrowseImage.Name = "buttonBrowseImage";
+            this.buttonBrowseImage.Size = new System.Drawing.Size(44, 23);
+            this.buttonBrowseImage.TabIndex = 20;
+            this.buttonBrowseImage.Text = "...";
+            this.toolTip1.SetToolTip(this.buttonBrowseImage, "Browse for image files");
+            this.buttonBrowseImage.UseVisualStyleBackColor = true;
+            this.buttonBrowseImage.Click += new System.EventHandler(this.buttonBrowseImage_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(873, 62);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 21;
+            this.pictureBox1.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBox1, "Click to zoom in/out");
+            this.pictureBox1.Visible = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // textBoxImage
+            // 
+            this.textBoxImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.textBoxImage.Location = new System.Drawing.Point(149, 548);
+            this.textBoxImage.Name = "textBoxImage";
+            this.textBoxImage.Size = new System.Drawing.Size(458, 22);
+            this.textBoxImage.TabIndex = 22;
+            this.textBoxImage.Text = "Test_Image.jpg";
+            // 
+            // labelImage
+            // 
+            this.labelImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelImage.Location = new System.Drawing.Point(16, 551);
+            this.labelImage.Name = "labelImage";
+            this.labelImage.Size = new System.Drawing.Size(127, 21);
+            this.labelImage.TabIndex = 23;
+            this.labelImage.Text = "Attached image file:";
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.Location = new System.Drawing.Point(15, 164);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.txtDescription);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.pictureBox1);
+            this.splitContainer1.Size = new System.Drawing.Size(873, 376);
+            this.splitContainer1.SplitterDistance = 310;
+            this.splitContainer1.TabIndex = 24;
+            // 
             // IssueForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(900, 471);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(900, 581);
+            this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.textBoxImage);
+            this.Controls.Add(this.labelImage);
+            this.Controls.Add(this.buttonBrowseImage);
             this.Controls.Add(this.lblDateModified);
             this.Controls.Add(this.lblDateCreated);
             this.Controls.Add(this.btCancel);
             this.Controls.Add(this.btOk);
-            this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtTargetVersion);
             this.Controls.Add(this.label8);
@@ -250,6 +332,12 @@
             this.Name = "IssueForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.IssueForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -277,5 +365,12 @@
         private System.Windows.Forms.Button btCancel;
         private System.Windows.Forms.Label lblDateCreated;
         private System.Windows.Forms.Label lblDateModified;
+        private System.Windows.Forms.Button buttonBrowseImage;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox textBoxImage;
+        private System.Windows.Forms.Label labelImage;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

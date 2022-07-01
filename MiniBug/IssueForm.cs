@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace MiniBug
@@ -13,12 +14,12 @@ namespace MiniBug
         /// <summary>
         /// The current operation.
         /// </summary>
-        public MiniBug.OperationType Operation { get; private set; } = OperationType.None;
+        public OperationType Operation { get; private set; } = OperationType.None;
 
         /// <summary>
         /// The current issue (being created or edited).
         /// </summary>
-        public MiniBug.Issue CurrentIssue { get; private set; } = null;
+        public Issue CurrentIssue { get; private set; } = null;
 
         /// <summary>
         /// List of status options.
@@ -119,6 +120,23 @@ namespace MiniBug
                 txtVersion.Text = CurrentIssue.Version;
                 txtTargetVersion.Text = CurrentIssue.TargetVersion;
                 txtDescription.Text = CurrentIssue.Description;
+                this.textBoxImage.Text = CurrentIssue.ImageFilename;
+
+                if (string.IsNullOrEmpty(CurrentIssue.ImageFilename))
+                {
+                    this.splitContainer1.SplitterDistance = this.splitContainer1.Height;        // Maximize description height
+                }
+                else if (File.Exists(CurrentIssue.ImageFilename))
+                {
+                    // If there is an attached image, display it
+                    this.splitContainer1.SplitterDistance = this.splitContainer1.Height / 2;
+                    this.pictureBox1.Image = Image.FromFile(CurrentIssue.ImageFilename);
+                    this.pictureBox1.Visible = true;
+                }
+                else
+                {
+                    this.textBoxImage.ForeColor = Color.Red;            // Not found, display file name in red
+                }
 
                 cboStatus.SelectedValue = Convert.ToInt32(CurrentIssue.Status);
                 cboPriority.SelectedValue = Convert.ToInt32(CurrentIssue.Priority);
@@ -127,7 +145,6 @@ namespace MiniBug
             }
 
             //txtDescription.Font = ApplicationSettings.FormDescriptionFieldFont;
-            //txtDescription.Font = ApplicationSettings.GridFont;
             lblID.Font = new Font(ApplicationSettings.GridFont, FontStyle.Bold);            // Bold
 
             // Resume the layout logic
@@ -175,6 +192,7 @@ namespace MiniBug
                 }
 
                 CurrentIssue.DateModified = DateTime.Now;
+                CurrentIssue.ImageFilename = this.textBoxImage.Text;
 
                 this.DialogResult = DialogResult.OK;
                 this.Close();
@@ -188,6 +206,42 @@ namespace MiniBug
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
+        }
+
+        /// <summary>
+        /// Attach an image file to this issue.
+        /// </summary>
+        private void buttonBrowseImage_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.Title = "Select Image file";
+            openFileDialog1.Multiselect = false;
+            openFileDialog1.Filter = "Image files (*.jpg)|*.jpg|(*.png)|*.png|(*.gif)|*.gif";
+            openFileDialog1.FilterIndex = 0;
+            openFileDialog1.FileName = string.Empty;
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                this.splitContainer1.SplitterDistance = this.splitContainer1.Height / 2;
+                string imageFilename = openFileDialog1.FileName;
+                this.textBoxImage.Text = imageFilename;
+                this.pictureBox1.Image = Image.FromFile(imageFilename);
+                this.pictureBox1.Visible = true;
+            }
+        }
+
+        /// <summary>
+        /// Zoom picture on click.
+        /// </summary>
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            if (this.pictureBox1.SizeMode == PictureBoxSizeMode.Normal)
+            {
+                this.pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            }
+            else
+            {
+                this.pictureBox1.SizeMode = PictureBoxSizeMode.Normal;
+            }
         }
     }
 }
