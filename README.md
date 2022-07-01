@@ -6,6 +6,7 @@ Some of the changes:
 - Default fontsize set to 10
 - Scale forms after changing fontsize in settings
 - Load project on startup if only one project exists
+- Optionally attach an image to an issue
 
 
 MiniBug is a barebones, simple issue tracker and to-do list. It is a Windows desktop single-user application.
