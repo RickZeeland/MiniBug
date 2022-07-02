@@ -114,7 +114,7 @@
             this.Name = "ImportExportFeedbackForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ImportExportFeedbackForm";
             this.Load += new System.EventHandler(this.ImportExportFeedbackForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.IconDescription)).EndInit();

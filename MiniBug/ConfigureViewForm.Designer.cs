@@ -143,7 +143,7 @@
             this.Name = "ConfigureViewForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Configure Columns";
             this.Load += new System.EventHandler(this.ConfigureViewForm_Load);
             this.TabControl.ResumeLayout(false);

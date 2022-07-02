@@ -84,7 +84,7 @@
             this.lblInfo.BackColor = System.Drawing.Color.Transparent;
             this.lblInfo.Location = new System.Drawing.Point(35, 87);
             this.lblInfo.Name = "lblInfo";
-            this.lblInfo.Size = new System.Drawing.Size(478, 13);
+            this.lblInfo.Size = new System.Drawing.Size(479, 13);
             this.lblInfo.TabIndex = 1;
             this.lblInfo.Text = "This project will be exported to two files: one containing the issues and the oth" +
     "er the tasks.";
@@ -206,7 +206,7 @@
             this.Name = "ExportForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Export";
             this.Load += new System.EventHandler(this.ExportForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
