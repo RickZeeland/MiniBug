@@ -63,6 +63,8 @@ namespace MiniBug
             // Resume the layout logic
             this.ResumeLayout();
 
+            this.CenterToScreen();
+
             // Set the sort glyph for the issues and tasks DataGridViews
             SetGridSortGlyph(GridType.All);
 

@@ -51,6 +51,7 @@ namespace MiniBug
 
             // Resume the layout logic
             this.ResumeLayout();
+            this.CenterToScreen();
 
             SetAccessibilityInformation();
         }
