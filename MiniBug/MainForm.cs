@@ -73,14 +73,21 @@ namespace MiniBug
 
         private void MainForm_Shown(object sender, EventArgs e)
         {
-            int projectsCount = Properties.Settings.Default.RecentProjectsNames.Count;
-
-            if (projectsCount == 1)
+            try
             {
-                // Load the only project immediately
-                OpenProject(Properties.Settings.Default.RecentProjectsPaths[0]);
-                this.GridIssues.FirstDisplayedScrollingRowIndex = this.GridIssues.RowCount - 1;
-                this.tabPage1.Invalidate();
+                int projectsCount = Properties.Settings.Default.RecentProjectsNames.Count;
+
+                if (projectsCount == 1)
+                {
+                    // Load the only project immediately
+                    OpenProject(Properties.Settings.Default.RecentProjectsPaths[0]);
+                    this.GridIssues.FirstDisplayedScrollingRowIndex = this.GridIssues.RowCount - 1;
+                    this.tabPage1.Invalidate();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Could not load recent project", "MiniBug", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
