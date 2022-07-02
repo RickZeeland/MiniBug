@@ -44,8 +44,6 @@ namespace MiniBug
             this.Text = "MiniBug Issue Tracker";
             this.MinimumSize = new Size(478, 303);
 
-            InitializeTabControl();
-
             // Initialization of the Issues and Tasks grids
             InitializeGridIssues();
             InitializeGridTasks();
@@ -147,16 +145,6 @@ namespace MiniBug
                 // Disable the clear recent projects list menu item
                 clearRecentProjectsListToolStripMenuItem.Enabled = false;
             }
-        }
-
-        /// <summary>
-        /// Initialize the tab control.
-        /// </summary>
-        private void InitializeTabControl()
-        {
-            //TabControl.Left = this.ClientRectangle.Left;
-            //TabControl.Width = this.ClientRectangle.Width + 3;
-            //TabControl.Height = this.ClientRectangle.Height - toolStrip1.Height - menuStrip1.Height + 1;
         }
 
         /// <summary>

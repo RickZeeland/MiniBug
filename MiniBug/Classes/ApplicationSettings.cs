@@ -65,6 +65,11 @@ namespace MiniBug
         /// </summary>
         public static Font GridFont = new Font("Segoe UI", 10);
 
+        ///// <summary>
+        ///// Font to use in the Description field of the Issues and Tasks forms.
+        ///// </summary>
+        //public static Font FormDescriptionFieldFont = new Font("Consolas", 9);
+
         /// <summary>
         /// Size of the colored rectangle in the status column of the DataGridViews.
         /// </summary>
@@ -96,11 +101,6 @@ namespace MiniBug
             { TaskStatus.InProgress, Brushes.Blue },
             { TaskStatus.Finished, Brushes.ForestGreen }
         };
-
-        /// <summary>
-        /// Font to use in the Description field of the Issues and Tasks forms.
-        /// </summary>
-        public static readonly Font FormDescriptionFieldFont = new Font("Consolas", 9);
 
         /// <summary>
         /// The columns of the issues DataGridView.
