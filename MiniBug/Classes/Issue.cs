@@ -132,6 +132,7 @@ namespace MiniBug
             Description = description;
             Version = version;
             TargetVersion = targetVersion;
+            this.ImageFilename = string.Empty;
 
             DateCreated = DateTime.Now;
             DateModified = DateTime.Now;
@@ -150,6 +151,7 @@ namespace MiniBug
             clonedInstance.Version = this.Version;
             clonedInstance.TargetVersion = this.TargetVersion;
             clonedInstance.DateCreated = clonedInstance.DateModified = DateTime.Now;
+            clonedInstance.ImageFilename = this.ImageFilename;
         }
     }
 }

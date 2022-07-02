@@ -1,5 +1,6 @@
 ﻿// Copyright(c) João Martiniano. All rights reserved.
 // Forked by RickZeeland.
+// Create single exe with Fody.Costura https://github.com/Fody/Costura
 // Licensed under the MIT license.
 
 using System;
