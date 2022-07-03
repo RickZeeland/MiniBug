@@ -123,10 +123,10 @@ namespace MiniBug
                 txtDescription.Text = CurrentIssue.Description;
                 this.textBoxImage.Text = CurrentIssue.ImageFilename;
 
-                if (Font.Size > 12)
+                if (Font.SizeInPoints > 12)
                 {
                     // Make sure the bottom panel is visible
-                    this.groupBoxDescription.Height = this.Height / 2;
+                    this.groupBoxDescription.Height = (int)(this.Height * 8 / Font.SizeInPoints);
                     this.panelBottom.Top = this.groupBoxDescription.Bottom + 5;
                 }
 
@@ -239,17 +239,19 @@ namespace MiniBug
         }
 
         /// <summary>
-        /// Zoom picture on click.
+        /// Zoom picture in splitcontainer panel2 on click.
         /// </summary>
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            if (this.pictureBox1.SizeMode == PictureBoxSizeMode.Normal)
+            this.pictureBox1.Size = this.splitContainer1.Panel2.ClientSize;
+
+            if (this.pictureBox1.SizeMode == PictureBoxSizeMode.Zoom)
             {
-                this.pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+                this.pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
             }
             else
             {
-                this.pictureBox1.SizeMode = PictureBoxSizeMode.Normal;
+                this.pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             }
         }
     }
