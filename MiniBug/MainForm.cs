@@ -32,60 +32,66 @@ namespace MiniBug
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            // Start by retrieving the application settings
-            ApplicationSettings.Load();
-
-            this.Font = ApplicationSettings.GridFont;
-            Point startPosition = Properties.Settings.Default.FormStartPosition;
-            Size formSize = Properties.Settings.Default.FormSize;
-
-            // Suspend the layout logic for the form, while the application is initializing
-            this.SuspendLayout();
-
-            this.Icon = Properties.Resources.Minibug;
-            this.Text = "MiniBug Issue Tracker";
-            this.MinimumSize = new Size(478, 303);
-
-            // Initialization of the Issues and Tasks grids
-            InitializeGridIssues();
-            InitializeGridTasks();
-
-            // Apply the settings to the Issues and Tasks grids
-            ApplySettingsToGrids();
-
-            // Populate the Issues and Tasks grids
-            PopulateGridIssues();
-            PopulateGridTasks();            
-
-            SetControlsState();
-
-            // Initialize the recent projects submenu
-            InitializeRecentProjects();
-
-            if (Font.Size > 12)
+            try
             {
-                // Make sure entire grid is visible
-                this.TabControl.Height -= ((int)Font.Size - 12) * 25;
+                // Start by retrieving the application settings
+                ApplicationSettings.Load();
+
+                this.Font = ApplicationSettings.GridFont;
+                Point startPosition = Properties.Settings.Default.FormStartPosition;
+                Size formSize = Properties.Settings.Default.FormSize;
+
+                // Suspend the layout logic for the form, while the application is initializing
+                this.SuspendLayout();
+
+                this.Icon = Properties.Resources.Minibug;
+                this.Text = "MiniBug Issue Tracker";
+                this.MinimumSize = new Size(478, 303);
+
+                // Initialization of the Issues and Tasks grids
+                InitializeGridIssues();
+                InitializeGridTasks();
+
+                // Apply the settings to the Issues and Tasks grids
+                ApplySettingsToGrids();
+
+                // Populate the Issues and Tasks grids
+                PopulateGridIssues();
+                PopulateGridTasks();
+
+                SetControlsState();
+
+                // Initialize the recent projects submenu
+                InitializeRecentProjects();
+
+                if (Font.Size > 12)
+                {
+                    // Make sure entire grid is visible
+                    this.TabControl.Height -= ((int)Font.Size - 12) * 25;
+                }
+
+                // Resume the layout logic
+                this.ResumeLayout();
+
+                if (startPosition.X > 0)
+                {
+                    this.Location = startPosition;
+                    this.Size = formSize;
+                }
+                else
+                {
+                    this.CenterToScreen();
+                }
+
+                // Set the sort glyph for the issues and tasks DataGridViews
+                SetGridSortGlyph(GridType.All);
+
+                SetAccessibilityInformation();
             }
-
-            // Resume the layout logic
-            this.ResumeLayout();
-
-            if (startPosition.X > 0)
+            catch (Exception ex)
             {
-                this.Left = startPosition.X;
-                this.Top = startPosition.Y;
-                this.Size = formSize;
+                MessageBox.Show(ex.Message, "MiniBug", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            else
-            {
-                this.CenterToScreen();
-            }
-
-            // Set the sort glyph for the issues and tasks DataGridViews
-            SetGridSortGlyph(GridType.All);
-
-            SetAccessibilityInformation();
         }
 
         private void MainForm_Shown(object sender, EventArgs e)
@@ -286,7 +292,7 @@ namespace MiniBug
         private void CloseApplication()
         {
             // Remember the last form position
-            Properties.Settings.Default.FormStartPosition = new Point(this.Left, this.Top);
+            Properties.Settings.Default.FormStartPosition = this.Location; 
             Properties.Settings.Default.FormSize = this.Size;
 
             // Save the order of the columns in the issues and tasks DataGridViews
