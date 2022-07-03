@@ -3,6 +3,7 @@
 // Create single exe with Fody.Costura https://github.com/Fody/Costura
 // Licensed under the MIT license.
 
+using ModernUI.Charting;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -992,12 +993,43 @@ namespace MiniBug
         /// </summary>
         private void PopulateGridIssues()
         {
+            int closed = 0;
+            int inProgress = 0;
+            int resolved = 0;
+            int unconfirmed = 0;
+            int confirmed = 0;
+            IssueStatus status;
+
             if ((Program.SoftwareProject != null) && (Program.SoftwareProject.Issues != null))
             {
                 foreach (KeyValuePair<int, Issue> item in Program.SoftwareProject.Issues)
                 {
                     AddIssueToGrid(item.Value);
+                    status = Program.SoftwareProject.Issues[item.Key].Status;
+
+                    if (status == IssueStatus.Closed)
+                    {
+                        closed++;
+                    }
+                    else if (status == IssueStatus.InProgress)
+                    {
+                        inProgress++;
+                    }
+                    else if (status == IssueStatus.Resolved)
+                    {
+                        resolved++;
+                    }
+                    else if (status == IssueStatus.Unconfirmed)
+                    {
+                        unconfirmed++;
+                    }
+                    else if (status == IssueStatus.Confirmed)
+                    {
+                        confirmed++;
+                    }
                 }
+
+                ShowPieChart(closed, inProgress, resolved, unconfirmed, confirmed);
             }
 
             // Sort the contents according to the sort criteria
@@ -2228,5 +2260,39 @@ namespace MiniBug
             frmConfigureView.Dispose();
         }
         #endregion
+
+        /// <summary>
+        /// Show a pie chart with issue counts using modified ModernUI.Charting.dll from:
+        /// https://www.codeproject.com/Articles/5299801/A-Control-to-Display-Pie-and-Doughtnut-Charts-with?msg=5885767#xx5885767xx
+        /// </summary>
+        private void ShowPieChart(int closed, int inProgress, int resolved, int unconfirmed, int confirmed)
+        {
+            modernPieChart1.Items.Clear();
+            modernPieChart1.GraphTitle = "(click to close)";
+            modernPieChart1.ForeColor = Color.White;
+            modernPieChart1.BackColor = Color.Gray;
+            //modernPieChart1.Font = new Font(this.Font, FontStyle.Bold);
+
+            modernPieChart1.Items.Add(new PieChartItem(unconfirmed, Color.LightGray, "Unconfirmed", $"Unconfirmed {unconfirmed}", 0));
+            modernPieChart1.Items.Add(new PieChartItem(confirmed, Color.Goldenrod, "Confirmed", $"Confirmed {confirmed}", 0));
+            modernPieChart1.Items.Add(new PieChartItem(inProgress, Color.Blue, "In progress", $"In progress {inProgress}", 20));
+            modernPieChart1.Items.Add(new PieChartItem(resolved, Color.ForestGreen, "Resolved issues", $"Resolved {resolved}", 0));
+            modernPieChart1.Items.Add(new PieChartItem(closed, Color.Gray, "Closed issues", $"Closed {closed}", 0));
+
+            modernPieChart1.ItemStyle.SurfaceAlphaTransparency = 0.75F;
+            modernPieChart1.FocusedItemStyle.SurfaceAlphaTransparency = 0.75F;
+            modernPieChart1.FocusedItemStyle.SurfaceBrightnessFactor = 0.3F;
+            modernPieChart1.PieStyle.Thickness = 30;
+            modernPieChart1.Radius = 140;
+            modernPieChart1.Visible = true;
+        }
+
+        /// <summary>
+        /// Hide the pie chart by clicking on it.
+        /// </summary>
+        private void modernPieChart1_Click(object sender, EventArgs e)
+        {
+            modernPieChart1.Visible = false;
+        }
     }
 }

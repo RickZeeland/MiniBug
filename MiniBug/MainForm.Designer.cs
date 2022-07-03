@@ -31,6 +31,7 @@
             this.GridIssues = new System.Windows.Forms.DataGridView();
             this.TabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.modernPieChart1 = new ModernUI.Charting.ModernPieChart();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.GridTasks = new System.Windows.Forms.DataGridView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -115,6 +116,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.modernPieChart1);
             this.tabPage1.Controls.Add(this.GridIssues);
             this.tabPage1.Location = new System.Drawing.Point(4, 26);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -125,6 +127,32 @@
             this.tabPage1.Text = "Issues";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // modernPieChart1
+            // 
+            this.modernPieChart1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.modernPieChart1.BackColor = System.Drawing.Color.Gray;
+            this.modernPieChart1.DisplayDoughnut = false;
+            this.modernPieChart1.DoughnutWidth = 100F;
+            this.modernPieChart1.DrawBorder = true;
+            this.modernPieChart1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modernPieChart1.ForeColor = System.Drawing.Color.White;
+            this.modernPieChart1.GraphTitle = "(Click to close)";
+            this.modernPieChart1.ItemTextTemplate = "Val: #VALUE - Perc: #PERCENTAGE - Text: #ITEMTEXT";
+            this.modernPieChart1.Location = new System.Drawing.Point(569, 152);
+            this.modernPieChart1.Name = "modernPieChart1";
+            this.modernPieChart1.PecentageDecimals = 2;
+            this.modernPieChart1.Radius = 200F;
+            this.modernPieChart1.Size = new System.Drawing.Size(400, 300);
+            this.modernPieChart1.TabIndex = 3;
+            this.modernPieChart1.Text = "modernPieChart1";
+            this.modernPieChart1.TextDisplayMode = ModernUI.Charting.ModernPieChart.TextDisplayTypes.Always;
+            this.modernPieChart1.Thickness = 10F;
+            this.modernPieChart1.TitleTextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.modernPieChart1.UseItemTextTemplate = false;
+            this.modernPieChart1.UseStyledForeColor = false;
+            this.modernPieChart1.Visible = false;
+            this.modernPieChart1.Click += new System.EventHandler(this.modernPieChart1_Click);
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.GridTasks);
@@ -132,7 +160,7 @@
             this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabPage2.Size = new System.Drawing.Size(1027, 498);
+            this.tabPage2.Size = new System.Drawing.Size(1027, 509);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Tasks";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -590,6 +618,7 @@
         private System.Windows.Forms.ToolStripButton IconConfigureColumns;
         private System.Windows.Forms.ToolStripMenuItem clearRecentProjectsListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem configureColumnsToolStripMenuItem;
+        private ModernUI.Charting.ModernPieChart modernPieChart1;
     }
 }
 
