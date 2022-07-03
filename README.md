@@ -8,6 +8,7 @@ Some of the changes:
 - Load project on startup if only one project exists
 - Optionally attach an image to an issue
 - Create single exe using Fody.Costura, https://github.com/Fody/Costura
+- Show a ModernUI.Charting pie chart after loading a project
 
 
 MiniBug is a barebones, simple issue tracker and to-do list. It is a Windows desktop single-user application.
