@@ -642,6 +642,7 @@ namespace MiniBug
             if (frmSettings.ShowDialog() == DialogResult.OK)
             {
                 this.Font = ApplicationSettings.GridFont;
+                this.CenterToScreen();
                 ApplySettingsToGrids();
             }
 
