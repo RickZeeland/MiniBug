@@ -43,7 +43,6 @@
             this.txtVersion = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtTargetVersion = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.btOk = new System.Windows.Forms.Button();
             this.btCancel = new System.Windows.Forms.Button();
@@ -56,11 +55,15 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.panelBottom = new System.Windows.Forms.Panel();
+            this.groupBoxDescription = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.panelBottom.SuspendLayout();
+            this.groupBoxDescription.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -175,27 +178,19 @@
             this.txtTargetVersion.Size = new System.Drawing.Size(233, 22);
             this.txtTargetVersion.TabIndex = 15;
             // 
-            // label9
-            // 
-            this.label9.Location = new System.Drawing.Point(12, 148);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(117, 13);
-            this.label9.TabIndex = 16;
-            this.label9.Text = "&Description:";
-            // 
             // txtDescription
             // 
             this.txtDescription.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtDescription.Location = new System.Drawing.Point(0, 0);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(873, 284);
+            this.txtDescription.Size = new System.Drawing.Size(873, 269);
             this.txtDescription.TabIndex = 17;
             // 
             // btOk
             // 
             this.btOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btOk.Location = new System.Drawing.Point(732, 528);
+            this.btOk.Location = new System.Drawing.Point(721, 11);
             this.btOk.Name = "btOk";
             this.btOk.Size = new System.Drawing.Size(75, 23);
             this.btOk.TabIndex = 18;
@@ -206,7 +201,7 @@
             // btCancel
             // 
             this.btCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btCancel.Location = new System.Drawing.Point(813, 528);
+            this.btCancel.Location = new System.Drawing.Point(802, 11);
             this.btCancel.Name = "btCancel";
             this.btCancel.Size = new System.Drawing.Size(75, 23);
             this.btCancel.TabIndex = 19;
@@ -235,7 +230,7 @@
             // buttonBrowseImage
             // 
             this.buttonBrowseImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonBrowseImage.Location = new System.Drawing.Point(613, 528);
+            this.buttonBrowseImage.Location = new System.Drawing.Point(600, 11);
             this.buttonBrowseImage.Name = "buttonBrowseImage";
             this.buttonBrowseImage.Size = new System.Drawing.Size(44, 23);
             this.buttonBrowseImage.TabIndex = 20;
@@ -249,7 +244,7 @@
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(873, 57);
+            this.pictureBox1.Size = new System.Drawing.Size(873, 54);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 21;
             this.pictureBox1.TabStop = false;
@@ -260,7 +255,7 @@
             // textBoxImage
             // 
             this.textBoxImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBoxImage.Location = new System.Drawing.Point(149, 530);
+            this.textBoxImage.Location = new System.Drawing.Point(136, 13);
             this.textBoxImage.Name = "textBoxImage";
             this.textBoxImage.Size = new System.Drawing.Size(458, 22);
             this.textBoxImage.TabIndex = 22;
@@ -269,7 +264,7 @@
             // labelImage
             // 
             this.labelImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelImage.Location = new System.Drawing.Point(16, 533);
+            this.labelImage.Location = new System.Drawing.Point(3, 16);
             this.labelImage.Name = "labelImage";
             this.labelImage.Size = new System.Drawing.Size(127, 21);
             this.labelImage.TabIndex = 23;
@@ -284,7 +279,7 @@
             this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(15, 164);
+            this.splitContainer1.Location = new System.Drawing.Point(8, 21);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -295,9 +290,37 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.pictureBox1);
-            this.splitContainer1.Size = new System.Drawing.Size(873, 345);
-            this.splitContainer1.SplitterDistance = 284;
+            this.splitContainer1.Size = new System.Drawing.Size(873, 327);
+            this.splitContainer1.SplitterDistance = 269;
             this.splitContainer1.TabIndex = 24;
+            // 
+            // panelBottom
+            // 
+            this.panelBottom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelBottom.Controls.Add(this.labelImage);
+            this.panelBottom.Controls.Add(this.btCancel);
+            this.panelBottom.Controls.Add(this.buttonBrowseImage);
+            this.panelBottom.Controls.Add(this.btOk);
+            this.panelBottom.Controls.Add(this.textBoxImage);
+            this.panelBottom.Location = new System.Drawing.Point(1, 515);
+            this.panelBottom.Name = "panelBottom";
+            this.panelBottom.Size = new System.Drawing.Size(899, 50);
+            this.panelBottom.TabIndex = 25;
+            // 
+            // groupBoxDescription
+            // 
+            this.groupBoxDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxDescription.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.groupBoxDescription.Controls.Add(this.splitContainer1);
+            this.groupBoxDescription.Location = new System.Drawing.Point(7, 142);
+            this.groupBoxDescription.Name = "groupBoxDescription";
+            this.groupBoxDescription.Size = new System.Drawing.Size(893, 354);
+            this.groupBoxDescription.TabIndex = 26;
+            this.groupBoxDescription.TabStop = false;
+            this.groupBoxDescription.Text = "&Description:";
             // 
             // IssueForm
             // 
@@ -305,15 +328,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(900, 581);
-            this.Controls.Add(this.btCancel);
-            this.Controls.Add(this.btOk);
-            this.Controls.Add(this.splitContainer1);
-            this.Controls.Add(this.textBoxImage);
-            this.Controls.Add(this.labelImage);
-            this.Controls.Add(this.buttonBrowseImage);
+            this.Controls.Add(this.groupBoxDescription);
+            this.Controls.Add(this.panelBottom);
             this.Controls.Add(this.lblDateModified);
             this.Controls.Add(this.lblDateCreated);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.txtTargetVersion);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtVersion);
@@ -338,6 +356,9 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.panelBottom.ResumeLayout(false);
+            this.panelBottom.PerformLayout();
+            this.groupBoxDescription.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -359,7 +380,6 @@
         private System.Windows.Forms.TextBox txtVersion;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtTargetVersion;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.Button btOk;
         private System.Windows.Forms.Button btCancel;
@@ -372,5 +392,7 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Panel panelBottom;
+        private System.Windows.Forms.GroupBox groupBoxDescription;
     }
 }

@@ -123,6 +123,13 @@ namespace MiniBug
                 txtDescription.Text = CurrentIssue.Description;
                 this.textBoxImage.Text = CurrentIssue.ImageFilename;
 
+                if (Font.Size > 12)
+                {
+                    // Make sure the bottom panel is visible
+                    this.groupBoxDescription.Height = this.Height / 2;
+                    this.panelBottom.Top = this.groupBoxDescription.Bottom + 5;
+                }
+
                 if (string.IsNullOrEmpty(CurrentIssue.ImageFilename))
                 {
                     this.splitContainer1.SplitterDistance = this.splitContainer1.Height;        // Maximize description height
@@ -150,6 +157,7 @@ namespace MiniBug
 
             // Resume the layout logic
             this.ResumeLayout();
+            this.CenterToScreen();
 
             SetAccessibilityInformation();
         }

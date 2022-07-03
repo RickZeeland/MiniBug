@@ -60,6 +60,12 @@ namespace MiniBug
             // Initialize the recent projects submenu
             InitializeRecentProjects();
 
+            if (Font.Size > 12)
+            {
+                // Make sure entire grid is visible
+                this.TabControl.Height -= ((int)Font.Size - 12) * 25;
+            }
+
             // Resume the layout logic
             this.ResumeLayout();
 
