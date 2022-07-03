@@ -88,7 +88,7 @@
             this.GridIssues.Location = new System.Drawing.Point(3, 4);
             this.GridIssues.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.GridIssues.Name = "GridIssues";
-            this.GridIssues.Size = new System.Drawing.Size(1021, 490);
+            this.GridIssues.Size = new System.Drawing.Size(1021, 501);
             this.GridIssues.TabIndex = 0;
             this.GridIssues.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridIssues_CellDoubleClick);
             this.GridIssues.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GridIssues_CellFormatting);
@@ -105,11 +105,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TabControl.Controls.Add(this.tabPage1);
             this.TabControl.Controls.Add(this.tabPage2);
-            this.TabControl.Location = new System.Drawing.Point(2, 88);
+            this.TabControl.Location = new System.Drawing.Point(2, 77);
             this.TabControl.Margin = new System.Windows.Forms.Padding(0);
             this.TabControl.Name = "TabControl";
             this.TabControl.SelectedIndex = 0;
-            this.TabControl.Size = new System.Drawing.Size(1035, 528);
+            this.TabControl.Size = new System.Drawing.Size(1035, 539);
             this.TabControl.TabIndex = 2;
             this.TabControl.SelectedIndexChanged += new System.EventHandler(this.TabControl_SelectedIndexChanged);
             // 
@@ -120,7 +120,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabPage1.Size = new System.Drawing.Size(1027, 498);
+            this.tabPage1.Size = new System.Drawing.Size(1027, 509);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Issues";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -132,7 +132,7 @@
             this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabPage2.Size = new System.Drawing.Size(1027, 487);
+            this.tabPage2.Size = new System.Drawing.Size(1027, 498);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Tasks";
             this.tabPage2.UseVisualStyleBackColor = true;

@@ -36,6 +36,8 @@ namespace MiniBug
             ApplicationSettings.Load();
 
             this.Font = ApplicationSettings.GridFont;
+            Point startPosition = Properties.Settings.Default.FormStartPosition;
+            Size formSize = Properties.Settings.Default.FormSize;
 
             // Suspend the layout logic for the form, while the application is initializing
             this.SuspendLayout();
@@ -69,7 +71,16 @@ namespace MiniBug
             // Resume the layout logic
             this.ResumeLayout();
 
-            this.CenterToScreen();
+            if (startPosition.X > 0)
+            {
+                this.Left = startPosition.X;
+                this.Top = startPosition.Y;
+                this.Size = formSize;
+            }
+            else
+            {
+                this.CenterToScreen();
+            }
 
             // Set the sort glyph for the issues and tasks DataGridViews
             SetGridSortGlyph(GridType.All);
@@ -274,6 +285,10 @@ namespace MiniBug
         /// </summary>
         private void CloseApplication()
         {
+            // Remember the last form position
+            Properties.Settings.Default.FormStartPosition = new Point(this.Left, this.Top);
+            Properties.Settings.Default.FormSize = this.Size;
+
             // Save the order of the columns in the issues and tasks DataGridViews
             ApplicationSettings.Save(ApplicationSettings.SaveSettings.ColumnOrderSort);
         }
