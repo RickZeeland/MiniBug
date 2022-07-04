@@ -45,6 +45,7 @@
             this.IconDeleteTask = new System.Windows.Forms.ToolStripButton();
             this.IconCloneTask = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.IconPieChart = new System.Windows.Forms.ToolStripButton();
             this.IconConfigureColumns = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -136,7 +137,7 @@
             this.modernPieChart1.DrawBorder = true;
             this.modernPieChart1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.modernPieChart1.ForeColor = System.Drawing.Color.White;
-            this.modernPieChart1.GraphTitle = "(Click to close)";
+            this.modernPieChart1.GraphTitle = "";
             this.modernPieChart1.ItemTextTemplate = "Val: #VALUE - Perc: #PERCENTAGE - Text: #ITEMTEXT";
             this.modernPieChart1.Location = new System.Drawing.Point(569, 152);
             this.modernPieChart1.Name = "modernPieChart1";
@@ -151,7 +152,6 @@
             this.modernPieChart1.UseItemTextTemplate = false;
             this.modernPieChart1.UseStyledForeColor = false;
             this.modernPieChart1.Visible = false;
-            this.modernPieChart1.Click += new System.EventHandler(this.modernPieChart1_Click);
             // 
             // tabPage2
             // 
@@ -196,6 +196,7 @@
             this.IconDeleteTask,
             this.IconCloneTask,
             this.toolStripSeparator5,
+            this.IconPieChart,
             this.IconConfigureColumns});
             this.toolStrip1.Location = new System.Drawing.Point(0, 25);
             this.toolStrip1.Name = "toolStrip1";
@@ -308,6 +309,18 @@
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 52);
+            // 
+            // IconPieChart
+            // 
+            this.IconPieChart.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.IconPieChart.Image = global::MiniBug.Properties.Resources.Chart_32x32;
+            this.IconPieChart.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.IconPieChart.Name = "IconPieChart";
+            this.IconPieChart.Size = new System.Drawing.Size(36, 49);
+            this.IconPieChart.Text = "Pie chart";
+            this.IconPieChart.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.IconPieChart.ToolTipText = "Show or hide Pie chart";
+            this.IconPieChart.Click += new System.EventHandler(this.IconPieChart_Click);
             // 
             // IconConfigureColumns
             // 
@@ -619,6 +632,7 @@
         private System.Windows.Forms.ToolStripMenuItem clearRecentProjectsListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem configureColumnsToolStripMenuItem;
         private ModernUI.Charting.ModernPieChart modernPieChart1;
+        private System.Windows.Forms.ToolStripButton IconPieChart;
     }
 }
 

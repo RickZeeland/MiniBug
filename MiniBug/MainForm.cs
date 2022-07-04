@@ -2268,10 +2268,11 @@ namespace MiniBug
         private void ShowPieChart(int closed, int inProgress, int resolved, int unconfirmed, int confirmed)
         {
             modernPieChart1.Items.Clear();
-            modernPieChart1.GraphTitle = "(click to close)";
+            //modernPieChart1.GraphTitle = "Issues";
             modernPieChart1.ForeColor = Color.White;
             modernPieChart1.BackColor = Color.Gray;
             //modernPieChart1.Font = new Font(this.Font, FontStyle.Bold);
+            //modernPieChart1.DisplayDoughnut = true;
 
             modernPieChart1.Items.Add(new PieChartItem(unconfirmed, Color.LightGray, "Unconfirmed", $"Unconfirmed {unconfirmed}", 0));
             modernPieChart1.Items.Add(new PieChartItem(confirmed, Color.Goldenrod, "Confirmed", $"Confirmed {confirmed}", 0));
@@ -2288,11 +2289,11 @@ namespace MiniBug
         }
 
         /// <summary>
-        /// Hide the pie chart by clicking on it.
+        /// Toggle Pie chart visibility on or off.
         /// </summary>
-        private void modernPieChart1_Click(object sender, EventArgs e)
+        private void IconPieChart_Click(object sender, EventArgs e)
         {
-            modernPieChart1.Visible = false;
+            modernPieChart1.Visible = !modernPieChart1.Visible;
         }
     }
 }

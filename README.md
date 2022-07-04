@@ -11,6 +11,7 @@ Some of the changes:
 - Show a ModernUI.Charting pie chart after loading a project
 
 
+
 MiniBug is a barebones, simple issue tracker and to-do list. It is a Windows desktop single-user application.
 
 <img src="Screenshots/main-window.png" alt="MiniBug main window">
@@ -107,3 +108,5 @@ This project uses the following libraries:
 
 - <a href="https://www.newtonsoft.com/json">Json.NET</a>: for reading/writing to .json files
 - <a href="https://joshclose.github.io/CsvHelper/">CsvHelper</a>: for exporting to CSV
+
+Chart icon by Icons8: <a target="_blank" href="https://icons8.com/icon/EQ4HGAcEI0hH/chart">Chart</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
