@@ -29,7 +29,7 @@ MiniBug does not use a database to store data: instead the application stores ea
 
 I've made a small sample project, with bugs and tasks copied from some applications' public bug trackers (Inkscape, Firefox, MariaDB and Kodi).
 
-Download the file <a href="minibug-MiniBug Sample Project.json">minibug-MiniBug Sample Project.json</a> and open it in MiniBug.
+Download the file <a href="MiniBug Sample Project.json">MiniBug Sample Project.json</a> and open it in MiniBug.
 
 # Getting Started
 
