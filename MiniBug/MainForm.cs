@@ -7,6 +7,7 @@ using ModernUI.Charting;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -25,6 +26,16 @@ namespace MiniBug
         /// If true, signals that the tasks grid is initializing.
         /// </summary>
         private bool initializingGridTasks = false;
+
+        public int IssuesClosed { get; set; }
+
+        public int IssuesInProgress { get; set; }
+
+        public int IssuesResolved { get; set; }
+
+        public int IssuesUnconfirmed { get; set; }
+
+        public int IssuesConfirmed { get; set; }
 
         public MainForm()
         {
@@ -993,43 +1004,22 @@ namespace MiniBug
         /// </summary>
         private void PopulateGridIssues()
         {
-            int closed = 0;
-            int inProgress = 0;
-            int resolved = 0;
-            int unconfirmed = 0;
-            int confirmed = 0;
-            IssueStatus status;
+            IssuesClosed = 0;
+            IssuesInProgress = 0;
+            IssuesResolved = 0;
+            IssuesUnconfirmed = 0;
+            IssuesConfirmed = 0;
 
             if ((Program.SoftwareProject != null) && (Program.SoftwareProject.Issues != null))
             {
                 foreach (KeyValuePair<int, Issue> item in Program.SoftwareProject.Issues)
                 {
                     AddIssueToGrid(item.Value);
-                    status = Program.SoftwareProject.Issues[item.Key].Status;
 
-                    if (status == IssueStatus.Closed)
-                    {
-                        closed++;
-                    }
-                    else if (status == IssueStatus.InProgress)
-                    {
-                        inProgress++;
-                    }
-                    else if (status == IssueStatus.Resolved)
-                    {
-                        resolved++;
-                    }
-                    else if (status == IssueStatus.Unconfirmed)
-                    {
-                        unconfirmed++;
-                    }
-                    else if (status == IssueStatus.Confirmed)
-                    {
-                        confirmed++;
-                    }
+                    PiechartCountersAdd(Program.SoftwareProject.Issues[item.Key].Status);
                 }
 
-                ShowPieChart(closed, inProgress, resolved, unconfirmed, confirmed);
+                ShowPieChart();
             }
 
             // Sort the contents according to the sort criteria
@@ -1238,6 +1228,9 @@ namespace MiniBug
 
             if (frmIssue.ShowDialog() == DialogResult.OK)
             {
+                // Add the status count for the Pie chart
+                PiechartCountersAdd(frmIssue.CurrentIssue.Status);
+
                 Program.SoftwareProject.AddIssue(frmIssue.CurrentIssue);
 
                 // Add the new issue to the grid
@@ -1274,12 +1267,20 @@ namespace MiniBug
             {
                 // Get the key of the issue in the selected row 
                 int id = Int32.Parse(GridIssues.SelectedRows[0].Cells["id"].Value.ToString());
+                var previousStatus = Program.SoftwareProject.Issues[id].Status;
 
                 IssueForm frmIssue = new IssueForm(OperationType.Edit, Program.SoftwareProject.Issues[id]);
 
                 if (frmIssue.ShowDialog() == DialogResult.OK)
                 {
                     Program.SoftwareProject.Issues[id] = frmIssue.CurrentIssue;
+
+                    if (previousStatus != frmIssue.CurrentIssue.Status)
+                    {
+                        // Update the counters for the Pie chart
+                        PiechartCountersAdd(previousStatus, -1);
+                        PiechartCountersAdd(frmIssue.CurrentIssue.Status);
+                    }
 
                     // Refresh the issue information in the grid
                     RefreshIssueInGrid(GridIssues.SelectedRows[0].Index, id);
@@ -1316,6 +1317,10 @@ namespace MiniBug
                         // Get the key of the issue in the selected row 
                         int key = Int32.Parse(row.Cells["id"].Value.ToString());
 
+                        // Update the counters for the Pie chart
+                        var status = Program.SoftwareProject.Issues[key].Status;
+                        PiechartCountersAdd(status, -1);
+
                         // Get the index of the selected row
                         int i = row.Index;
 
@@ -1347,6 +1352,10 @@ namespace MiniBug
             {
                 // Get the key of the issue in the selected row 
                 int id = Int32.Parse(GridIssues.SelectedRows[0].Cells["id"].Value.ToString());
+
+                // Update the counters for the Pie chart
+                var status = Program.SoftwareProject.Issues[id].Status;
+                PiechartCountersAdd(status, -1);
 
                 Issue newIssue = new Issue();
                 Program.SoftwareProject.Issues[id].Clone(ref newIssue);
@@ -2265,20 +2274,20 @@ namespace MiniBug
         /// Show a pie chart with issue counts using modified ModernUI.Charting.dll from:
         /// https://www.codeproject.com/Articles/5299801/A-Control-to-Display-Pie-and-Doughtnut-Charts-with?msg=5885767#xx5885767xx
         /// </summary>
-        private void ShowPieChart(int closed, int inProgress, int resolved, int unconfirmed, int confirmed)
+        private void ShowPieChart()
         {
-            modernPieChart1.Items.Clear();
             //modernPieChart1.GraphTitle = "Issues";
-            modernPieChart1.ForeColor = Color.White;
-            modernPieChart1.BackColor = Color.Gray;
             //modernPieChart1.Font = new Font(this.Font, FontStyle.Bold);
             //modernPieChart1.DisplayDoughnut = true;
+            modernPieChart1.Items.Clear();
+            modernPieChart1.ForeColor = Color.White;
+            modernPieChart1.BackColor = Color.Gray;
 
-            modernPieChart1.Items.Add(new PieChartItem(unconfirmed, Color.LightGray, "Unconfirmed", $"Unconfirmed {unconfirmed}", 0));
-            modernPieChart1.Items.Add(new PieChartItem(confirmed, Color.Goldenrod, "Confirmed", $"Confirmed {confirmed}", 0));
-            modernPieChart1.Items.Add(new PieChartItem(inProgress, Color.Blue, "In progress", $"In progress {inProgress}", 20));
-            modernPieChart1.Items.Add(new PieChartItem(resolved, Color.ForestGreen, "Resolved issues", $"Resolved {resolved}", 0));
-            modernPieChart1.Items.Add(new PieChartItem(closed, Color.Gray, "Closed issues", $"Closed {closed}", 0));
+            modernPieChart1.Items.Add(new PieChartItem(IssuesUnconfirmed, Color.LightGray, "Unconfirmed", $"Unconfirmed {IssuesUnconfirmed}", 0));
+            modernPieChart1.Items.Add(new PieChartItem(IssuesConfirmed, Color.Goldenrod, "Confirmed", $"Confirmed {IssuesConfirmed}", 0));
+            modernPieChart1.Items.Add(new PieChartItem(IssuesInProgress, Color.Blue, "In progress", $"In progress {IssuesInProgress}", 20));
+            modernPieChart1.Items.Add(new PieChartItem(IssuesResolved, Color.ForestGreen, "Resolved issues", $"Resolved {IssuesResolved}", 0));
+            modernPieChart1.Items.Add(new PieChartItem(IssuesClosed, Color.Gray, "Closed issues", $"Closed {IssuesClosed}", 0));
 
             modernPieChart1.ItemStyle.SurfaceAlphaTransparency = 0.75F;
             modernPieChart1.FocusedItemStyle.SurfaceAlphaTransparency = 0.75F;
@@ -2289,11 +2298,55 @@ namespace MiniBug
         }
 
         /// <summary>
+        /// Increment or decrement status count for the Pie chart.
+        /// </summary>
+        /// <param name="issueStatus">The issue status</param>
+        /// <param name="add">Amount to add, default 1</param>
+        private void PiechartCountersAdd(IssueStatus issueStatus, int add = 1)
+        {
+            switch (issueStatus)
+            {
+                case IssueStatus.None:
+                    break;
+                case IssueStatus.Unconfirmed:
+                    IssuesUnconfirmed += add;
+                    break;
+                case IssueStatus.Confirmed:
+                    IssuesConfirmed += add;
+                    break;
+                case IssueStatus.InProgress:
+                    IssuesInProgress += add;
+                    break;
+                case IssueStatus.Resolved:
+                    IssuesResolved += add;
+                    break;
+                case IssueStatus.Closed:
+                    IssuesClosed += add;
+                    break;
+                default:
+                    break;
+            }
+
+            if (modernPieChart1.Visible)
+            {
+                ShowPieChart();
+            }
+        }
+
+        /// <summary>
         /// Toggle Pie chart visibility on or off.
         /// </summary>
         private void IconPieChart_Click(object sender, EventArgs e)
         {
-            modernPieChart1.Visible = !modernPieChart1.Visible;
+            if (!modernPieChart1.Visible)
+            {
+                // Recalculate issue statusses
+                ShowPieChart();
+            }
+            else
+            {
+                modernPieChart1.Visible = false;
+            }
         }
     }
 }
