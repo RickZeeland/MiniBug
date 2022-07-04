@@ -130,7 +130,7 @@
             // 
             // modernPieChart1
             // 
-            this.modernPieChart1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.modernPieChart1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.modernPieChart1.BackColor = System.Drawing.Color.Gray;
             this.modernPieChart1.DisplayDoughnut = false;
             this.modernPieChart1.DoughnutWidth = 100F;

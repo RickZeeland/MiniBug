@@ -1351,11 +1351,11 @@ namespace MiniBug
             if (GridIssues.SelectedRows.Count == 1)
             {
                 // Get the key of the issue in the selected row 
-                int id = Int32.Parse(GridIssues.SelectedRows[0].Cells["id"].Value.ToString());
+                int id = int.Parse(GridIssues.SelectedRows[0].Cells["id"].Value.ToString());
 
                 // Update the counters for the Pie chart
                 var status = Program.SoftwareProject.Issues[id].Status;
-                PiechartCountersAdd(status, -1);
+                PiechartCountersAdd(status);
 
                 Issue newIssue = new Issue();
                 Program.SoftwareProject.Issues[id].Clone(ref newIssue);
@@ -2338,14 +2338,13 @@ namespace MiniBug
         /// </summary>
         private void IconPieChart_Click(object sender, EventArgs e)
         {
-            if (!modernPieChart1.Visible)
+            if (modernPieChart1.Visible)
             {
-                // Recalculate issue statusses
-                ShowPieChart();
+                modernPieChart1.Visible = false;
             }
             else
             {
-                modernPieChart1.Visible = false;
+                ShowPieChart();
             }
         }
     }
