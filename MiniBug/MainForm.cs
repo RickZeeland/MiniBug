@@ -17,6 +17,8 @@ namespace MiniBug
 {
     public partial class MainForm : Form
     {
+        internal string myName = "MiniBug v2 Issue Tracker";
+
         /// <summary>
         /// If true, signals that the issues grid is initializing.
         /// </summary>
@@ -57,7 +59,7 @@ namespace MiniBug
                 this.SuspendLayout();
 
                 this.Icon = Properties.Resources.Minibug;
-                this.Text = "MiniBug Issue Tracker";
+                this.Text = myName;
                 this.MinimumSize = new Size(478, 303);
 
                 // Initialization of the Issues and Tasks grids
@@ -456,7 +458,7 @@ namespace MiniBug
             else
             {
                 // Set the main form title bar text
-                this.Text = $"{frmProject.ProjectName} - MiniBug Issue Tracker";
+                this.Text = $"{frmProject.ProjectName} - {myName}";
 
                 // Add this project to the recent projects submenu and application settings
                 AddRecentProject(Program.SoftwareProject.Name, Path.Combine(Program.SoftwareProject.Location, Program.SoftwareProject.Filename));
@@ -514,7 +516,7 @@ namespace MiniBug
                     Program.SoftwareProject = newProject;
 
                     // Set the main form title bar text
-                    this.Text = $"{Program.SoftwareProject.Name} - MiniBug Issue Tracker";
+                    this.Text = $"{Program.SoftwareProject.Name} - {myName}";
 
                     // Clear the issues and tasks grids
                     GridIssues.Rows.Clear();
@@ -550,7 +552,7 @@ namespace MiniBug
             if (frmProject.ShowDialog() == DialogResult.OK)
             {
                 // Set the main form title bar text
-                this.Text = $"{frmProject.ProjectName} - MiniBug Issue Tracker";
+                this.Text = $"{frmProject.ProjectName} - {myName}";
 
                 Program.SoftwareProject.Name = frmProject.ProjectName;
                 Program.SoftwareProject.Filename = frmProject.ProjectFilename;
