@@ -17,8 +17,6 @@ namespace MiniBug
 {
     public partial class MainForm : Form
     {
-        internal string myName = "MiniBug v2 Issue Tracker";
-
         /// <summary>
         /// If true, signals that the issues grid is initializing.
         /// </summary>
@@ -59,7 +57,7 @@ namespace MiniBug
                 this.SuspendLayout();
 
                 this.Icon = Properties.Resources.Minibug;
-                this.Text = myName;
+                this.Text = Program.myName;
                 this.MinimumSize = new Size(478, 303);
 
                 // Initialization of the Issues and Tasks grids
@@ -104,7 +102,7 @@ namespace MiniBug
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "MiniBug", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(ex.Message, Program.myName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -124,7 +122,7 @@ namespace MiniBug
             }
             catch
             {
-                MessageBox.Show("Could not load recent project", "MiniBug", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Could not load recent project", Program.myName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -458,7 +456,7 @@ namespace MiniBug
             else
             {
                 // Set the main form title bar text
-                this.Text = $"{frmProject.ProjectName} - {myName}";
+                this.Text = $"{frmProject.ProjectName} - {Program.myName}";
 
                 // Add this project to the recent projects submenu and application settings
                 AddRecentProject(Program.SoftwareProject.Name, Path.Combine(Program.SoftwareProject.Location, Program.SoftwareProject.Filename));
@@ -516,7 +514,7 @@ namespace MiniBug
                     Program.SoftwareProject = newProject;
 
                     // Set the main form title bar text
-                    this.Text = $"{Program.SoftwareProject.Name} - {myName}";
+                    this.Text = $"{Program.SoftwareProject.Name} - {Program.myName}";
 
                     // Clear the issues and tasks grids
                     GridIssues.Rows.Clear();
@@ -552,7 +550,7 @@ namespace MiniBug
             if (frmProject.ShowDialog() == DialogResult.OK)
             {
                 // Set the main form title bar text
-                this.Text = $"{frmProject.ProjectName} - {myName}";
+                this.Text = $"{frmProject.ProjectName} - {Program.myName}";
 
                 Program.SoftwareProject.Name = frmProject.ProjectName;
                 Program.SoftwareProject.Filename = frmProject.ProjectFilename;
@@ -1308,10 +1306,10 @@ namespace MiniBug
         {
             if (GridIssues.SelectedRows.Count > 0)
             {
-                string msg = (GridIssues.SelectedRows.Count == 1) ? string.Empty : "s";
+                string msgIssues = (GridIssues.SelectedRows.Count == 1) ? "issue" : "issues";
 
                 // Confirm this operation
-                if (MessageBox.Show($"Are you sure you want to delete the selected issue{msg}?", $"Delete Issue{msg}", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
+                if (MessageBox.Show($"Are you sure you want to delete the selected {msgIssues}?", $"Delete {msgIssues}", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
                 {
                     // Iterate all the selected rows in the grid
                     foreach (DataGridViewRow row in GridIssues.SelectedRows)
@@ -1914,10 +1912,10 @@ namespace MiniBug
         {
             if (GridTasks.SelectedRows.Count > 0)
             {
-                string msg = (GridTasks.SelectedRows.Count == 1) ? string.Empty : "s";
+                string msgTasks = (GridTasks.SelectedRows.Count == 1) ? "task" : "tasks";
 
                 // Confirm this operation
-                if (MessageBox.Show($"Are you sure you want to delete the selected task{msg}?", $"Delete Task{msg}", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
+                if (MessageBox.Show($"Are you sure you want to delete the selected {msgTasks}?", $"Delete {msgTasks}", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
                 {
                     // Iterate all the selected rows in the grid
                     foreach (DataGridViewRow row in GridTasks.SelectedRows)
