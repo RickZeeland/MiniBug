@@ -75,9 +75,9 @@ namespace MiniBug
             this.Font = ApplicationSettings.GridFont;
 
             this.Icon = MiniBug.Properties.Resources.Minibug;
-            this.AcceptButton = btOk;
-            this.CancelButton = btCancel;
-            this.MinimumSize = new Size(685, 351);
+            //this.AcceptButton = btOk;
+            //this.CancelButton = btCancel;
+            //this.MinimumSize = new Size(685, 351);
 
             Point startPosition = Properties.Settings.Default.IssueFormStartPosition;
             Size formSize = Properties.Settings.Default.IssueFormSize;
