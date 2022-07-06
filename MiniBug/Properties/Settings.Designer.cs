@@ -208,5 +208,29 @@ namespace MiniBug.Properties {
                 this["FormSize"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point IssueFormStartPosition {
+            get {
+                return ((global::System.Drawing.Point)(this["IssueFormStartPosition"]));
+            }
+            set {
+                this["IssueFormStartPosition"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Size IssueFormSize {
+            get {
+                return ((global::System.Drawing.Size)(this["IssueFormSize"]));
+            }
+            set {
+                this["IssueFormSize"] = value;
+            }
+        }
     }
 }

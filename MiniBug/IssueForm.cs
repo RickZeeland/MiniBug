@@ -79,6 +79,9 @@ namespace MiniBug
             this.CancelButton = btCancel;
             this.MinimumSize = new Size(685, 351);
 
+            Point startPosition = Properties.Settings.Default.IssueFormStartPosition;
+            Size formSize = Properties.Settings.Default.IssueFormSize;
+
             txtDescription.AcceptsReturn = true;
             txtDescription.ScrollBars = ScrollBars.Vertical;
 
@@ -168,7 +171,16 @@ namespace MiniBug
 
             // Resume the layout logic
             this.ResumeLayout();
-            this.CenterToScreen();
+
+            if (startPosition.X > 0)
+            {
+                this.Location = startPosition;
+                this.Size = formSize;
+            }
+            else
+            {
+                this.CenterToScreen();
+            }
 
             SetAccessibilityInformation();
         }
@@ -197,6 +209,10 @@ namespace MiniBug
         /// </summary>
         private void btOk_Click(object sender, EventArgs e)
         {
+            // Remember the last form position
+            Properties.Settings.Default.IssueFormStartPosition = this.Location;
+            Properties.Settings.Default.IssueFormSize = this.Size;
+
             if (txtSummary.Text != string.Empty)
             {
                 CurrentIssue.Summary = txtSummary.Text;
