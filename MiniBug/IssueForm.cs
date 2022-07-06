@@ -235,7 +235,7 @@ namespace MiniBug
         {
             openFileDialog1.Title = "Select Image file";
             openFileDialog1.Multiselect = false;
-            openFileDialog1.Filter = "Image files (*.jpg)|*.jpg|(*.png)|*.png|(*.gif)|*.gif";
+            openFileDialog1.Filter = "Image files (*.jpg,*.png,*.bmp,*.gif)|*.jpg;*.png;*.bmp;*.gif";
             openFileDialog1.FilterIndex = 0;
             openFileDialog1.FileName = string.Empty;
 
