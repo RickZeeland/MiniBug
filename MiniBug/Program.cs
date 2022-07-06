@@ -53,7 +53,6 @@ namespace MiniBug
             {
                 // Ok, only one instance
                 mutex = new Mutex(true, "MiniBug2");
-                //_ = new Mutex(true, "MiniBug2");
                 return true;
             }
 

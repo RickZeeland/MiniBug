@@ -2,14 +2,8 @@
 // Licensed under the MIT license.
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Collections;
 using System.IO;
 using Newtonsoft.Json;
-using CsvHelper;
 
 namespace MiniBug
 {
@@ -83,11 +77,8 @@ namespace MiniBug
         /// <param name="softwareProject">An instance of the Project class.</param>
         public static FileSystemOperationStatus SaveProject(in Project softwareProject)
         {
-            string output = string.Empty;
-            string filename = string.Empty;
-
-            output = JsonConvert.SerializeObject(softwareProject);
-            filename = System.IO.Path.Combine(softwareProject.Location, softwareProject.Filename);
+            string output = JsonConvert.SerializeObject(softwareProject);
+            string filename = System.IO.Path.Combine(softwareProject.Location, softwareProject.Filename);
 
             try
             {

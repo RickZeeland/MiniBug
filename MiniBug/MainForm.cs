@@ -417,10 +417,11 @@ namespace MiniBug
         /// </summary>
         private void NewProject()
         {
-            FileSystemOperationStatus status = FileSystemOperationStatus.None;
-            ProjectForm frmProject = new ProjectForm(OperationType.New);
+            var status = FileSystemOperationStatus.None;
+            var frmProject = new ProjectForm(OperationType.New);
 
             DialogResult result = frmProject.ShowDialog();
+            this.Cursor = Cursors.WaitCursor;
 
             if (result == DialogResult.OK)
             {
@@ -442,6 +443,7 @@ namespace MiniBug
             }
             
             frmProject.Dispose();
+            this.Cursor = Cursors.Default;
 
             if (result == DialogResult.Cancel) return;
 
@@ -549,6 +551,8 @@ namespace MiniBug
 
             if (frmProject.ShowDialog() == DialogResult.OK)
             {
+                this.Cursor = Cursors.WaitCursor;
+
                 // Set the main form title bar text
                 this.Text = $"{frmProject.ProjectName} - {Program.myName}";
 
@@ -557,6 +561,7 @@ namespace MiniBug
                 Program.SoftwareProject.Location = frmProject.ProjectLocation;
 
                 status = ApplicationData.SaveProject(Program.SoftwareProject);
+                this.Cursor = Cursors.Default;
             }
 
             frmProject.Dispose();
@@ -604,8 +609,9 @@ namespace MiniBug
         //private void SaveProject(OperationContext context)
         private void SaveProject()
         {
-            FileSystemOperationStatus status = FileSystemOperationStatus.None;
-            status = ApplicationData.SaveProject(Program.SoftwareProject);
+            this.Cursor = Cursors.WaitCursor;
+            var status = ApplicationData.SaveProject(Program.SoftwareProject);
+            this.Cursor = Cursors.Default;
 
             // If there was an error saving the project file, show feedback
             if (status != FileSystemOperationStatus.OK)
