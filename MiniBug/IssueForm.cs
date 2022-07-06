@@ -122,6 +122,7 @@ namespace MiniBug
                 txtTargetVersion.Text = CurrentIssue.TargetVersion;
                 txtDescription.Text = CurrentIssue.Description;
                 this.textBoxImage.Text = CurrentIssue.ImageFilename;
+                this.textBoxImage.ForeColor = Color.Black;
 
                 if (Font.SizeInPoints > 12)
                 {
@@ -132,18 +133,28 @@ namespace MiniBug
 
                 if (string.IsNullOrEmpty(CurrentIssue.ImageFilename))
                 {
-                    this.splitContainer1.SplitterDistance = this.splitContainer1.Height;        // Maximize description height
+                    this.splitContainer1.SplitterDistance = this.splitContainer1.Height;        // No image, maximize description height
                 }
-                else if (File.Exists(CurrentIssue.ImageFilename))
+                else 
                 {
                     // If there is an attached image, display it
-                    this.splitContainer1.SplitterDistance = this.splitContainer1.Height / 2;
-                    this.pictureBox1.Image = Image.FromFile(CurrentIssue.ImageFilename);
-                    this.pictureBox1.Visible = true;
-                }
-                else
-                {
-                    this.textBoxImage.ForeColor = Color.Red;            // Not found, display file name in red
+                    string fullFilename = CurrentIssue.ImageFilename;
+
+                    if (!File.Exists(fullFilename))
+                    {
+                        fullFilename = Path.Combine(Application.StartupPath, fullFilename);
+                    }
+
+                    if (File.Exists(fullFilename))
+                    {
+                        this.splitContainer1.SplitterDistance = this.splitContainer1.Height / 2;
+                        this.pictureBox1.Image = Image.FromFile(fullFilename);
+                        this.pictureBox1.Visible = true;
+                    }
+                    else
+                    {
+                        this.textBoxImage.ForeColor = Color.Red;            // Not found, display file name in red
+                    }
                 }
 
                 cboStatus.SelectedValue = Convert.ToInt32(CurrentIssue.Status);

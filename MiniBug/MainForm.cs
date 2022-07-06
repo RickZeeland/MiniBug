@@ -489,7 +489,8 @@ namespace MiniBug
                     flagValidFilename = true;
                 }
             }
-            else if (!File.Exists(filename))
+
+            if (!File.Exists(filename))
             {
                 // Not found
                 return;
@@ -497,10 +498,9 @@ namespace MiniBug
 
             if (flagValidFilename)
             {
-                FileSystemOperationStatus status = FileSystemOperationStatus.None;
+                this.Cursor = Cursors.WaitCursor;
                 Project newProject = new Project();
-
-                status = ApplicationData.LoadProject(filename, out newProject);
+                var status = ApplicationData.LoadProject(filename, out newProject);
 
                 // If there was an error loading the new project file, show feedback
                 if (status != FileSystemOperationStatus.OK)
@@ -536,6 +536,8 @@ namespace MiniBug
                     // Resume the layout logic
                     this.ResumeLayout();
                 }
+
+                this.Cursor = Cursors.Default;
             }
 
             SetControlsState();
@@ -1272,7 +1274,7 @@ namespace MiniBug
             if (GridIssues.SelectedRows.Count == 1)
             {
                 // Get the key of the issue in the selected row 
-                int id = Int32.Parse(GridIssues.SelectedRows[0].Cells["id"].Value.ToString());
+                int id = int.Parse(GridIssues.SelectedRows[0].Cells["id"].Value.ToString());
                 var previousStatus = Program.SoftwareProject.Issues[id].Status;
 
                 IssueForm frmIssue = new IssueForm(OperationType.Edit, Program.SoftwareProject.Issues[id]);
