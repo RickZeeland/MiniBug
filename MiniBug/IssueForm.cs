@@ -243,6 +243,7 @@ namespace MiniBug
             {
                 this.splitContainer1.SplitterDistance = this.splitContainer1.Height / 2;
                 string imageFilename = openFileDialog1.FileName;
+                imageFilename = imageFilename.Replace(Application.StartupPath + @"\", string.Empty);
                 this.textBoxImage.Text = imageFilename;
                 this.pictureBox1.Image = Image.FromFile(imageFilename);
                 this.pictureBox1.Visible = true;
