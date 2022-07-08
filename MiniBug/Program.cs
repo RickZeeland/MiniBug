@@ -12,7 +12,7 @@ namespace MiniBug
         public static string myName = "MiniBug v2 Issue Tracker";
 
         /// <summary>
-        /// A software project that this application will work with. Contains issues and tasks.
+        /// A software project that this application will work with, contains issues and tasks.
         /// </summary>
         public static Project SoftwareProject = null;
 
@@ -47,12 +47,12 @@ namespace MiniBug
             try
             {
                 // Try to open existing mutex
-                Mutex.OpenExisting("MiniBug2");
+                Mutex.OpenExisting(myName);
             }
             catch
             {
                 // Ok, only one instance
-                mutex = new Mutex(true, "MiniBug2");
+                mutex = new Mutex(true, myName);
                 return true;
             }
 
