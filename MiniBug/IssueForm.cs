@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Text;
 using System.Windows.Forms;
 
 namespace MiniBug
@@ -124,8 +125,8 @@ namespace MiniBug
                 txtVersion.Text = CurrentIssue.Version;
                 txtTargetVersion.Text = CurrentIssue.TargetVersion;
                 txtDescription.Text = CurrentIssue.Description;
-                this.textBoxImage.Text = CurrentIssue.ImageFilename;
-                this.textBoxImage.ForeColor = Color.Black;
+                this.txtImage.Text = CurrentIssue.ImageFilename;
+                this.txtImage.ForeColor = Color.Black;
 
                 if (Font.SizeInPoints > 12)
                 {
@@ -156,7 +157,7 @@ namespace MiniBug
                     }
                     else
                     {
-                        this.textBoxImage.ForeColor = Color.Red;            // Not found, display file name in red
+                        this.txtImage.ForeColor = Color.Red;            // Not found, display file name in red
                     }
                 }
 
@@ -228,7 +229,7 @@ namespace MiniBug
                 }
 
                 CurrentIssue.DateModified = DateTime.Now;
-                CurrentIssue.ImageFilename = this.textBoxImage.Text;
+                CurrentIssue.ImageFilename = this.txtImage.Text;
 
                 this.DialogResult = DialogResult.OK;
                 this.Close();
@@ -260,7 +261,7 @@ namespace MiniBug
                 this.splitContainer1.SplitterDistance = this.splitContainer1.Height / 2;
                 string imageFilename = openFileDialog1.FileName;
                 imageFilename = imageFilename.Replace(Application.StartupPath + @"\", string.Empty);
-                this.textBoxImage.Text = imageFilename;
+                this.txtImage.Text = imageFilename;
                 this.pictureBox1.Image = Image.FromFile(imageFilename);
                 this.pictureBox1.Visible = true;
             }
@@ -280,6 +281,40 @@ namespace MiniBug
             else
             {
                 this.pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            }
+        }
+
+        private void buttonCopy_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine($"MiniBug v2 issue ID {this.lblID.Text}");
+                sb.AppendLine();
+                sb.AppendLine($"Date Created:   {this.lblDateCreated.Text}");
+                sb.AppendLine($"Date Modified:  {this.lblDateModified.Text}");
+                sb.AppendLine($"Summary:        {this.txtSummary.Text}");
+                sb.AppendLine($"Status:         {this.cboStatus.Text}");
+                sb.AppendLine($"Priority:       {this.cboPriority.Text}");
+                sb.AppendLine($"Version:        {this.txtVersion.Text}");
+                sb.AppendLine($"Target Version: {this.txtTargetVersion.Text}");
+
+                if (!string.IsNullOrEmpty(this.txtImage.Text))
+                {
+                    //Clipboard.SetImage(this.pictureBox1.Image);
+                    sb.AppendLine($"Image:          {this.txtImage.Text}");
+                    DataObject dataObj = new DataObject();
+                    dataObj.SetData(DataFormats.UnicodeText, sb.ToString());
+                    dataObj.SetData(DataFormats.Bitmap, true, Image.FromFile(this.txtImage.Text));
+                    Clipboard.SetDataObject(dataObj);
+                }
+                else
+                {
+                    Clipboard.SetText(sb.ToString());
+                }
+            }
+            catch
+            {
             }
         }
     }

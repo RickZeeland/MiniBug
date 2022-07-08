@@ -50,13 +50,14 @@
             this.lblDateModified = new System.Windows.Forms.Label();
             this.buttonBrowseImage = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.textBoxImage = new System.Windows.Forms.TextBox();
+            this.txtImage = new System.Windows.Forms.TextBox();
             this.labelImage = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panelBottom = new System.Windows.Forms.Panel();
             this.groupBoxDescription = new System.Windows.Forms.GroupBox();
+            this.buttonCopy = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -253,14 +254,14 @@
             this.pictureBox1.Visible = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // textBoxImage
+            // txtImage
             // 
-            this.textBoxImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBoxImage.Location = new System.Drawing.Point(136, 13);
-            this.textBoxImage.Name = "textBoxImage";
-            this.textBoxImage.Size = new System.Drawing.Size(458, 22);
-            this.textBoxImage.TabIndex = 22;
-            this.textBoxImage.Text = "Test_Image.jpg";
+            this.txtImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtImage.Location = new System.Drawing.Point(136, 13);
+            this.txtImage.Name = "txtImage";
+            this.txtImage.Size = new System.Drawing.Size(458, 22);
+            this.txtImage.TabIndex = 22;
+            this.txtImage.Text = "Test_Image.jpg";
             // 
             // labelImage
             // 
@@ -304,7 +305,7 @@
             this.panelBottom.Controls.Add(this.btCancel);
             this.panelBottom.Controls.Add(this.buttonBrowseImage);
             this.panelBottom.Controls.Add(this.btOk);
-            this.panelBottom.Controls.Add(this.textBoxImage);
+            this.panelBottom.Controls.Add(this.txtImage);
             this.panelBottom.Location = new System.Drawing.Point(7, 519);
             this.panelBottom.Name = "panelBottom";
             this.panelBottom.Size = new System.Drawing.Size(887, 50);
@@ -324,12 +325,23 @@
             this.groupBoxDescription.TabStop = false;
             this.groupBoxDescription.Text = "&Description:";
             // 
+            // buttonCopy
+            // 
+            this.buttonCopy.Location = new System.Drawing.Point(716, 110);
+            this.buttonCopy.Name = "buttonCopy";
+            this.buttonCopy.Size = new System.Drawing.Size(130, 23);
+            this.buttonCopy.TabIndex = 27;
+            this.buttonCopy.Text = "Copy to clipboard";
+            this.buttonCopy.UseVisualStyleBackColor = true;
+            this.buttonCopy.Click += new System.EventHandler(this.buttonCopy_Click);
+            // 
             // IssueForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(900, 581);
+            this.Controls.Add(this.buttonCopy);
             this.Controls.Add(this.groupBoxDescription);
             this.Controls.Add(this.panelBottom);
             this.Controls.Add(this.lblDateModified);
@@ -391,12 +403,13 @@
         private System.Windows.Forms.Label lblDateModified;
         private System.Windows.Forms.Button buttonBrowseImage;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TextBox textBoxImage;
+        private System.Windows.Forms.TextBox txtImage;
         private System.Windows.Forms.Label labelImage;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Panel panelBottom;
         private System.Windows.Forms.GroupBox groupBoxDescription;
+        private System.Windows.Forms.Button buttonCopy;
     }
 }
