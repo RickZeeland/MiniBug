@@ -1,6 +1,7 @@
-# MiniBug - Issue Tracker and To-do List
+# MiniBug v2 - Issue Tracker and To-do List
 
 This is a fork of MiniBug for VS2019 and .NET 4.8.
+
 Some of the changes:
 - Removed missing MiniBug_TemporaryKey.pfx and signing from project
 - Default fontsize set to 10
@@ -17,6 +18,9 @@ MiniBug is a barebones, simple issue tracker and to-do list. It is a Windows des
 <img src="Screenshots/main-window.png" alt="MiniBug main window">
 
 MiniBug does not use a database to store data: instead the application stores each project in a .json file. This means that if you need to work on projects, in different computers, you can share a MiniBug project between computers, by putting the .json file in something like Dropbox.
+
+Attached images are stored with their file name only, it is recommended to keep them in the same folder as the application.
+Preferably keep images in a subfolder "Images", this way all data can be copied easily to another location.
 
 ## Features
 
