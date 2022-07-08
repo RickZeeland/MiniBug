@@ -1236,10 +1236,10 @@ namespace MiniBug
 
             if (frmIssue.ShowDialog() == DialogResult.OK)
             {
+                Program.SoftwareProject.AddIssue(frmIssue.CurrentIssue);
+
                 // Add the status count for the Pie chart
                 PiechartCountersAdd(frmIssue.CurrentIssue.Status);
-
-                Program.SoftwareProject.AddIssue(frmIssue.CurrentIssue);
 
                 // Add the new issue to the grid
                 AddIssueToGrid(frmIssue.CurrentIssue);
@@ -1324,16 +1324,16 @@ namespace MiniBug
                     {
                         // Get the key of the issue in the selected row 
                         int key = Int32.Parse(row.Cells["id"].Value.ToString());
-
-                        // Update the counters for the Pie chart
                         var status = Program.SoftwareProject.Issues[key].Status;
-                        PiechartCountersAdd(status, -1);
 
                         // Get the index of the selected row
                         int i = row.Index;
 
                         // Remove the issue from the collection
                         Program.SoftwareProject.Issues.Remove(key);
+
+                        // Update the counters for the Pie chart
+                        PiechartCountersAdd(status, -1);
 
                         // Remove the row from the grid
                         GridIssues.Rows.RemoveAt(i);
@@ -1352,35 +1352,56 @@ namespace MiniBug
         }
 
         /// <summary>
-        /// Clone the selected issue.
+        /// Clone one selected issue.
         /// </summary>
         private void CloneIssue()
         {
-            if (GridIssues.SelectedRows.Count == 1)
+            if (GridIssues.SelectedRows.Count > 1)
+            {
+                return;
+
+                //// Testing only, clone multiple issues
+                //foreach (DataGridViewRow row in GridIssues.SelectedRows)
+                //{
+                //    // Get the key of the issue in the selected row 
+                //    int id = int.Parse(row.Cells["id"].Value.ToString());
+
+                //    // Update the counters for the Pie chart
+                //    var status = Program.SoftwareProject.Issues[id].Status;
+                //    PiechartCountersAdd(status);
+
+                //    Issue newIssue = new Issue();
+                //    Program.SoftwareProject.Issues[id].Clone(ref newIssue);
+                //    Program.SoftwareProject.AddIssue(newIssue);
+                //    AddIssueToGrid(newIssue);
+                //}
+            }
+            else if (GridIssues.SelectedRows.Count == 1)
             {
                 // Get the key of the issue in the selected row 
                 int id = int.Parse(GridIssues.SelectedRows[0].Cells["id"].Value.ToString());
 
                 // Update the counters for the Pie chart
                 var status = Program.SoftwareProject.Issues[id].Status;
-                PiechartCountersAdd(status);
 
                 Issue newIssue = new Issue();
                 Program.SoftwareProject.Issues[id].Clone(ref newIssue);
                 Program.SoftwareProject.AddIssue(newIssue);
 
+                PiechartCountersAdd(status);
+
                 // Add the new issue to the grid
                 AddIssueToGrid(newIssue);
-
-                // Save the project file
-                SaveProject();
-
-                // Refresh the UI controls
-                SetControlsState();
-
-                // Sort the contents according to the sort criteria
-                GridIssues.Sort(new IssuesDataGridViewRowComparer(SortOrder.Ascending));
             }
+
+            // Save the project file
+            SaveProject();
+
+            // Refresh the UI controls
+            SetControlsState();
+
+            // Sort the contents according to the sort criteria
+            GridIssues.Sort(new IssuesDataGridViewRowComparer(SortOrder.Ascending));
         }
 
         /// <summary>
@@ -2284,7 +2305,7 @@ namespace MiniBug
         /// </summary>
         private void ShowPieChart()
         {
-            //modernPieChart1.GraphTitle = "Issues";
+            modernPieChart1.GraphTitle = Program.SoftwareProject.Issues.Count + " Issues";      // Total number of issues
             //modernPieChart1.Font = new Font(this.Font, FontStyle.Bold);
             //modernPieChart1.DisplayDoughnut = true;
             modernPieChart1.Items.Clear();
