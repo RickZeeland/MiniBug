@@ -284,6 +284,12 @@ namespace MiniBug
             }
         }
 
+        /// <summary>
+        /// Copy text and attached image to the Windows Clipboard.
+        /// Use "Paste special" in Office applications to paste the image.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonCopy_Click(object sender, EventArgs e)
         {
             try

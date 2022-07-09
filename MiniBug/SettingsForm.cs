@@ -101,6 +101,8 @@ namespace MiniBug
             lblAlternateRowColor.Enabled = ApplicationSettings.GridAlternatingRowColor;
             AlternateRowColor.Enabled = ApplicationSettings.GridAlternatingRowColor;
             AlternateRowColor.BackColor = ApplicationSettings.GridAlternateRowBackColor;
+
+            chkScrollToLastRow.Checked = ApplicationSettings.ScrollToLastRow;
         }
 
         #region ControlEvents
@@ -227,6 +229,8 @@ namespace MiniBug
             ApplicationSettings.GridRowBackColor = RowColor.BackColor;
             ApplicationSettings.GridAlternatingRowColor = chkAlternateRowColors.Checked;
             ApplicationSettings.GridAlternateRowBackColor = AlternateRowColor.BackColor;
+
+            ApplicationSettings.ScrollToLastRow = chkScrollToLastRow.Checked;
 
             // Persist the new settings
             ApplicationSettings.Save();

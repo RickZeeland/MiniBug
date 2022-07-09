@@ -64,6 +64,7 @@ namespace MiniBug
 
                 // Initialize the recent projects submenu
                 InitializeRecentProjects();
+                LoadRecentProject();
 
                 if (Font.Size > 12)
                 {
@@ -95,7 +96,10 @@ namespace MiniBug
             }
         }
 
-        private void MainForm_Shown(object sender, EventArgs e)
+        /// <summary>
+        /// Load project into grid (when there is only one project)
+        /// </summary>
+        private void LoadRecentProject()
         {
             try
             {
@@ -105,7 +109,12 @@ namespace MiniBug
                 {
                     // Load the only project immediately
                     OpenProject(Properties.Settings.Default.RecentProjectsPaths[0]);
-                    this.GridIssues.FirstDisplayedScrollingRowIndex = this.GridIssues.RowCount - 1;
+
+                    if (Properties.Settings.Default.ScrollToLastRow)
+                    {
+                        this.GridIssues.FirstDisplayedScrollingRowIndex = this.GridIssues.RowCount - 1;
+                    }
+
                     this.tabPage1.Invalidate();
                 }
             }
@@ -113,6 +122,10 @@ namespace MiniBug
             {
                 MessageBox.Show("Could not load recent project", Program.myName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
         }
 
         /// <summary>

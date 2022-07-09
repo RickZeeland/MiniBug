@@ -61,6 +61,11 @@ namespace MiniBug
         public static Color GridAlternateRowBackColor = Color.White;
 
         /// <summary>
+        /// Scroll to last grid row after loading a project.
+        /// </summary>
+        public static bool ScrollToLastRow = true;
+
+        /// <summary>
         /// DataGridView font name and size.
         /// </summary>
         public static Font GridFont = new Font("Segoe UI", 10);
@@ -195,6 +200,7 @@ namespace MiniBug
             GridRowBackColor = Properties.Settings.Default.GridRowBackColor;
             GridAlternateRowBackColor = Properties.Settings.Default.GridAlternateRowBackColor;
             GridFont = Properties.Settings.Default.GridFont;
+            ScrollToLastRow = Properties.Settings.Default.ScrollToLastRow;
 
             // Load the settings for the issues DataGridView columns
             if (Properties.Settings.Default.GridIssuesColumnsSettings != null)
@@ -297,6 +303,7 @@ namespace MiniBug
                 Properties.Settings.Default.GridRowBackColor = GridRowBackColor;
                 Properties.Settings.Default.GridAlternateRowBackColor = GridAlternateRowBackColor;
                 Properties.Settings.Default.GridFont = GridFont;
+                Properties.Settings.Default.ScrollToLastRow = ScrollToLastRow;
             }
 
             // Save some settings for the issues and tasks DataGridView columns
@@ -361,6 +368,7 @@ namespace MiniBug
             GridRowBackColor = Color.White;
             GridAlternateRowBackColor = Color.White;
             GridFont = new Font("Segoe UI", 8);
+            ScrollToLastRow = true;
         }
     }
 }

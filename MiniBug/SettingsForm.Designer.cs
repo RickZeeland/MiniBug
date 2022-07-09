@@ -51,6 +51,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btLoadDefaults = new System.Windows.Forms.Button();
+            this.chkScrollToLastRow = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -79,7 +80,7 @@
             // lblGridlineColor
             // 
             this.lblGridlineColor.AutoSize = true;
-            this.lblGridlineColor.Location = new System.Drawing.Point(42, 58);
+            this.lblGridlineColor.Location = new System.Drawing.Point(175, 31);
             this.lblGridlineColor.Name = "lblGridlineColor";
             this.lblGridlineColor.Size = new System.Drawing.Size(82, 13);
             this.lblGridlineColor.TabIndex = 1;
@@ -111,7 +112,7 @@
             // 
             this.GridlineColor.BackColor = System.Drawing.Color.White;
             this.GridlineColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.GridlineColor.Location = new System.Drawing.Point(130, 53);
+            this.GridlineColor.Location = new System.Drawing.Point(276, 30);
             this.GridlineColor.Name = "GridlineColor";
             this.GridlineColor.Size = new System.Drawing.Size(35, 22);
             this.GridlineColor.TabIndex = 2;
@@ -185,7 +186,7 @@
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.SelectionBackgroundColor);
-            this.groupBox1.Location = new System.Drawing.Point(21, 149);
+            this.groupBox1.Location = new System.Drawing.Point(21, 127);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(443, 66);
             this.groupBox1.TabIndex = 5;
@@ -196,7 +197,7 @@
             // 
             this.SelectionTextColor.BackColor = System.Drawing.Color.White;
             this.SelectionTextColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SelectionTextColor.Location = new System.Drawing.Point(263, 23);
+            this.SelectionTextColor.Location = new System.Drawing.Point(276, 23);
             this.SelectionTextColor.Name = "SelectionTextColor";
             this.SelectionTextColor.Size = new System.Drawing.Size(35, 22);
             this.SelectionTextColor.TabIndex = 3;
@@ -209,9 +210,9 @@
             this.groupBox2.Controls.Add(this.RowColor);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.chkAlternateRowColors);
-            this.groupBox2.Location = new System.Drawing.Point(21, 221);
+            this.groupBox2.Location = new System.Drawing.Point(21, 199);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(443, 128);
+            this.groupBox2.Size = new System.Drawing.Size(443, 100);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Row Colors";
@@ -220,7 +221,7 @@
             // 
             this.AlternateRowColor.BackColor = System.Drawing.Color.White;
             this.AlternateRowColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.AlternateRowColor.Location = new System.Drawing.Point(162, 90);
+            this.AlternateRowColor.Location = new System.Drawing.Point(276, 64);
             this.AlternateRowColor.Name = "AlternateRowColor";
             this.AlternateRowColor.Size = new System.Drawing.Size(35, 22);
             this.AlternateRowColor.TabIndex = 4;
@@ -229,11 +230,11 @@
             // lblAlternateRowColor
             // 
             this.lblAlternateRowColor.AutoSize = true;
-            this.lblAlternateRowColor.Location = new System.Drawing.Point(42, 95);
+            this.lblAlternateRowColor.Location = new System.Drawing.Point(213, 65);
             this.lblAlternateRowColor.Name = "lblAlternateRowColor";
-            this.lblAlternateRowColor.Size = new System.Drawing.Size(114, 13);
+            this.lblAlternateRowColor.Size = new System.Drawing.Size(38, 13);
             this.lblAlternateRowColor.TabIndex = 3;
-            this.lblAlternateRowColor.Text = "A&lternate Row Color:";
+            this.lblAlternateRowColor.Text = "Color:";
             // 
             // RowColor
             // 
@@ -261,7 +262,7 @@
             this.groupBox3.Controls.Add(this.chkShowGridlines);
             this.groupBox3.Location = new System.Drawing.Point(21, 53);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(443, 90);
+            this.groupBox3.Size = new System.Drawing.Size(443, 68);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Gridlines";
@@ -276,11 +277,24 @@
             this.btLoadDefaults.UseVisualStyleBackColor = true;
             this.btLoadDefaults.Click += new System.EventHandler(this.btLoadDefaults_Click);
             // 
+            // chkScrollToLastRow
+            // 
+            this.chkScrollToLastRow.AutoSize = true;
+            this.chkScrollToLastRow.Checked = true;
+            this.chkScrollToLastRow.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkScrollToLastRow.Location = new System.Drawing.Point(44, 317);
+            this.chkScrollToLastRow.Name = "chkScrollToLastRow";
+            this.chkScrollToLastRow.Size = new System.Drawing.Size(221, 17);
+            this.chkScrollToLastRow.TabIndex = 3;
+            this.chkScrollToLastRow.Text = "Scroll to last row after loading project";
+            this.chkScrollToLastRow.UseVisualStyleBackColor = true;
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(489, 400);
+            this.Controls.Add(this.chkScrollToLastRow);
             this.Controls.Add(this.btLoadDefaults);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -337,5 +351,6 @@
         private System.Windows.Forms.Label AlternateRowColor;
         private System.Windows.Forms.Label lblAlternateRowColor;
         private System.Windows.Forms.Button btLoadDefaults;
+        private System.Windows.Forms.CheckBox chkScrollToLastRow;
     }
 }
