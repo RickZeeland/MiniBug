@@ -2301,5 +2301,75 @@ namespace MiniBug
         }
 
         #endregion
+
+        /// <summary>
+        /// Clear the text search box on first click.
+        /// </summary>
+        private void txtSearch_Click(object sender, EventArgs e)
+        {
+            if (this.txtSearch.Text.Equals("search"))
+            {
+                this.txtSearch.Clear();
+            }
+        }
+
+        /// <summary>
+        /// Search after pressing Enter key, select found rows.
+        /// </summary>
+        private void txtSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                string searchstring = txtSearch.Text;
+                int row = 0;
+                bool found = false;
+                this.GridIssues.ClearSelection();
+
+                // Search summary first
+                foreach (DataGridViewRow issue in this.GridIssues.Rows)
+                {
+                    if (issue.Cells["Summary"].Value.ToString().Contains(searchstring))
+                    {
+                        if (!found)
+                        {
+                            // Scroll to first found row
+                            this.GridIssues.FirstDisplayedScrollingRowIndex = row;
+                        }
+
+                        this.GridIssues.Rows[row].Selected = true;
+                        found = true;
+                    }
+
+                    row++;
+                }
+
+                if (!found)
+                {
+                    // Search Description
+                    row = 0;
+
+                    foreach (DataGridViewRow issue in this.GridIssues.Rows)
+                    {
+                        int id = int.Parse(issue.Cells["id"].Value.ToString());
+                        var description = Program.SoftwareProject.Issues[id].Description;
+
+                        if (description.Contains(searchstring))
+                        {
+                            if (!found)
+                            {
+                                // Scroll to first found row
+                                this.GridIssues.FirstDisplayedScrollingRowIndex = row;
+                            }
+
+                            this.GridIssues.Rows[row].Selected = true;
+                            found = true;
+                            break;
+                        }
+
+                        row++;
+                    }
+                }
+            }
+        }
     }
 }

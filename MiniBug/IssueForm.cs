@@ -304,6 +304,7 @@ namespace MiniBug
                 sb.AppendLine($"Priority:       {this.cboPriority.Text}");
                 sb.AppendLine($"Version:        {this.txtVersion.Text}");
                 sb.AppendLine($"Target Version: {this.txtTargetVersion.Text}");
+                sb.AppendLine($"Description:    {this.txtDescription.Text}");
 
                 if (!string.IsNullOrEmpty(this.txtImage.Text))
                 {

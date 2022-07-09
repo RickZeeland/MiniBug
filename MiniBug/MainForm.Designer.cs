@@ -47,6 +47,7 @@
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.IconPieChart = new System.Windows.Forms.ToolStripButton();
             this.IconConfigureColumns = new System.Windows.Forms.ToolStripButton();
+            this.txtSearch = new System.Windows.Forms.ToolStripTextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.newProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -197,7 +198,8 @@
             this.IconCloneTask,
             this.toolStripSeparator5,
             this.IconPieChart,
-            this.IconConfigureColumns});
+            this.IconConfigureColumns,
+            this.txtSearch});
             this.toolStrip1.Location = new System.Drawing.Point(0, 25);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1037, 52);
@@ -332,6 +334,15 @@
             this.IconConfigureColumns.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.IconConfigureColumns.ToolTipText = "Configure column settings";
             this.IconConfigureColumns.Click += new System.EventHandler(this.IconConfigureColumns_Click);
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(200, 52);
+            this.txtSearch.Text = "search";
+            this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
+            this.txtSearch.Click += new System.EventHandler(this.txtSearch_Click);
             // 
             // menuStrip1
             // 
@@ -633,6 +644,7 @@
         private System.Windows.Forms.ToolStripMenuItem configureColumnsToolStripMenuItem;
         private ModernUI.Charting.ModernPieChart modernPieChart1;
         private System.Windows.Forms.ToolStripButton IconPieChart;
+        private System.Windows.Forms.ToolStripTextBox txtSearch;
     }
 }
 
