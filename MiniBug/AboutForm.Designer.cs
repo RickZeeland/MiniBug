@@ -35,12 +35,14 @@
             this.lblVersion = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.linkLabelIcons8 = new System.Windows.Forms.LinkLabel();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btOK
             // 
-            this.btOK.Location = new System.Drawing.Point(315, 160);
+            this.btOK.Location = new System.Drawing.Point(307, 205);
             this.btOK.Name = "btOK";
             this.btOK.Size = new System.Drawing.Size(75, 23);
             this.btOK.TabIndex = 0;
@@ -85,7 +87,7 @@
             // 
             // linkLabel1
             // 
-            this.linkLabel1.Location = new System.Drawing.Point(107, 124);
+            this.linkLabel1.Location = new System.Drawing.Point(107, 108);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(319, 13);
             this.linkLabel1.TabIndex = 5;
@@ -93,11 +95,30 @@
             this.linkLabel1.Text = "https://github.com/RickZeeland/MiniBug.git";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
+            // linkLabelIcons8
+            // 
+            this.linkLabelIcons8.Location = new System.Drawing.Point(107, 171);
+            this.linkLabelIcons8.Name = "linkLabelIcons8";
+            this.linkLabelIcons8.Size = new System.Drawing.Size(319, 13);
+            this.linkLabelIcons8.TabIndex = 6;
+            this.linkLabelIcons8.TabStop = true;
+            this.linkLabelIcons8.Text = "https://icons8.com";
+            // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(107, 150);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(319, 21);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Pie chart and Clipboard icon by Icons8";
+            // 
             // AboutForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(438, 201);
+            this.ClientSize = new System.Drawing.Size(438, 240);
+            this.Controls.Add(this.linkLabelIcons8);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblVersion);
@@ -127,5 +148,7 @@
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.LinkLabel linkLabelIcons8;
+        private System.Windows.Forms.Label label1;
     }
 }

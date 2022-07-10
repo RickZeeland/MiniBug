@@ -352,6 +352,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\Clipboard_64x64.png" />
     <None Include="Resources\Chart_32x32.png" />
     <Content Include="ModernUI.Charting.dll" />
   </ItemGroup>
