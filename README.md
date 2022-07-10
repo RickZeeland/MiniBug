@@ -10,6 +10,8 @@ Some of the changes:
 - Optionally attach an image to an issue
 - Create single exe using Fody.Costura, https://github.com/Fody/Costura
 - Show a ModernUI.Charting pie chart after loading a project
+- Copy issue and image to Clipboard
+- Search issue
 
 
 
@@ -21,6 +23,7 @@ MiniBug does not use a database to store data: instead the application stores ea
 
 Attached images are stored with their file name only, it is recommended to keep them in the same folder as the application.
 Preferably keep images in a subfolder "Images", this way all data can be copied easily to another location.
+When using the "Copy to clipboard" button, text and images can be pasted into office applications by using "Paste special".
 
 ## Features
 
@@ -112,5 +115,6 @@ This project uses the following libraries:
 
 - <a href="https://www.newtonsoft.com/json">Json.NET</a>: for reading/writing to .json files
 - <a href="https://joshclose.github.io/CsvHelper/">CsvHelper</a>: for exporting to CSV
+- <a href="https://www.codeproject.com/Articles/5299801/A-Control-to-Display-Pie-and-Doughtnut-Charts-with">Pie chart control</a>: by Angelo Cresta
 
-Chart icon by Icons8: <a target="_blank" href="https://icons8.com/icon/EQ4HGAcEI0hH/chart">Chart</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+<a target="_blank" href="https://icons8.com/icon/EQ4HGAcEI0hH/chart">Chart</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>

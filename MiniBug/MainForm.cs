@@ -2325,10 +2325,13 @@ namespace MiniBug
                 bool found = false;
                 this.GridIssues.ClearSelection();
 
-                // Search summary first
+                // Search in version and summary first, select all found rows
                 foreach (DataGridViewRow issue in this.GridIssues.Rows)
                 {
-                    if (issue.Cells["Summary"].Value.ToString().Contains(searchstring))
+                    string version = issue.Cells["Version"].Value.ToString();
+                    string summary = issue.Cells["Summary"].Value.ToString();
+
+                    if (version.Contains(searchstring) || summary.Contains(searchstring))
                     {
                         if (!found)
                         {
@@ -2345,7 +2348,7 @@ namespace MiniBug
 
                 if (!found)
                 {
-                    // Search Description
+                    // Search Description, select first found row and stop searching
                     row = 0;
 
                     foreach (DataGridViewRow issue in this.GridIssues.Rows)

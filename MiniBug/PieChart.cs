@@ -1,7 +1,4 @@
-﻿// Copyright(c) João Martiniano. All rights reserved.
-// Forked by RickZeeland.
-// Create single exe with Fody.Costura https://github.com/Fody/Costura
-// Licensed under the MIT license.
+﻿// Pie chart by RickZeeland.
 
 using ModernUI.Charting;
 using System;
@@ -9,6 +6,11 @@ using System.Drawing;
 
 namespace MiniBug
 {
+    /// <summary>
+    /// Pie chart with modified ModernUI.Charting.dll by Angelo Cresta:
+    /// https://www.codeproject.com/Articles/5299801/A-Control-to-Display-Pie-and-Doughtnut-Charts-with
+    /// It can be rotated using the mousewheel.
+    /// </summary>
     public partial class MainForm
     {
         public int IssuesClosed { get; set; }
@@ -73,8 +75,7 @@ namespace MiniBug
         }
 
         /// <summary>
-        /// Show a pie chart with issue counts using modified ModernUI.Charting.dll from:
-        /// https://www.codeproject.com/Articles/5299801/A-Control-to-Display-Pie-and-Doughtnut-Charts-with?msg=5885767#xx5885767xx
+        /// Show a pie chart with issue counts.
         /// </summary>
         private void ShowPieChart()
         {
@@ -88,8 +89,8 @@ namespace MiniBug
             modernPieChart1.Items.Add(new PieChartItem(IssuesUnconfirmed, Color.LightGray, "Unconfirmed", $"Unconfirmed {IssuesUnconfirmed}", 0));
             modernPieChart1.Items.Add(new PieChartItem(IssuesConfirmed, Color.Goldenrod, "Confirmed", $"Confirmed {IssuesConfirmed}", 0));
             modernPieChart1.Items.Add(new PieChartItem(IssuesInProgress, Color.Blue, "In progress", $"In progress {IssuesInProgress}", 20));
-            modernPieChart1.Items.Add(new PieChartItem(IssuesResolved, Color.ForestGreen, "Resolved issues", $"Resolved {IssuesResolved}", 0));
-            modernPieChart1.Items.Add(new PieChartItem(IssuesClosed, Color.Gray, "Closed issues", $"Closed {IssuesClosed}", 0));
+            modernPieChart1.Items.Add(new PieChartItem(IssuesResolved, Color.ForestGreen, "Resolved", $"Resolved {IssuesResolved}", 0));
+            modernPieChart1.Items.Add(new PieChartItem(IssuesClosed, Color.Gray, "Closed", $"Closed {IssuesClosed}", 0));
 
             modernPieChart1.ItemStyle.SurfaceAlphaTransparency = 0.75F;
             modernPieChart1.FocusedItemStyle.SurfaceAlphaTransparency = 0.75F;
