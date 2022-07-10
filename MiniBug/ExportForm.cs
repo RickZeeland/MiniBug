@@ -44,7 +44,7 @@ namespace MiniBug
         {
             InitializeComponent();
 
-            this.Font = ApplicationSettings.GridFont;
+            this.Font = ApplicationSettings.AppFont;
 
             HasIssues = ((Program.SoftwareProject.Issues != null) && (Program.SoftwareProject.Issues.Count > 0)) ? true : false;
             HasTasks = ((Program.SoftwareProject.Tasks != null) && (Program.SoftwareProject.Tasks.Count > 0)) ? true : false;

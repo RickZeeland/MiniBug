@@ -2,13 +2,7 @@
 // Licensed under the MIT license.
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MiniBug
@@ -38,7 +32,7 @@ namespace MiniBug
         public FeedbackForm()
         {
             InitializeComponent();
-            this.Font = ApplicationSettings.GridFont;
+            this.Font = ApplicationSettings.AppFont;
         }
 
         private void FeedbackForm_Load(object sender, EventArgs e)

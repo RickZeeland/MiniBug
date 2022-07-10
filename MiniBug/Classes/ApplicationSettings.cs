@@ -66,9 +66,9 @@ namespace MiniBug
         public static bool ScrollToLastRow = true;
 
         /// <summary>
-        /// DataGridView font name and size.
+        /// Application font name and size.
         /// </summary>
-        public static Font GridFont = new Font("Segoe UI", 10);
+        public static Font AppFont = new Font("Segoe UI", 10);
 
         ///// <summary>
         ///// Font to use in the Description field of the Issues and Tasks forms.
@@ -199,7 +199,7 @@ namespace MiniBug
             GridAlternatingRowColor = Properties.Settings.Default.GridAlternatingRowColor;
             GridRowBackColor = Properties.Settings.Default.GridRowBackColor;
             GridAlternateRowBackColor = Properties.Settings.Default.GridAlternateRowBackColor;
-            GridFont = Properties.Settings.Default.GridFont;
+            AppFont = Properties.Settings.Default.GridFont;
             ScrollToLastRow = Properties.Settings.Default.ScrollToLastRow;
 
             // Load the settings for the issues DataGridView columns
@@ -302,7 +302,7 @@ namespace MiniBug
                 Properties.Settings.Default.GridAlternatingRowColor = GridAlternatingRowColor;
                 Properties.Settings.Default.GridRowBackColor = GridRowBackColor;
                 Properties.Settings.Default.GridAlternateRowBackColor = GridAlternateRowBackColor;
-                Properties.Settings.Default.GridFont = GridFont;
+                Properties.Settings.Default.GridFont = AppFont;
                 Properties.Settings.Default.ScrollToLastRow = ScrollToLastRow;
             }
 
@@ -367,7 +367,7 @@ namespace MiniBug
             GridAlternatingRowColor = false;
             GridRowBackColor = Color.White;
             GridAlternateRowBackColor = Color.White;
-            GridFont = new Font("Segoe UI", 8);
+            AppFont = new Font("Segoe UI", 8);
             ScrollToLastRow = true;
         }
     }

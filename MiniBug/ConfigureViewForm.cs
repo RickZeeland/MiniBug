@@ -17,7 +17,7 @@ namespace MiniBug
 
         private void ConfigureViewForm_Load(object sender, EventArgs e)
         {
-            this.Font = ApplicationSettings.GridFont;
+            this.Font = ApplicationSettings.AppFont;
 
             // Suspend the layout logic for the issues and tasks DataGridView, while initializing
             GridIssues.SuspendLayout();

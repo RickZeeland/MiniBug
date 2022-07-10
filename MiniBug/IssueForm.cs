@@ -35,7 +35,7 @@ namespace MiniBug
         public IssueForm(OperationType operation, MiniBug.Issue issue = null)
         {
             InitializeComponent();
-            this.Font = ApplicationSettings.GridFont;
+            this.Font = ApplicationSettings.AppFont;
 
             Operation = operation;
             
@@ -73,7 +73,7 @@ namespace MiniBug
         {
             // Suspend the layout logic for the form, while the application is initializing
             this.SuspendLayout();
-            this.Font = ApplicationSettings.GridFont;
+            this.Font = ApplicationSettings.AppFont;
 
             this.Icon = MiniBug.Properties.Resources.Minibug;
             //this.AcceptButton = btOk;
@@ -168,7 +168,7 @@ namespace MiniBug
             }
 
             //txtDescription.Font = ApplicationSettings.FormDescriptionFieldFont;
-            lblID.Font = new Font(ApplicationSettings.GridFont, FontStyle.Bold);            // Bold
+            lblID.Font = new Font(ApplicationSettings.AppFont, FontStyle.Bold);            // Bold
 
             // Resume the layout logic
             this.ResumeLayout();

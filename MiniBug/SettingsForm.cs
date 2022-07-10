@@ -20,7 +20,7 @@ namespace MiniBug
             // Suspend the layout logic for the form, while the application is initializing
             this.SuspendLayout();
 
-            this.Font = ApplicationSettings.GridFont;
+            this.Font = ApplicationSettings.AppFont;
 
             //this.Icon = MiniBug.Properties.Resources.
             this.AcceptButton = btOk;
@@ -83,8 +83,8 @@ namespace MiniBug
         private void InitializeControls()
         {
             // Set the default font and size
-            cboFont.SelectedItem = ApplicationSettings.GridFont.FontFamily.Name;
-            txtFontSize.Text = (Convert.ToInt32(ApplicationSettings.GridFont.Size)).ToString();
+            cboFont.SelectedItem = ApplicationSettings.AppFont.FontFamily.Name;
+            txtFontSize.Text = (Convert.ToInt32(ApplicationSettings.AppFont.Size)).ToString();
 
             // Gridlines
             chkShowGridlines.Checked = ApplicationSettings.GridShowBorders;
@@ -211,11 +211,11 @@ namespace MiniBug
             if ((!float.TryParse(txtFontSize.Text, out size)) || (txtFontSize.Text == string.Empty))
             {
                 // If not valid, revert to the default font size
-                size = ApplicationSettings.GridFont.Size;
+                size = ApplicationSettings.AppFont.Size;
             }
 
-            ApplicationSettings.GridFont = new Font(cboFont.SelectedItem.ToString(), size);
-            this.Font = ApplicationSettings.GridFont;
+            ApplicationSettings.AppFont = new Font(cboFont.SelectedItem.ToString(), size);
+            this.Font = ApplicationSettings.AppFont;
 
             // Gridlines
             ApplicationSettings.GridShowBorders = chkShowGridlines.Checked;

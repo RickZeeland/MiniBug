@@ -38,7 +38,7 @@ namespace MiniBug
         public TaskForm(OperationType operation, MiniBug.Task task = null)
         {
             InitializeComponent();
-            this.Font = ApplicationSettings.GridFont;
+            this.Font = ApplicationSettings.AppFont;
 
             Operation = operation;
 
@@ -131,7 +131,7 @@ namespace MiniBug
             }
 
             //txtDescription.Font = ApplicationSettings.FormDescriptionFieldFont;
-            txtDescription.Font = ApplicationSettings.GridFont;
+            txtDescription.Font = ApplicationSettings.AppFont;
 
             // Resume the layout logic
             this.ResumeLayout();

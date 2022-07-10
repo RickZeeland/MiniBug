@@ -38,7 +38,7 @@ namespace MiniBug
                 // Start by retrieving the application settings
                 ApplicationSettings.Load();
 
-                this.Font = ApplicationSettings.GridFont;
+                this.Font = ApplicationSettings.AppFont;
                 Point startPosition = Properties.Settings.Default.FormStartPosition;
                 Size formSize = Properties.Settings.Default.FormSize;
 
@@ -690,7 +690,7 @@ namespace MiniBug
 
             if (frmSettings.ShowDialog() == DialogResult.OK)
             {
-                this.Font = ApplicationSettings.GridFont;
+                this.Font = ApplicationSettings.AppFont;
                 this.CenterToScreen();
                 ApplySettingsToGrids();
             }
@@ -2138,7 +2138,7 @@ namespace MiniBug
             // Apply settings to the Issues grid
             #region "Issues"
             // Grid Font
-            GridIssues.Font = ApplicationSettings.GridFont;
+            GridIssues.Font = ApplicationSettings.AppFont;
             GridIssues.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
 
             // Grid borders
@@ -2171,7 +2171,7 @@ namespace MiniBug
             // Apply settings to the Tasks grid
             #region "Tasks"
             // Grid Font
-            GridTasks.Font = ApplicationSettings.GridFont;
+            GridTasks.Font = ApplicationSettings.AppFont;
             GridTasks.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
 
             // Grid borders

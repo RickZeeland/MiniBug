@@ -23,7 +23,7 @@ namespace MiniBug
         public ImportExportFeedbackForm(ImportExportOperation operation)
         {
             InitializeComponent();
-            this.Font = ApplicationSettings.GridFont;
+            this.Font = ApplicationSettings.AppFont;
 
             Operation = operation;
         }

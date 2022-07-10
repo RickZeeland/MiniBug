@@ -2,10 +2,6 @@
 // Licensed under the MIT license.
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Reflection;
 using System.ComponentModel;
 
@@ -15,15 +11,14 @@ namespace MiniBug
     {
         /// <summary>
         /// Returns a human-readable description of a member of a enum.
+        /// This code was adapted from: https://blogs.msdn.microsoft.com/abhinaba/2005/10/21/c-3-0-using-extension-methods-for-enum-tostring/
         /// </summary>
-        /// <param name="e">The enum member.</param>
+        /// <param name="enumTemp">The enum member.</param>
         /// <returns>A string containing the description.</returns>
-        public static string ToDescription(this Enum e)
+        public static string ToDescription(this Enum enumTemp)
         {
-            // This code was adapted from: https://blogs.msdn.microsoft.com/abhinaba/2005/10/21/c-3-0-using-extension-methods-for-enum-tostring/
-
-            Type type = e.GetType();
-            MemberInfo[] memInfo = type.GetMember(e.ToString());
+            Type type = enumTemp.GetType();
+            MemberInfo[] memInfo = type.GetMember(enumTemp.ToString());
 
             if (memInfo != null && memInfo.Length > 0)
             {
@@ -35,7 +30,7 @@ namespace MiniBug
                 }
             }
 
-            return e.ToString();
+            return enumTemp.ToString();
         }
     }
 }
