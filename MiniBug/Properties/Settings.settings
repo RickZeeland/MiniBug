@@ -14,7 +14,7 @@
     <Setting Name="GridSelectionForeColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Black</Value>
     </Setting>
-    <Setting Name="GridFont" Type="System.Drawing.Font" Scope="User">
+    <Setting Name="AppFont" Type="System.Drawing.Font" Scope="User">
       <Value Profile="(Default)">Segoe UI, 9.75pt</Value>
     </Setting>
     <Setting Name="RecentProjectsNames" Type="System.Collections.Specialized.StringCollection" Scope="User">

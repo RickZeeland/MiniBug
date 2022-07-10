@@ -199,7 +199,7 @@ namespace MiniBug
             GridAlternatingRowColor = Properties.Settings.Default.GridAlternatingRowColor;
             GridRowBackColor = Properties.Settings.Default.GridRowBackColor;
             GridAlternateRowBackColor = Properties.Settings.Default.GridAlternateRowBackColor;
-            AppFont = Properties.Settings.Default.GridFont;
+            AppFont = Properties.Settings.Default.AppFont;
             ScrollToLastRow = Properties.Settings.Default.ScrollToLastRow;
 
             // Load the settings for the issues DataGridView columns
@@ -302,7 +302,7 @@ namespace MiniBug
                 Properties.Settings.Default.GridAlternatingRowColor = GridAlternatingRowColor;
                 Properties.Settings.Default.GridRowBackColor = GridRowBackColor;
                 Properties.Settings.Default.GridAlternateRowBackColor = GridAlternateRowBackColor;
-                Properties.Settings.Default.GridFont = AppFont;
+                Properties.Settings.Default.AppFont = AppFont;
                 Properties.Settings.Default.ScrollToLastRow = ScrollToLastRow;
             }
 

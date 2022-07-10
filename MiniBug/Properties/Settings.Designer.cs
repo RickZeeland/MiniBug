@@ -74,12 +74,12 @@ namespace MiniBug.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Segoe UI, 9.75pt")]
-        public global::System.Drawing.Font GridFont {
+        public global::System.Drawing.Font AppFont {
             get {
-                return ((global::System.Drawing.Font)(this["GridFont"]));
+                return ((global::System.Drawing.Font)(this["AppFont"]));
             }
             set {
-                this["GridFont"] = value;
+                this["AppFont"] = value;
             }
         }
         
