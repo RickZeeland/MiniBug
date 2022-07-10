@@ -1,7 +1,6 @@
 ﻿// Copyright(c) João Martiniano. All rights reserved.
 // Licensed under the MIT license.
 
-using System;
 using System.IO;
 using Newtonsoft.Json;
 
@@ -78,11 +77,11 @@ namespace MiniBug
         public static FileSystemOperationStatus SaveProject(in Project softwareProject)
         {
             string output = JsonConvert.SerializeObject(softwareProject);
-            string filename = System.IO.Path.Combine(softwareProject.Location, softwareProject.Filename);
+            string filename = Path.Combine(softwareProject.Location, softwareProject.Filename);
 
             try
             {
-                System.IO.File.WriteAllText(filename, output);
+                File.WriteAllText(filename, output);
             }
             catch (System.IO.DirectoryNotFoundException) // The directory does not exist
             {
@@ -111,18 +110,9 @@ namespace MiniBug
         /// <param name="softwareProject">An instance of the Project class.</param>
         public static FileSystemOperationStatus LoadProject(string filename, out Project softwareProject)
         {
-            String input = string.Empty;
-
             try
             {
-                // Open the file
-                System.IO.StreamReader r = new System.IO.StreamReader(filename);
-
-                // Read the file contents
-                input = r.ReadToEnd();
-
-                r.Close();
-
+                string input = File.ReadAllText(filename);
                 softwareProject = JsonConvert.DeserializeObject<Project>(input);
 
                 // Check the version of the project file: if not supported, abort the operation

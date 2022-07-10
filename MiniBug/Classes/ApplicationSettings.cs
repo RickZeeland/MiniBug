@@ -3,9 +3,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
 
 namespace MiniBug
@@ -209,11 +206,10 @@ namespace MiniBug
 
                 foreach (string item in Properties.Settings.Default.GridIssuesColumnsSettings)
                 {
-                    string[] s = item.Split(',');
-
-                    Col = (IssueFieldsUI)Convert.ToInt32(s[0]);
-                    ApplicationSettings.GridIssuesColumns[Col].Visible = Convert.ToBoolean(s[1]);
-                    ApplicationSettings.GridIssuesColumns[Col].DisplayIndex = Convert.ToInt32(s[2]);
+                    string[] strArr = item.Split(',');
+                    Col = (IssueFieldsUI)Convert.ToInt32(strArr[0]);
+                    GridIssuesColumns[Col].Visible = Convert.ToBoolean(strArr[1]);
+                    GridIssuesColumns[Col].DisplayIndex = Convert.ToInt32(strArr[2]);
                 }
             }
 
@@ -227,8 +223,8 @@ namespace MiniBug
                     string[] s = item.Split(',');
 
                     Col = (TaskFieldsUI)Convert.ToInt32(s[0]);
-                    ApplicationSettings.GridTasksColumns[Col].Visible = Convert.ToBoolean(s[1]);
-                    ApplicationSettings.GridTasksColumns[Col].DisplayIndex = Convert.ToInt32(s[2]);
+                    GridTasksColumns[Col].Visible = Convert.ToBoolean(s[1]);
+                    GridTasksColumns[Col].DisplayIndex = Convert.ToInt32(s[2]);
                 }
             }
 
@@ -309,28 +305,28 @@ namespace MiniBug
             // Save some settings for the issues and tasks DataGridView columns
             if ((settingsSelection == SaveSettings.All) || (settingsSelection == SaveSettings.ColumnOrderSort))
             {
-                string s  = string.Empty;
+                string str  = string.Empty;
 
                 // The settings are saved as a string collection, in the following format:
                 //    "column ID,visibility,display index"
                 Properties.Settings.Default.GridIssuesColumnsSettings = new System.Collections.Specialized.StringCollection();
 
-                foreach (KeyValuePair<IssueFieldsUI, GridColumn> item in ApplicationSettings.GridIssuesColumns)
+                foreach (KeyValuePair<IssueFieldsUI, GridColumn> item in GridIssuesColumns)
                 {
-                    s = $"{Convert.ToInt32(item.Key).ToString()},{item.Value.Visible.ToString()},{item.Value.DisplayIndex.ToString()}";
-                    Properties.Settings.Default.GridIssuesColumnsSettings.Add(s);
+                    str = $"{Convert.ToInt32(item.Key)},{item.Value.Visible},{item.Value.DisplayIndex}";
+                    Properties.Settings.Default.GridIssuesColumnsSettings.Add(str);
                 }
 
-                s = string.Empty;
+                str = string.Empty;
 
                 // The settings are saved as a string collection, in the following format:
                 //    "column ID,visibility,display index"
                 Properties.Settings.Default.GridTasksColumnsSettings = new System.Collections.Specialized.StringCollection();
 
-                foreach (KeyValuePair<TaskFieldsUI, GridColumn> item in ApplicationSettings.GridTasksColumns)
+                foreach (KeyValuePair<TaskFieldsUI, GridColumn> item in GridTasksColumns)
                 {
-                    s = $"{Convert.ToInt32(item.Key).ToString()},{item.Value.Visible.ToString()},{item.Value.DisplayIndex.ToString()}";
-                    Properties.Settings.Default.GridTasksColumnsSettings.Add(s);
+                    str = $"{Convert.ToInt32(item.Key)},{item.Value.Visible},{item.Value.DisplayIndex}";
+                    Properties.Settings.Default.GridTasksColumnsSettings.Add(str);
                 }
             }
 
@@ -367,7 +363,7 @@ namespace MiniBug
             GridAlternatingRowColor = false;
             GridRowBackColor = Color.White;
             GridAlternateRowBackColor = Color.White;
-            AppFont = new Font("Segoe UI", 8);
+            AppFont = new Font("Segoe UI", 10);
             ScrollToLastRow = true;
         }
     }

@@ -3,9 +3,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using Newtonsoft.Json;
 using CsvHelper;
@@ -148,10 +145,10 @@ namespace MiniBug
         }
 
         /// <summary>
-        /// Export the project issues.
+        /// Export the project issues in CSV format.
         /// </summary>
         /// <param name="fileName"></param>
-        /// <returns></returns>
+        /// <returns>Status</returns>
         private FileSystemOperationStatus ExportIssues(string fileName)
         {
             try
@@ -185,11 +182,11 @@ namespace MiniBug
         }
 
         /// <summary>
-        /// Export the project tasks.
+        /// Export the project tasks in CSV format.
         /// </summary>
         /// <param name="fileName"></param>
         /// <param name="softwareProject"></param>
-        /// <returns></returns>
+        /// <returns>Status</returns>
         private FileSystemOperationStatus ExportTasks(string fileName)
         {
             try
