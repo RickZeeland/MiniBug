@@ -144,7 +144,7 @@
             this.modernPieChart1.Name = "modernPieChart1";
             this.modernPieChart1.PecentageDecimals = 2;
             this.modernPieChart1.Radius = 200F;
-            this.modernPieChart1.Size = new System.Drawing.Size(400, 300);
+            this.modernPieChart1.Size = new System.Drawing.Size(380, 280);
             this.modernPieChart1.TabIndex = 3;
             this.modernPieChart1.Text = "modernPieChart1";
             this.modernPieChart1.TextDisplayMode = ModernUI.Charting.ModernPieChart.TextDisplayTypes.Always;

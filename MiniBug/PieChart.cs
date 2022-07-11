@@ -79,25 +79,31 @@ namespace MiniBug
         /// </summary>
         private void ShowPieChart()
         {
-            modernPieChart1.GraphTitle = Program.SoftwareProject.Issues.Count + " Issues";      // Total number of issues
-            //modernPieChart1.Font = new Font(this.Font, FontStyle.Bold);
-            //modernPieChart1.DisplayDoughnut = true;
-            modernPieChart1.Items.Clear();
-            modernPieChart1.ForeColor = Color.White;
-            modernPieChart1.BackColor = Color.Gray;
+            try
+            {
+                modernPieChart1.GraphTitle = Program.SoftwareProject.Issues.Count + " Issues";      // Total number of issues
+                //modernPieChart1.Font = new Font(this.Font, FontStyle.Bold);
+                //modernPieChart1.DisplayDoughnut = true;
+                modernPieChart1.Items.Clear();
+                modernPieChart1.ForeColor = Color.White;
+                modernPieChart1.BackColor = Color.Gray;
 
-            modernPieChart1.Items.Add(new PieChartItem(IssuesUnconfirmed, Color.LightGray, "Unconfirmed", $"Unconfirmed {IssuesUnconfirmed}", 0));
-            modernPieChart1.Items.Add(new PieChartItem(IssuesConfirmed, Color.Goldenrod, "Confirmed", $"Confirmed {IssuesConfirmed}", 0));
-            modernPieChart1.Items.Add(new PieChartItem(IssuesInProgress, Color.Blue, "In progress", $"In progress {IssuesInProgress}", 20));
-            modernPieChart1.Items.Add(new PieChartItem(IssuesResolved, Color.ForestGreen, "Resolved", $"Resolved {IssuesResolved}", 0));
-            modernPieChart1.Items.Add(new PieChartItem(IssuesClosed, Color.Gray, "Closed", $"Closed {IssuesClosed}", 0));
+                modernPieChart1.Items.Add(new PieChartItem(IssuesUnconfirmed, Color.LightGray, "Unconfirmed", $"Unconfirmed {IssuesUnconfirmed}", 0));
+                modernPieChart1.Items.Add(new PieChartItem(IssuesConfirmed, Color.Goldenrod, "Confirmed", $"Confirmed {IssuesConfirmed}", 0));
+                modernPieChart1.Items.Add(new PieChartItem(IssuesInProgress, Color.Blue, "In progress", $"In progress {IssuesInProgress}", 20));
+                modernPieChart1.Items.Add(new PieChartItem(IssuesResolved, Color.ForestGreen, "Resolved", $"Resolved {IssuesResolved}", 0));
+                modernPieChart1.Items.Add(new PieChartItem(IssuesClosed, Color.Gray, "Closed", $"Closed {IssuesClosed}", 0));
 
-            modernPieChart1.ItemStyle.SurfaceAlphaTransparency = 0.75F;
-            modernPieChart1.FocusedItemStyle.SurfaceAlphaTransparency = 0.75F;
-            modernPieChart1.FocusedItemStyle.SurfaceBrightnessFactor = 0.3F;
-            modernPieChart1.PieStyle.Thickness = 30;
-            modernPieChart1.Radius = 140;
-            modernPieChart1.Visible = true;
+                modernPieChart1.ItemStyle.SurfaceAlphaTransparency = 0.75F;
+                modernPieChart1.FocusedItemStyle.SurfaceAlphaTransparency = 0.75F;
+                modernPieChart1.FocusedItemStyle.SurfaceBrightnessFactor = 0.3F;
+                modernPieChart1.PieStyle.Thickness = 30;
+                modernPieChart1.Radius = 140;
+                modernPieChart1.Visible = true;
+            }
+            catch
+            {
+            }
         }
     }
 }
