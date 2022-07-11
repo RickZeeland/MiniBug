@@ -101,6 +101,18 @@ namespace MiniBug
             cboPriority.ValueMember = "Value";
             cboPriority.DisplayMember = "Text";
 
+            if (Font.SizeInPoints > 12)
+            {
+                // Make sure the bottom panel is visible using a temporary panel for scaling
+                this.groupBoxDescription.Height = this.panelTemp.Height;
+                this.panelBottom.Top = this.panelTemp.Bottom + 5;
+            }
+
+            if (string.IsNullOrEmpty(CurrentIssue.ImageFilename))
+            {
+                this.splitContainer1.SplitterDistance = this.splitContainer1.Height;        // No image, maximize description height
+            }
+
             // Make initializations based on the type of operation
             if (Operation == OperationType.New)
             {
@@ -127,18 +139,7 @@ namespace MiniBug
                 this.txtImage.Text = CurrentIssue.ImageFilename;
                 this.txtImage.ForeColor = Color.Black;
 
-                if (Font.SizeInPoints > 12)
-                {
-                    // Make sure the bottom panel is visible using a temporary panel for scaling
-                    this.groupBoxDescription.Height = this.panelTemp.Height;
-                    this.panelBottom.Top = this.panelTemp.Bottom + 5;
-                }
-
-                if (string.IsNullOrEmpty(CurrentIssue.ImageFilename))
-                {
-                    this.splitContainer1.SplitterDistance = this.splitContainer1.Height;        // No image, maximize description height
-                }
-                else 
+                if (!string.IsNullOrEmpty(CurrentIssue.ImageFilename))
                 {
                     // If there is an attached image, display it
                     string fullFilename = CurrentIssue.ImageFilename;
