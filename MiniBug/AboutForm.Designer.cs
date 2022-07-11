@@ -42,7 +42,7 @@
             // 
             // btOK
             // 
-            this.btOK.Location = new System.Drawing.Point(307, 205);
+            this.btOK.Location = new System.Drawing.Point(327, 205);
             this.btOK.Name = "btOK";
             this.btOK.Size = new System.Drawing.Size(75, 23);
             this.btOK.TabIndex = 0;
@@ -89,7 +89,7 @@
             // 
             this.linkLabel1.Location = new System.Drawing.Point(107, 108);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(319, 13);
+            this.linkLabel1.Size = new System.Drawing.Size(353, 13);
             this.linkLabel1.TabIndex = 5;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "https://github.com/RickZeeland/MiniBug.git";
@@ -97,9 +97,9 @@
             // 
             // linkLabelIcons8
             // 
-            this.linkLabelIcons8.Location = new System.Drawing.Point(107, 171);
+            this.linkLabelIcons8.Location = new System.Drawing.Point(316, 150);
             this.linkLabelIcons8.Name = "linkLabelIcons8";
-            this.linkLabelIcons8.Size = new System.Drawing.Size(319, 13);
+            this.linkLabelIcons8.Size = new System.Drawing.Size(144, 13);
             this.linkLabelIcons8.TabIndex = 6;
             this.linkLabelIcons8.TabStop = true;
             this.linkLabelIcons8.Text = "https://icons8.com";
@@ -116,10 +116,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(438, 240);
+            this.ClientSize = new System.Drawing.Size(460, 240);
             this.Controls.Add(this.linkLabelIcons8);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.pictureBox1);

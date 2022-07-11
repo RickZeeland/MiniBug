@@ -55,9 +55,9 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.buttonCopy = new System.Windows.Forms.Button();
             this.panelBottom = new System.Windows.Forms.Panel();
             this.groupBoxDescription = new System.Windows.Forms.GroupBox();
-            this.buttonCopy = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -297,14 +297,26 @@
             this.splitContainer1.SplitterDistance = 269;
             this.splitContainer1.TabIndex = 24;
             // 
+            // buttonCopy
+            // 
+            this.buttonCopy.BackColor = System.Drawing.Color.White;
+            this.buttonCopy.Image = global::MiniBug.Properties.Resources.Clipboard_64x64;
+            this.buttonCopy.Location = new System.Drawing.Point(733, 75);
+            this.buttonCopy.Name = "buttonCopy";
+            this.buttonCopy.Size = new System.Drawing.Size(58, 58);
+            this.buttonCopy.TabIndex = 27;
+            this.toolTip1.SetToolTip(this.buttonCopy, "Copy to clipboard");
+            this.buttonCopy.UseVisualStyleBackColor = false;
+            this.buttonCopy.Click += new System.EventHandler(this.buttonCopy_Click);
+            // 
             // panelBottom
             // 
             this.panelBottom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelBottom.Controls.Add(this.labelImage);
             this.panelBottom.Controls.Add(this.btCancel);
-            this.panelBottom.Controls.Add(this.buttonBrowseImage);
             this.panelBottom.Controls.Add(this.btOk);
+            this.panelBottom.Controls.Add(this.labelImage);
+            this.panelBottom.Controls.Add(this.buttonBrowseImage);
             this.panelBottom.Controls.Add(this.txtImage);
             this.panelBottom.Location = new System.Drawing.Point(7, 519);
             this.panelBottom.Name = "panelBottom";
@@ -324,16 +336,6 @@
             this.groupBoxDescription.TabIndex = 26;
             this.groupBoxDescription.TabStop = false;
             this.groupBoxDescription.Text = "&Description:";
-            // 
-            // buttonCopy
-            // 
-            this.buttonCopy.Location = new System.Drawing.Point(716, 110);
-            this.buttonCopy.Name = "buttonCopy";
-            this.buttonCopy.Size = new System.Drawing.Size(130, 23);
-            this.buttonCopy.TabIndex = 27;
-            this.buttonCopy.Text = "Copy to clipboard";
-            this.buttonCopy.UseVisualStyleBackColor = true;
-            this.buttonCopy.Click += new System.EventHandler(this.buttonCopy_Click);
             // 
             // IssueForm
             // 

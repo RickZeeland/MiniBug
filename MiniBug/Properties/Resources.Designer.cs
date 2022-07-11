@@ -83,6 +83,16 @@ namespace MiniBug.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Clipboard_64x64 {
+            get {
+                object obj = ResourceManager.GetObject("Clipboard_64x64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap CloneBug_32x32 {
             get {
                 object obj = ResourceManager.GetObject("CloneBug_32x32", resourceCulture);
