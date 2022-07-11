@@ -43,6 +43,7 @@ namespace MiniBug
             {
                 // Create a new instance of the Issue class
                 CurrentIssue = new Issue();
+                txtImage.Text = string.Empty;
             }
             else if ((Operation == OperationType.Edit) && (issue != null))
             {
@@ -263,8 +264,13 @@ namespace MiniBug
                 string imageFilename = openFileDialog1.FileName;
                 imageFilename = imageFilename.Replace(Application.StartupPath + @"\", string.Empty);        // Truncate file name if possible
                 this.txtImage.Text = imageFilename;
-                this.pictureBox1.Image = Image.FromFile(imageFilename);
-                this.pictureBox1.Visible = true;
+
+                if (File.Exists(imageFilename))
+                {
+                    this.pictureBox1.Image = Image.FromFile(imageFilename);
+                    this.pictureBox1.Visible = true;
+                    this.txtImage.ForeColor = Color.Black;
+                }
             }
         }
 

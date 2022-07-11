@@ -1205,9 +1205,7 @@ namespace MiniBug
         /// <param name="issueID">The id of the issue (the issue key in the collection of issues).</param>
         private void RefreshIssueInGrid(int rowIndex, int issueID)
         {
-            string key = string.Empty;
-
-            key = ApplicationSettings.GridIssuesColumns[IssueFieldsUI.Priority].Name;
+            string key = ApplicationSettings.GridIssuesColumns[IssueFieldsUI.Priority].Name;
             GridIssues.Rows[rowIndex].Cells[key].Value = GetIssuePriorityImage(Program.SoftwareProject.Issues[issueID].Priority);
 
             key = ApplicationSettings.GridIssuesColumns[IssueFieldsUI.Status].Name;
