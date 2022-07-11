@@ -48,6 +48,8 @@ namespace MiniBug
                 this.Icon = Properties.Resources.Minibug;
                 this.Text = Program.myName;
                 this.MinimumSize = new Size(478, 303);
+                //this.modernPieChart1.Size = new Size(400, 300);                     // Do not scale Pie chart with font size
+                //this.modernPieChart1.Location = new Point(formSize.Width - 600, formSize.Height - 400);
 
                 // Initialization of the Issues and Tasks grids
                 InitializeGridIssues();

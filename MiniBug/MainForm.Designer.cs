@@ -140,7 +140,7 @@
             this.modernPieChart1.ForeColor = System.Drawing.Color.White;
             this.modernPieChart1.GraphTitle = "";
             this.modernPieChart1.ItemTextTemplate = "Val: #VALUE - Perc: #PERCENTAGE - Text: #ITEMTEXT";
-            this.modernPieChart1.Location = new System.Drawing.Point(569, 152);
+            this.modernPieChart1.Location = new System.Drawing.Point(470, 193);
             this.modernPieChart1.Name = "modernPieChart1";
             this.modernPieChart1.PecentageDecimals = 2;
             this.modernPieChart1.Radius = 200F;
