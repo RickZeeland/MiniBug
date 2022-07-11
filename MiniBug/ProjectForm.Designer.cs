@@ -46,6 +46,9 @@
             // 
             // lblFormTitle
             // 
+            this.lblFormTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblFormTitle.BackColor = System.Drawing.Color.White;
             this.lblFormTitle.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFormTitle.Location = new System.Drawing.Point(0, 0);
@@ -58,6 +61,7 @@
             // 
             // btOk
             // 
+            this.btOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btOk.Location = new System.Drawing.Point(443, 222);
             this.btOk.Name = "btOk";
             this.btOk.Size = new System.Drawing.Size(75, 23);
@@ -68,6 +72,7 @@
             // 
             // btCancel
             // 
+            this.btCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btCancel.Location = new System.Drawing.Point(524, 222);
             this.btCancel.Name = "btCancel";
             this.btCancel.Size = new System.Drawing.Size(75, 23);
@@ -88,6 +93,7 @@
             // txtName
             // 
             this.txtName.Location = new System.Drawing.Point(95, 87);
+            this.txtName.MaxLength = 255;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(423, 22);
             this.txtName.TabIndex = 2;

@@ -2,15 +2,7 @@
 // Licensed under the MIT license.
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
 
 namespace MiniBug
 {
@@ -32,15 +24,14 @@ namespace MiniBug
         public string ProjectFilename { get; private set; } = string.Empty;
 
         /// <summary>
-        /// Gets the location of the project file.
+        /// Gets the location of the project file, default application directory.
         /// </summary>
-        public string ProjectLocation { get; private set; } = string.Empty;
+        public string ProjectLocation { get; private set; } = Application.StartupPath;
 
         public ProjectForm(OperationType operation, string projectName = "", string projectFilename = "", string projectLocation = "")
         {
             InitializeComponent();
             this.Font = ApplicationSettings.AppFont;
-
             Operation = operation;
 
             if (Operation == OperationType.Edit)
@@ -57,19 +48,16 @@ namespace MiniBug
             // Suspend the layout logic for the form, while the application is initializing
             this.SuspendLayout();
 
-            this.AcceptButton = btOk;
-            this.CancelButton = btCancel;
-
-            lblFormTitle.Width = this.ClientRectangle.Width;
-
-            txtName.MaxLength = 255;
+            //this.AcceptButton = btOk;
+            //this.CancelButton = btCancel;
+            //txtName.MaxLength = 255;
+            txtLocation.Text = ProjectLocation;
 
             // Make initializations based on the type of operation
             if (Operation == OperationType.New)
             {
                 this.Text = "New Project";
                 lblFormTitle.Text = "Create a new project";
-
                 btOk.Enabled = false;
             }
             else if (Operation == OperationType.Edit)
@@ -80,7 +68,6 @@ namespace MiniBug
                 // Populate the controls
                 txtName.Text = ProjectName;
                 txtFilename.Text = ProjectFilename;
-                txtLocation.Text = ProjectLocation;
             }
 
             // Resume the layout logic
@@ -100,10 +87,12 @@ namespace MiniBug
         }
 
         /// <summary>
-        /// Browse the location where the project will be saved.
+        /// Browse the location where the project will be saved, default is the application directory.
         /// </summary>
         private void btBrowse_Click(object sender, EventArgs e)
         {
+            this.folderBrowserDialog1.SelectedPath = ProjectLocation;
+
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
                 txtLocation.Text = folderBrowserDialog1.SelectedPath;
