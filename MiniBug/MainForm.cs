@@ -198,6 +198,7 @@ namespace MiniBug
 
             // The user can export the project only if the current project != null AND there are issues OR tasks
             exportToolStripMenuItem.Enabled = false;
+
             if (Program.SoftwareProject != null)
             {
                 if (((Program.SoftwareProject.Issues != null) && (Program.SoftwareProject.Issues.Count > 0)) ||
@@ -207,7 +208,7 @@ namespace MiniBug
                 }
             }
             
-            if (TabControl.SelectedIndex == 0) // The tab 'Issues' is selected
+            if (TabControl.SelectedIndex == 0)          // The tab 'Issues' is selected
             {
                 // The user can create a new issue only if the current project != null
                 newIssueToolStripMenuItem.Enabled = IconNewIssue.Enabled = (Program.SoftwareProject == null) ? false : true;
@@ -221,6 +222,7 @@ namespace MiniBug
                     IconEditIssue.Enabled = true;
                     IconDeleteIssue.Enabled = true;
                     IconCloneIssue.Enabled = true;
+                    IconPieChart.Enabled = true;
                 }
                 else
                 {
@@ -231,6 +233,7 @@ namespace MiniBug
                     IconEditIssue.Enabled = false;
                     IconDeleteIssue.Enabled = false;
                     IconCloneIssue.Enabled = false;
+                    IconPieChart.Enabled = false;
                 }
 
                 // Disable tasks menu items
@@ -245,7 +248,7 @@ namespace MiniBug
                 IconDeleteTask.Enabled = false;
                 IconCloneTask.Enabled = false;
             }
-            else if (TabControl.SelectedIndex == 1) // The tab 'Tasks' is selected
+            else if (TabControl.SelectedIndex == 1)         // The tab 'Tasks' is selected
             {
                 // The user can create a new task only if the current project != null
                 newTaskToolStripMenuItem.Enabled = IconNewTask.Enabled = (Program.SoftwareProject == null) ? false : true;
@@ -270,6 +273,8 @@ namespace MiniBug
                     IconDeleteTask.Enabled = false;
                     IconCloneTask.Enabled = false;
                 }
+
+                IconPieChart.Enabled = false;
 
                 // Disable issues menu items
                 newIssueToolStripMenuItem.Enabled = false;
