@@ -58,6 +58,7 @@
             this.buttonCopy = new System.Windows.Forms.Button();
             this.panelBottom = new System.Windows.Forms.Panel();
             this.groupBoxDescription = new System.Windows.Forms.GroupBox();
+            this.panelTemp = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -185,7 +186,7 @@
             this.txtDescription.Location = new System.Drawing.Point(0, 0);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(873, 269);
+            this.txtDescription.Size = new System.Drawing.Size(873, 288);
             this.txtDescription.TabIndex = 17;
             // 
             // btOk
@@ -293,8 +294,8 @@
             // 
             this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Panel2.Controls.Add(this.pictureBox1);
-            this.splitContainer1.Size = new System.Drawing.Size(873, 327);
-            this.splitContainer1.SplitterDistance = 269;
+            this.splitContainer1.Size = new System.Drawing.Size(873, 351);
+            this.splitContainer1.SplitterDistance = 288;
             this.splitContainer1.TabIndex = 24;
             // 
             // buttonCopy
@@ -318,7 +319,7 @@
             this.panelBottom.Controls.Add(this.labelImage);
             this.panelBottom.Controls.Add(this.buttonBrowseImage);
             this.panelBottom.Controls.Add(this.txtImage);
-            this.panelBottom.Location = new System.Drawing.Point(7, 519);
+            this.panelBottom.Location = new System.Drawing.Point(7, 526);
             this.panelBottom.Name = "panelBottom";
             this.panelBottom.Size = new System.Drawing.Size(887, 50);
             this.panelBottom.TabIndex = 25;
@@ -332,10 +333,19 @@
             this.groupBoxDescription.Controls.Add(this.splitContainer1);
             this.groupBoxDescription.Location = new System.Drawing.Point(7, 142);
             this.groupBoxDescription.Name = "groupBoxDescription";
-            this.groupBoxDescription.Size = new System.Drawing.Size(893, 354);
+            this.groupBoxDescription.Size = new System.Drawing.Size(893, 378);
             this.groupBoxDescription.TabIndex = 26;
             this.groupBoxDescription.TabStop = false;
             this.groupBoxDescription.Text = "&Description:";
+            // 
+            // panelTemp
+            // 
+            this.panelTemp.BackColor = System.Drawing.Color.Yellow;
+            this.panelTemp.Location = new System.Drawing.Point(-7, 145);
+            this.panelTemp.Name = "panelTemp";
+            this.panelTemp.Size = new System.Drawing.Size(214, 375);
+            this.panelTemp.TabIndex = 28;
+            this.panelTemp.Visible = false;
             // 
             // IssueForm
             // 
@@ -362,6 +372,7 @@
             this.Controls.Add(this.lblDateCreatedTitle);
             this.Controls.Add(this.lblID);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.panelTemp);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MinimumSize = new System.Drawing.Size(700, 400);
             this.Name = "IssueForm";
@@ -413,5 +424,6 @@
         private System.Windows.Forms.Panel panelBottom;
         private System.Windows.Forms.GroupBox groupBoxDescription;
         private System.Windows.Forms.Button buttonCopy;
+        private System.Windows.Forms.Panel panelTemp;
     }
 }

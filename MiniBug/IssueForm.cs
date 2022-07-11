@@ -109,10 +109,8 @@ namespace MiniBug
                 lblDateCreated.Visible = false;
                 lblDateModifiedTitle.Visible = false;
                 lblDateModified.Visible = false;
-
                 cboStatus.SelectedIndex = 0;
                 cboPriority.SelectedIndex = 0;
-
                 lblID.Text = Program.SoftwareProject.IssueIdCounter.ToString();
             }
             else if (Operation == OperationType.Edit)
@@ -131,9 +129,9 @@ namespace MiniBug
 
                 if (Font.SizeInPoints > 12)
                 {
-                    // Make sure the bottom panel is visible
-                    this.groupBoxDescription.Height = (int)(this.Height * 8 / Font.SizeInPoints);
-                    this.panelBottom.Top = this.groupBoxDescription.Bottom + 5;
+                    // Make sure the bottom panel is visible using a temporary panel for scaling
+                    this.groupBoxDescription.Height = this.panelTemp.Height;
+                    this.panelBottom.Top = this.panelTemp.Bottom + 5;
                 }
 
                 if (string.IsNullOrEmpty(CurrentIssue.ImageFilename))
@@ -162,10 +160,9 @@ namespace MiniBug
                     }
                 }
 
+                lblID.Text = CurrentIssue.ID.ToString();
                 cboStatus.SelectedValue = Convert.ToInt32(CurrentIssue.Status);
                 cboPriority.SelectedValue = Convert.ToInt32(CurrentIssue.Priority);
-
-                lblID.Text = CurrentIssue.ID.ToString();
             }
 
             //txtDescription.Font = ApplicationSettings.FormDescriptionFieldFont;
