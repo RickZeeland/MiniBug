@@ -498,6 +498,13 @@ namespace MiniBug
                 return;
             }
 
+            if (IsLocked(filename))
+            {
+                // file is in use
+                MessageBox.Show($"{filename} is in use!", Program.myName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (flagValidFilename)
             {
                 this.Cursor = Cursors.WaitCursor;
@@ -2384,6 +2391,25 @@ namespace MiniBug
                         row++;
                     }
                 }
+            }
+        }
+
+        /// <summary>
+        /// Test if file is locked.
+        /// </summary>
+        /// <param name="fullFilename">The full file name</param>
+        /// <returns>True when locked</returns>
+        public static bool IsLocked(string fullFilename)
+        {
+            try
+            {
+                FileStream fs = File.OpenWrite(fullFilename);
+                fs.Close();
+                return false;
+            }
+            catch
+            {
+                return true;
             }
         }
     }
