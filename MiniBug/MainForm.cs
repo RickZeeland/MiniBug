@@ -109,12 +109,6 @@ namespace MiniBug
                 {
                     // Load the only project immediately
                     OpenProject(Properties.Settings.Default.RecentProjectsPaths[0]);
-
-                    if (Properties.Settings.Default.ScrollToLastRow)
-                    {
-                        this.GridIssues.FirstDisplayedScrollingRowIndex = this.GridIssues.RowCount - 1;
-                    }
-
                     this.tabPage1.Invalidate();
                 }
             }
@@ -484,6 +478,7 @@ namespace MiniBug
                 openFileDialog1.Filter = "JSON files (*.json)|*.json";
                 openFileDialog1.FilterIndex = 0;
                 openFileDialog1.FileName = string.Empty;
+                openFileDialog1.InitialDirectory = Application.StartupPath;         // Open in current directory
 
                 if (openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
@@ -534,6 +529,11 @@ namespace MiniBug
 
                     // Add this project to the recent projects submenu and application settings
                     AddRecentProject(Program.SoftwareProject.Name, System.IO.Path.Combine(Program.SoftwareProject.Location, Program.SoftwareProject.Filename));
+
+                    if (Properties.Settings.Default.ScrollToLastRow)
+                    {
+                        this.GridIssues.FirstDisplayedScrollingRowIndex = this.GridIssues.RowCount - 1;
+                    }
 
                     // Resume the layout logic
                     this.ResumeLayout();

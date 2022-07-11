@@ -255,6 +255,8 @@ namespace MiniBug
             openFileDialog1.Filter = "Image files (*.jpg,*.png,*.bmp,*.gif)|*.jpg;*.png;*.bmp;*.gif";
             openFileDialog1.FilterIndex = 0;
             openFileDialog1.FileName = string.Empty;
+            openFileDialog1.InitialDirectory = Application.StartupPath;         // Open in current directory
+
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
