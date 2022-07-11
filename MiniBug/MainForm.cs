@@ -2321,9 +2321,15 @@ namespace MiniBug
             if (e.KeyCode == Keys.Enter)
             {
                 string searchstring = txtSearch.Text;
+                var stringComparison = StringComparison.Ordinal;
                 int row = 0;
                 bool found = false;
                 this.GridIssues.ClearSelection();
+
+                if (ApplicationSettings.SearchCaseInsensitive)
+                {
+                    stringComparison = StringComparison.OrdinalIgnoreCase;          // Case insensitive search
+                }
 
                 // Search in version and summary first, select all found rows
                 foreach (DataGridViewRow issue in this.GridIssues.Rows)
@@ -2331,7 +2337,10 @@ namespace MiniBug
                     string version = issue.Cells["Version"].Value.ToString();
                     string summary = issue.Cells["Summary"].Value.ToString();
 
-                    if (version.Contains(searchstring) || summary.Contains(searchstring))
+                    bool contains = version.IndexOf(searchstring, stringComparison) >= 0;
+                    contains |= summary.IndexOf(searchstring, stringComparison) >= 0;
+
+                    if (contains)
                     {
                         if (!found)
                         {
@@ -2356,7 +2365,7 @@ namespace MiniBug
                         int id = int.Parse(issue.Cells["id"].Value.ToString());
                         var description = Program.SoftwareProject.Issues[id].Description;
 
-                        if (description.Contains(searchstring))
+                        if (description.IndexOf(searchstring, stringComparison) >= 0)
                         {
                             if (!found)
                             {

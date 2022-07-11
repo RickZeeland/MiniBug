@@ -257,12 +257,11 @@ namespace MiniBug
             openFileDialog1.FileName = string.Empty;
             openFileDialog1.InitialDirectory = Application.StartupPath;         // Open in current directory
 
-
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                this.splitContainer1.SplitterDistance = this.splitContainer1.Height / 2;
+                this.splitContainer1.SplitterDistance = this.splitContainer1.Height / 2;                    // Make room in the splitcontainer
                 string imageFilename = openFileDialog1.FileName;
-                imageFilename = imageFilename.Replace(Application.StartupPath + @"\", string.Empty);
+                imageFilename = imageFilename.Replace(Application.StartupPath + @"\", string.Empty);        // Truncate file name if possible
                 this.txtImage.Text = imageFilename;
                 this.pictureBox1.Image = Image.FromFile(imageFilename);
                 this.pictureBox1.Visible = true;

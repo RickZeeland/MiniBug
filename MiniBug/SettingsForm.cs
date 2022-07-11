@@ -98,11 +98,11 @@ namespace MiniBug
             // Row colors (normal and alternating row colors)
             RowColor.BackColor = ApplicationSettings.GridRowBackColor;
             chkAlternateRowColors.Checked = ApplicationSettings.GridAlternatingRowColor;
-            lblAlternateRowColor.Enabled = ApplicationSettings.GridAlternatingRowColor;
             AlternateRowColor.Enabled = ApplicationSettings.GridAlternatingRowColor;
             AlternateRowColor.BackColor = ApplicationSettings.GridAlternateRowBackColor;
 
             chkScrollToLastRow.Checked = ApplicationSettings.ScrollToLastRow;
+            chkCaseInsensitive.Checked = ApplicationSettings.SearchCaseInsensitive;
         }
 
         #region ControlEvents
@@ -169,7 +169,6 @@ namespace MiniBug
         /// </summary>
         private void chkAlternateRowColors_CheckedChanged(object sender, EventArgs e)
         {
-            lblAlternateRowColor.Enabled = chkAlternateRowColors.Checked;
             AlternateRowColor.Enabled = chkAlternateRowColors.Checked;
         }
 
@@ -231,6 +230,7 @@ namespace MiniBug
             ApplicationSettings.GridAlternateRowBackColor = AlternateRowColor.BackColor;
 
             ApplicationSettings.ScrollToLastRow = chkScrollToLastRow.Checked;
+            ApplicationSettings.SearchCaseInsensitive = chkCaseInsensitive.Checked;
 
             // Persist the new settings
             ApplicationSettings.Save();

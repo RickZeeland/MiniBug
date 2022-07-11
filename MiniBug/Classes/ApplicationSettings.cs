@@ -63,6 +63,11 @@ namespace MiniBug
         public static bool ScrollToLastRow = true;
 
         /// <summary>
+        /// Case insensitive search.
+        /// </summary>
+        public static bool SearchCaseInsensitive = true;
+
+        /// <summary>
         /// Application font name and size.
         /// </summary>
         public static Font AppFont = new Font("Segoe UI", 10);
@@ -198,6 +203,7 @@ namespace MiniBug
             GridAlternateRowBackColor = Properties.Settings.Default.GridAlternateRowBackColor;
             AppFont = Properties.Settings.Default.AppFont;
             ScrollToLastRow = Properties.Settings.Default.ScrollToLastRow;
+            SearchCaseInsensitive = Properties.Settings.Default.SearchCaseInsensitive;
 
             // Load the settings for the issues DataGridView columns
             if (Properties.Settings.Default.GridIssuesColumnsSettings != null)
@@ -300,6 +306,7 @@ namespace MiniBug
                 Properties.Settings.Default.GridAlternateRowBackColor = GridAlternateRowBackColor;
                 Properties.Settings.Default.AppFont = AppFont;
                 Properties.Settings.Default.ScrollToLastRow = ScrollToLastRow;
+                Properties.Settings.Default.SearchCaseInsensitive = SearchCaseInsensitive;
             }
 
             // Save some settings for the issues and tasks DataGridView columns
@@ -365,6 +372,7 @@ namespace MiniBug
             GridAlternateRowBackColor = Color.White;
             AppFont = new Font("Segoe UI", 10);
             ScrollToLastRow = true;
+            SearchCaseInsensitive = false;
         }
     }
 }
