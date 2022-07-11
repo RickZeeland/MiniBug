@@ -3,6 +3,7 @@
 using ModernUI.Charting;
 using System;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace MiniBug
 {
@@ -22,6 +23,11 @@ namespace MiniBug
         public int IssuesUnconfirmed { get; set; }
 
         public int IssuesConfirmed { get; set; }
+
+        /// <summary>
+        /// Allow to drag the Pie chart.
+        /// </summary>
+        private Point MouseDownLocation;
 
         /// <summary>
         /// Increment or decrement status count for the Pie chart.
@@ -103,6 +109,29 @@ namespace MiniBug
             }
             catch
             {
+            }
+        }
+
+        /// <summary>
+        /// Allow to drag the Pie chart.
+        /// </summary>
+        private void modernPieChart1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                MouseDownLocation = e.Location;
+            }
+        }
+
+        /// <summary>
+        /// Allow to drag the Pie chart.
+        /// </summary>
+        private void modernPieChart1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                modernPieChart1.Left = e.X + modernPieChart1.Left - MouseDownLocation.X;
+                modernPieChart1.Top = e.Y + modernPieChart1.Top - MouseDownLocation.Y;
             }
         }
     }

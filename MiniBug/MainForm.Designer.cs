@@ -118,7 +118,6 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.modernPieChart1);
             this.tabPage1.Controls.Add(this.GridIssues);
             this.tabPage1.Location = new System.Drawing.Point(4, 26);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -153,6 +152,8 @@
             this.modernPieChart1.UseItemTextTemplate = false;
             this.modernPieChart1.UseStyledForeColor = false;
             this.modernPieChart1.Visible = false;
+            this.modernPieChart1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.modernPieChart1_MouseDown);
+            this.modernPieChart1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.modernPieChart1_MouseMove);
             // 
             // tabPage2
             // 
@@ -570,6 +571,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1037, 620);
+            this.Controls.Add(this.modernPieChart1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.TabControl);
