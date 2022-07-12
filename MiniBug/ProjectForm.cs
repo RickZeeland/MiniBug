@@ -2,10 +2,14 @@
 // Licensed under the MIT license.
 
 using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace MiniBug
 {
+    /// <summary>
+    /// Create a new project, or edit an existing project.
+    /// </summary>
     public partial class ProjectForm : Form
     {
         /// <summary>
@@ -36,7 +40,13 @@ namespace MiniBug
 
             if (Operation == OperationType.Edit)
             {
-                // Edit an existing project
+                // Edit an existing project, if it is not in use
+                if (Program.IsLocked(projectFilename))
+                {
+                    MessageBox.Show($"Project is in use by another user!\n{projectFilename}", Program.myName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 ProjectName = projectName;
                 ProjectFilename = projectFilename;
                 ProjectLocation = projectLocation;
@@ -115,6 +125,7 @@ namespace MiniBug
                 ProjectFilename = txtFilename.Text;
                 ProjectLocation = txtLocation.Text;
 
+                Program.CreateLockFile(ProjectFilename);        // Create .lock file
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }

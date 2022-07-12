@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 using System;
+using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -61,5 +62,61 @@ namespace MiniBug
             return false;
         }
 
+        /// <summary>
+        /// Create project .lock file.
+        /// </summary>
+        /// <param name="fullFilename">The project file name</param>
+        internal static void CreateLockFile(string fullFilename)
+        {
+            try
+            {
+                File.WriteAllText(fullFilename.Replace(".json", ".lock"), $"{Environment.UserName} {DateTime.Now}");
+            }
+            catch
+            {
+            }
+        }
+
+        /// <summary>
+        /// Delete the current project .lock file.
+        /// </summary>
+        internal static void DeleteLockFile()
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(SoftwareProject?.Filename))
+                {
+                    // Delete lock file
+                    File.Delete(SoftwareProject.Filename.Replace(".json", ".lock"));
+                }
+            }
+            catch
+            {
+            }
+        }
+
+        /// <summary>
+        /// Test if project file is locked.
+        /// </summary>
+        /// <param name="fullFilename">The full file name</param>
+        /// <returns>True when locked</returns>
+        internal static bool IsLocked(string fullFilename)
+        {
+            try
+            {
+                if (File.Exists(fullFilename.Replace(".json", ".lock")))
+                {
+                    return true;
+                }
+
+                FileStream fs = File.OpenWrite(fullFilename);
+                fs.Close();
+                return false;
+            }
+            catch
+            {
+                return true;
+            }
+        }
     }
 }

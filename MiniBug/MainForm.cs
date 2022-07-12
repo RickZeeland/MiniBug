@@ -191,7 +191,7 @@ namespace MiniBug
         }
 
         /// <summary>
-        /// Sets the state (enabled/disabled) of some controls (menu items, toolbar icons, etc.), based on current conditions.
+        /// Sets the state (enabled/disabled) of some controls: menu items, toolbar icons, Pie chart, etc.
         /// </summary>
         private void SetControlsState()
         {
@@ -276,7 +276,8 @@ namespace MiniBug
                     IconCloneTask.Enabled = false;
                 }
 
-                IconPieChart.Enabled = false;
+                IconPieChart.Enabled = false;               // Pie chart is only for issues at the moment
+                modernPieChart1.Visible = false;
 
                 // Disable issues menu items
                 newIssueToolStripMenuItem.Enabled = false;
@@ -307,11 +308,13 @@ namespace MiniBug
         private void CloseApplication()
         {
             // Remember the last form position
-            Properties.Settings.Default.FormStartPosition = this.Location; 
+            Properties.Settings.Default.FormStartPosition = this.Location;
             Properties.Settings.Default.FormSize = this.Size;
 
             // Save the order of the columns in the issues and tasks DataGridViews
             ApplicationSettings.Save(ApplicationSettings.SaveSettings.ColumnOrderSort);
+
+            Program.DeleteLockFile();
         }
 
         #region "RecentProject"
@@ -428,6 +431,7 @@ namespace MiniBug
 
             if (result == DialogResult.OK)
             {
+                Program.DeleteLockFile();               // Delete .lock file if it exists
                 Program.SoftwareProject = null;
 
                 // Clear the issues and tasks grids
@@ -480,6 +484,7 @@ namespace MiniBug
 
             if (!flagValidFilename)
             {
+                // Show file dialog and ask for project name
                 openFileDialog1.Title = "Open Project";
                 openFileDialog1.Multiselect = false;
                 openFileDialog1.Filter = "JSON files (*.json)|*.json";
@@ -500,16 +505,22 @@ namespace MiniBug
                 return;
             }
 
-            if (IsLocked(filename))
+            if (Program.IsLocked(filename))
             {
                 // file is in use
-                MessageBox.Show($"{filename} is in use!", Program.myName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"Project is in use by another user!\n{filename}", Program.myName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (flagValidFilename)
             {
                 this.Cursor = Cursors.WaitCursor;
+
+                if (Program.SoftwareProject != null)
+                {
+                    Program.DeleteLockFile();
+                }
+
                 Project newProject = new Project();
                 var status = ApplicationData.LoadProject(filename, out newProject);
 
@@ -523,6 +534,9 @@ namespace MiniBug
                 }
                 else
                 {
+                    // Lock the project file
+                    Program.CreateLockFile(filename);
+
                     Program.SoftwareProject = null;
                     Program.SoftwareProject = newProject;
 
@@ -544,7 +558,7 @@ namespace MiniBug
                     // Add this project to the recent projects submenu and application settings
                     AddRecentProject(Program.SoftwareProject.Name, System.IO.Path.Combine(Program.SoftwareProject.Location, Program.SoftwareProject.Filename));
 
-                    if (Properties.Settings.Default.ScrollToLastRow)
+                    if (Properties.Settings.Default.ScrollToLastRow && this.GridIssues.RowCount > 10)
                     {
                         this.GridIssues.FirstDisplayedScrollingRowIndex = this.GridIssues.RowCount - 1;
                     }
@@ -2393,25 +2407,6 @@ namespace MiniBug
                         row++;
                     }
                 }
-            }
-        }
-
-        /// <summary>
-        /// Test if file is locked.
-        /// </summary>
-        /// <param name="fullFilename">The full file name</param>
-        /// <returns>True when locked</returns>
-        public static bool IsLocked(string fullFilename)
-        {
-            try
-            {
-                FileStream fs = File.OpenWrite(fullFilename);
-                fs.Close();
-                return false;
-            }
-            catch
-            {
-                return true;
             }
         }
     }
