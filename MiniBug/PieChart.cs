@@ -94,11 +94,11 @@ namespace MiniBug
                 modernPieChart1.ForeColor = Color.White;
                 modernPieChart1.BackColor = Color.Gray;
 
-                modernPieChart1.Items.Add(new PieChartItem(IssuesUnconfirmed, Color.LightGray, "Unconfirmed", $"Unconfirmed {IssuesUnconfirmed}", 0));
-                modernPieChart1.Items.Add(new PieChartItem(IssuesConfirmed, Color.Goldenrod, "Confirmed", $"Confirmed {IssuesConfirmed}", 0));
-                modernPieChart1.Items.Add(new PieChartItem(IssuesInProgress, Color.Blue, "In progress", $"In progress {IssuesInProgress}", 20));
-                modernPieChart1.Items.Add(new PieChartItem(IssuesResolved, Color.ForestGreen, "Resolved", $"Resolved {IssuesResolved}", 0));
-                modernPieChart1.Items.Add(new PieChartItem(IssuesClosed, Color.Gray, "Closed", $"Closed {IssuesClosed}", 0));
+                AddItem(IssuesUnconfirmed, Color.LightGray, "Unconfirmed");
+                AddItem(IssuesConfirmed, Color.Goldenrod, "Confirmed");
+                AddItem(IssuesInProgress, Color.Blue, "In progress", 20);
+                AddItem(IssuesResolved, Color.ForestGreen, "Resolved");
+                AddItem(IssuesClosed, Color.Gray, "Closed");
 
                 modernPieChart1.ItemStyle.SurfaceAlphaTransparency = 0.75F;
                 modernPieChart1.FocusedItemStyle.SurfaceAlphaTransparency = 0.75F;
@@ -109,6 +109,14 @@ namespace MiniBug
             }
             catch
             {
+            }
+        }
+
+        private void AddItem(int itemCount, Color color, string status, int offset = 0)
+        {
+            if (itemCount > 0)
+            {
+                modernPieChart1.Items.Add(new PieChartItem(itemCount, color, status, $"{status} {itemCount}", offset));
             }
         }
 
