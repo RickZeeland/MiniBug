@@ -387,6 +387,19 @@ namespace MiniBug
                 //    }
                 //}
 
+
+
+                //// define text box with width of 160 mm
+                //var Box = new PdfFileWriter.TextBox(160);
+
+                //// add very long text
+                //Box.AddText(defaultFont, fontSize, "");
+                ////Contents.BeginTextMode();
+                ////Contents.DrawText(30.0, 10.0, 10, 1, Box, Page);
+                ////Contents.DrawText((double)xPos, (double)pageHeight - yPos, 10, 1, Box, Page);
+
+
+
                 foreach (var line in lines)
                 {
                     //Contents.ClipText
