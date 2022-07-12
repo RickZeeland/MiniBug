@@ -116,6 +116,7 @@ This project uses the following libraries:
 - <a href="https://www.newtonsoft.com/json">Json.NET</a>: for reading/writing to .json files
 - <a href="https://joshclose.github.io/CsvHelper/">CsvHelper</a>: for exporting to CSV
 - <a href="https://www.codeproject.com/Articles/5299801/A-Control-to-Display-Pie-and-Doughtnut-Charts-with">Pie chart control</a>: by Angelo Cresta
+- <a href="https://www.codeproject.com/Articles/570682/PDF-File-Writer-Csharp-Class-Library-Version-2-0-0">PdfFileWriter library</a>: by Uzi Granot
 
 <a target="_blank" href="https://icons8.com/icon/EQ4HGAcEI0hH/chart">Chart</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
 

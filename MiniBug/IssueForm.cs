@@ -5,10 +5,8 @@ using PdfFileWriter;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Printing;
 using System.IO;
-using System.Text;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace MiniBug
@@ -34,10 +32,6 @@ namespace MiniBug
         /// List of priority options.
         /// </summary>
         private List<ComboBoxItem> PriorityList = new List<ComboBoxItem>();
-
-        public PdfDocument Document;
-        private PdfFont DefaultFont;
-        private Int32 PageNo;
 
         public IssueForm(OperationType operation, MiniBug.Issue issue = null)
         {
@@ -353,37 +347,32 @@ namespace MiniBug
 
         private void buttonPdf_Click(object sender, EventArgs e)
         {
-            CreatePdfDocument();
+            CreatePdfDocument($"MiniBug issue {lblID.Text}.pdf");
         }
 
         /// <summary>
+        /// Create PDF using PdfFileWriter library by Uzi Granot.
         /// PDF coordinate system origin is at the bottom left corner of the page.
         /// </summary>
-        public void CreatePdfDocument()
+        public void CreatePdfDocument(string fileName)
         {
-            // Create empty document
-            using (PdfDocument Document = new PdfDocument(PaperType.A4, false, UnitOfMeasure.mm, $"MiniBug issue {lblID.Text}.pdf"))
+            var lines = PageLines();
+
+            using (PdfDocument document = new PdfDocument(PaperType.A4, false, UnitOfMeasure.mm, fileName))
             {
                 // Add new page
-                PdfPage Page = new PdfPage(Document);
+                PdfPage Page = new PdfPage(document);
                 PdfContents Contents = new PdfContents(Page);
-                PageNo = 1;
-                int pageHeight = 295;           // A4 page heigtht
+                int pageNo = 1;
+                int pageHeight = 290;           // A4 page heigtht
 
                 // create font
-                DefaultFont = PdfFont.CreatePdfFont(Document, "Courier New", FontStyle.Regular, true);
+                //DefaultFont = PdfFont.CreatePdfFont(Document, "Courier New", FontStyle.Regular, true);
+                var defaultFont = PdfFont.CreatePdfFont(document, "Arial", FontStyle.Regular, true);
                 int xPos = 30;
                 int yPos = 10;
                 int fontSize = 10;
                 int LineHeight = fontSize / 2;
-                var lines = PageLines();
-
-                foreach (var line in lines)
-                {
-                    //Contents.ClipText
-                    Contents.DrawText(DefaultFont, fontSize, xPos, pageHeight - yPos, line);
-                    yPos += LineHeight;
-                }
 
                 //// print some test lines
                 //for (int LineNo = 1; ; LineNo++)
@@ -398,17 +387,46 @@ namespace MiniBug
                 //    }
                 //}
 
+                foreach (var line in lines)
+                {
+                    //Contents.ClipText
+                    string output = new string(line.Where(c => !char.IsControl(c)).ToArray());      // Strip control characters
+                    Contents.DrawText(defaultFont, fontSize, xPos, pageHeight - yPos, output);
+                    yPos += LineHeight;
+
+                    if (yPos > pageHeight - 20)
+                    {
+                        yPos = 10;
+                        pageNo++;
+                        Page = new PdfPage(document);
+                        Contents = new PdfContents(Page);
+                    }
+                }
+
                 if (!string.IsNullOrEmpty(this.txtImage.Text) && File.Exists(this.txtImage.Text))
                 {
-                    // load image and calculate best fit
-                    PdfImage pdfImage = new PdfImage(Document);
+                    // Print attached image
+                    if (yPos > 140)
+                    {
+                        pageNo++;
+                        Page = new PdfPage(document);
+                        Contents = new PdfContents(Page);
+                        yPos = 100;
+                    }
+                    else
+                    {
+                        yPos = 10;
+                    }
+
+                    // load image and calculate best fit in a 150 x 150 mm box
+                    PdfImage pdfImage = new PdfImage(document);
                     pdfImage.LoadImage(this.txtImage.Text);
                     var pdfImageSize = pdfImage.ImageSize(150, 150);
-                    Contents.DrawImage(pdfImage, xPos, 10, pdfImageSize.Width, pdfImageSize.Height);
+                    Contents.DrawImage(pdfImage, xPos, yPos, pdfImageSize.Width, pdfImageSize.Height);
                 }
 
                 // create pdf file
-                Document.CreateFile();
+                document.CreateFile();
             }
 
             //// start default PDF reader and display the file
