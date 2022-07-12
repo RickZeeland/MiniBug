@@ -56,6 +56,7 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.buttonCopy = new System.Windows.Forms.Button();
+            this.buttonPdf = new System.Windows.Forms.Button();
             this.panelBottom = new System.Windows.Forms.Panel();
             this.groupBoxDescription = new System.Windows.Forms.GroupBox();
             this.panelTemp = new System.Windows.Forms.Panel();
@@ -310,6 +311,18 @@
             this.buttonCopy.UseVisualStyleBackColor = false;
             this.buttonCopy.Click += new System.EventHandler(this.buttonCopy_Click);
             // 
+            // buttonPdf
+            // 
+            this.buttonPdf.BackColor = System.Drawing.Color.White;
+            this.buttonPdf.Image = global::MiniBug.Properties.Resources.pdf_64x64;
+            this.buttonPdf.Location = new System.Drawing.Point(814, 75);
+            this.buttonPdf.Name = "buttonPdf";
+            this.buttonPdf.Size = new System.Drawing.Size(58, 58);
+            this.buttonPdf.TabIndex = 29;
+            this.toolTip1.SetToolTip(this.buttonPdf, "Create PDF file");
+            this.buttonPdf.UseVisualStyleBackColor = false;
+            this.buttonPdf.Click += new System.EventHandler(this.buttonPdf_Click);
+            // 
             // panelBottom
             // 
             this.panelBottom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -353,6 +366,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(900, 581);
+            this.Controls.Add(this.buttonPdf);
             this.Controls.Add(this.buttonCopy);
             this.Controls.Add(this.groupBoxDescription);
             this.Controls.Add(this.panelBottom);
@@ -425,5 +439,6 @@
         private System.Windows.Forms.GroupBox groupBoxDescription;
         private System.Windows.Forms.Button buttonCopy;
         private System.Windows.Forms.Panel panelTemp;
+        private System.Windows.Forms.Button buttonPdf;
     }
 }

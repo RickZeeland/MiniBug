@@ -1,9 +1,12 @@
 ﻿// Copyright(c) João Martiniano. All rights reserved.
 // Licensed under the MIT license.
 
+using PdfFileWriter;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Printing;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
@@ -31,6 +34,10 @@ namespace MiniBug
         /// List of priority options.
         /// </summary>
         private List<ComboBoxItem> PriorityList = new List<ComboBoxItem>();
+
+        public PdfDocument Document;
+        private PdfFont DefaultFont;
+        private Int32 PageNo;
 
         public IssueForm(OperationType operation, MiniBug.Issue issue = null)
         {
@@ -299,35 +306,115 @@ namespace MiniBug
         {
             try
             {
-                StringBuilder sb = new StringBuilder();
-                sb.AppendLine($"MiniBug v2 issue ID {this.lblID.Text}");
-                sb.AppendLine();
-                sb.AppendLine($"Date Created:   {this.lblDateCreated.Text}");
-                sb.AppendLine($"Date Modified:  {this.lblDateModified.Text}");
-                sb.AppendLine($"Summary:        {this.txtSummary.Text}");
-                sb.AppendLine($"Status:         {this.cboStatus.Text}");
-                sb.AppendLine($"Priority:       {this.cboPriority.Text}");
-                sb.AppendLine($"Version:        {this.txtVersion.Text}");
-                sb.AppendLine($"Target Version: {this.txtTargetVersion.Text}");
-                sb.AppendLine($"Description:    {this.txtDescription.Text}");
+                string pageText = string.Join(Environment.NewLine, PageLines());
 
                 if (!string.IsNullOrEmpty(this.txtImage.Text))
                 {
-                    //Clipboard.SetImage(this.pictureBox1.Image);
-                    sb.AppendLine($"Image:          {this.txtImage.Text}");
                     DataObject dataObj = new DataObject();
-                    dataObj.SetData(DataFormats.UnicodeText, sb.ToString());
+                    dataObj.SetData(DataFormats.UnicodeText, pageText);
                     dataObj.SetData(DataFormats.Bitmap, true, Image.FromFile(this.txtImage.Text));
                     Clipboard.SetDataObject(dataObj);
                 }
                 else
                 {
-                    Clipboard.SetText(sb.ToString());
+                    Clipboard.SetText(pageText);
                 }
             }
             catch
             {
             }
+        }
+
+        private List<string> PageLines()
+        {
+            var pageLines = new List<string>(10);
+            pageLines.Add($"MiniBug v2 issue ID {this.lblID.Text}");
+            pageLines.Add(string.Empty);
+            pageLines.Add($"Date Created:   {this.lblDateCreated.Text}");
+            pageLines.Add($"Date Modified:  {this.lblDateModified.Text}");
+            pageLines.Add($"Summary:        {this.txtSummary.Text}");
+            pageLines.Add($"Status:         {this.cboStatus.Text}");
+            pageLines.Add($"Priority:       {this.cboPriority.Text}");
+            pageLines.Add($"Version:        {this.txtVersion.Text}");
+            pageLines.Add($"Target Version: {this.txtTargetVersion.Text}");
+            pageLines.Add($"Description:");
+
+            var descLines = this.txtDescription.Text.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);
+            pageLines.AddRange(descLines);
+
+            if (!string.IsNullOrEmpty(this.txtImage.Text))
+            {
+                pageLines.Add(string.Empty);
+                pageLines.Add($"Image:          {this.txtImage.Text}");
+            }
+
+            return pageLines;
+        }
+
+        private void buttonPdf_Click(object sender, EventArgs e)
+        {
+            CreatePdfDocument();
+        }
+
+        /// <summary>
+        /// PDF coordinate system origin is at the bottom left corner of the page.
+        /// </summary>
+        public void CreatePdfDocument()
+        {
+            // Create empty document
+            using (PdfDocument Document = new PdfDocument(PaperType.A4, false, UnitOfMeasure.mm, $"MiniBug issue {lblID.Text}.pdf"))
+            {
+                // Add new page
+                PdfPage Page = new PdfPage(Document);
+                PdfContents Contents = new PdfContents(Page);
+                PageNo = 1;
+                int pageHeight = 295;           // A4 page heigtht
+
+                // create font
+                DefaultFont = PdfFont.CreatePdfFont(Document, "Courier New", FontStyle.Regular, true);
+                int xPos = 30;
+                int yPos = 10;
+                int fontSize = 10;
+                int LineHeight = fontSize / 2;
+                var lines = PageLines();
+
+                foreach (var line in lines)
+                {
+                    //Contents.ClipText
+                    Contents.DrawText(DefaultFont, fontSize, xPos, pageHeight - yPos, line);
+                    yPos += LineHeight;
+                }
+
+                //// print some test lines
+                //for (int LineNo = 1; ; LineNo++)
+                //{
+                //    string text = string.Format("Page {0}, Line {1}", PageNo, LineNo);
+                //    Contents.DrawText(DefaultFont, fontSize, xPos, pageHeight - yPos, text);
+                //    yPos += LineHeight;
+
+                //    if (yPos > 150)
+                //    {
+                //        break;
+                //    }
+                //}
+
+                if (!string.IsNullOrEmpty(this.txtImage.Text) && File.Exists(this.txtImage.Text))
+                {
+                    // load image and calculate best fit
+                    PdfImage pdfImage = new PdfImage(Document);
+                    pdfImage.LoadImage(this.txtImage.Text);
+                    var pdfImageSize = pdfImage.ImageSize(150, 150);
+                    Contents.DrawImage(pdfImage, xPos, 10, pdfImageSize.Width, pdfImageSize.Height);
+                }
+
+                // create pdf file
+                Document.CreateFile();
+            }
+
+            //// start default PDF reader and display the file
+            //Process Proc = new Process();
+            //Proc.StartInfo = new ProcessStartInfo("HelloPdfDocument.pdf") { UseShellExecute = true };
+            //Proc.Start();
         }
     }
 }
