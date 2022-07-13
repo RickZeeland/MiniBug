@@ -12,6 +12,7 @@ Some of the changes:
 - Show a ModernUI.Charting pie chart after loading a project
 - Copy issue and image to Clipboard
 - Search issue
+- Create PDF from issue
 
 
 
@@ -23,6 +24,9 @@ MiniBug does not use a database to store data: instead the application stores ea
 
 Attached images are stored with their file name only, it is recommended to keep them in the same folder as the application.
 Preferably keep images in a subfolder "Images", this way all data can be copied easily to another location.
+
+<img src="MiniBug/Resources/Clipboard_64x64.png" alt="Clipboard button">
+
 When using the "Copy to clipboard" button, text and images can be pasted into office applications by using "Paste special".
 
 ## Features
@@ -35,7 +39,7 @@ When using the "Copy to clipboard" button, text and images can be pasted into of
 
 ## Sample project
 
-I've made a small sample project, with bugs and tasks copied from some applications' public bug trackers (Inkscape, Firefox, MariaDB and Kodi).
+You can try a small sample project, with bugs and tasks copied from some applications' public bug trackers (Inkscape, Firefox, MariaDB and Kodi).
 
 Download the file <a href="MiniBug Sample Project.json">MiniBug Sample Project.json</a> and open it in MiniBug.
 
