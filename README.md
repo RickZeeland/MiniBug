@@ -8,7 +8,7 @@ Some of the changes:
 - Scale forms after changing fontsize in settings
 - Load project on startup if only one project exists
 - Optionally attach an image to an issue
-- Create single exe using Fody.Costura, https://github.com/Fody/Costura
+- Create single exe using Fody.Costura
 - Show a ModernUI.Charting pie chart after loading a project
 - Copy issue and image to Clipboard
 - Search issue
@@ -121,7 +121,10 @@ This project uses the following libraries:
 - <a href="https://joshclose.github.io/CsvHelper/">CsvHelper</a>: for exporting to CSV
 - <a href="https://www.codeproject.com/Articles/5299801/A-Control-to-Display-Pie-and-Doughtnut-Charts-with">Pie chart control</a>: by Angelo Cresta
 - <a href="https://www.codeproject.com/Articles/570682/PDF-File-Writer-Csharp-Class-Library-Version-2-0-0">PdfFileWriter library</a>: by Uzi Granot
+- <a href="https://github.com/Fody/Costura">Fody.Costura</a>: for creating a single exe
 
 <a target="_blank" href="https://icons8.com/icon/EQ4HGAcEI0hH/chart">Chart</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
 
 <a target="_blank" href="https://icons8.com/icon/9u9JUlsiUlgh/clipboard">Clipboard</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+
+<a target="_blank" href="https://icons8.com/icon/57857/pdf">PDF</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>

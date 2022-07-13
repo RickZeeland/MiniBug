@@ -99,20 +99,20 @@
             // 
             // linkLabelIcons8
             // 
-            this.linkLabelIcons8.Location = new System.Drawing.Point(314, 196);
+            this.linkLabelIcons8.Location = new System.Drawing.Point(340, 190);
             this.linkLabelIcons8.Name = "linkLabelIcons8";
-            this.linkLabelIcons8.Size = new System.Drawing.Size(177, 27);
+            this.linkLabelIcons8.Size = new System.Drawing.Size(151, 27);
             this.linkLabelIcons8.TabIndex = 6;
             this.linkLabelIcons8.TabStop = true;
             this.linkLabelIcons8.Text = "https://icons8.com";
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(103, 196);
+            this.label1.Location = new System.Drawing.Point(97, 190);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(213, 27);
+            this.label1.Size = new System.Drawing.Size(245, 27);
             this.label1.TabIndex = 7;
-            this.label1.Text = "Pie chart and Clipboard icon by";
+            this.label1.Text = "Pie chart, PDF and Clipboard icon by";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // AboutForm
