@@ -32,6 +32,9 @@ namespace MiniBug
         /// </summary>
         public string ProjectLocation { get; private set; } = Application.StartupPath;
 
+        /// <summary>
+        /// Create a new project, or edit an existing project.
+        /// </summary>
         public ProjectForm(OperationType operation, string projectName = "", string projectFilename = "", string projectLocation = "")
         {
             InitializeComponent();
@@ -43,8 +46,12 @@ namespace MiniBug
                 // Edit an existing project, if it is not in use
                 if (Program.IsLocked(projectFilename))
                 {
-                    MessageBox.Show($"Project is in use by another user!\n{projectFilename}", Program.myName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    var result = MessageBox.Show($"Project is in use by another user!\n{projectFilename}\nContinue anyway?", Program.myName, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+
+                    if (result == DialogResult.Cancel)
+                    {
+                        return;
+                    }
                 }
 
                 ProjectName = projectName;
@@ -57,10 +64,6 @@ namespace MiniBug
         {
             // Suspend the layout logic for the form, while the application is initializing
             this.SuspendLayout();
-
-            //this.AcceptButton = btOk;
-            //this.CancelButton = btCancel;
-            //txtName.MaxLength = 255;
             txtLocation.Text = ProjectLocation;
 
             // Make initializations based on the type of operation

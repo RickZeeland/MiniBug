@@ -8,6 +8,9 @@ using System.Windows.Forms;
 
 namespace MiniBug
 {
+    /// <summary>
+    /// Contains the main <see cref="SoftwareProject"/> with issues and tasks shared between forms.
+    /// </summary>
     static class Program
     {
         public static string myName = "MiniBug v2 Issue Tracker";

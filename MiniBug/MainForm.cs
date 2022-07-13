@@ -508,8 +508,12 @@ namespace MiniBug
             if (Program.IsLocked(filename))
             {
                 // file is in use
-                MessageBox.Show($"Project is in use by another user!\n{filename}", Program.myName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                var result = MessageBox.Show($"Project is in use by another user!\n{filename}\nContinue anyway?", Program.myName, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+
+                if (result == DialogResult.Cancel)
+                {
+                    return;
+                }
             }
 
             if (flagValidFilename)
@@ -1351,7 +1355,7 @@ namespace MiniBug
                     foreach (DataGridViewRow row in GridIssues.SelectedRows)
                     {
                         // Get the key of the issue in the selected row 
-                        int key = Int32.Parse(row.Cells["id"].Value.ToString());
+                        int key = int.Parse(row.Cells["id"].Value.ToString());
                         var status = Program.SoftwareProject.Issues[key].Status;
 
                         // Get the index of the selected row
@@ -1978,7 +1982,7 @@ namespace MiniBug
                     foreach (DataGridViewRow row in GridTasks.SelectedRows)
                     {
                         // Get the key of the task in the selected row 
-                        int key = Int32.Parse(row.Cells["id"].Value.ToString());
+                        int key = int.Parse(row.Cells["id"].Value.ToString());
 
                         // Get the index of the selected row
                         int i = row.Index;
