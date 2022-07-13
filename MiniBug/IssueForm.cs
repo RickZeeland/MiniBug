@@ -436,22 +436,22 @@ namespace MiniBug
                 if (!string.IsNullOrEmpty(this.txtImage.Text) && File.Exists(this.txtImage.Text))
                 {
                     // Print attached image
-                    if (yPos > 140)
+                    if (yPos < 120)
                     {
                         pageNo++;
-                        page = new PdfPage(document);
+                        page = new PdfPage(document);       // New page with image in the middle
                         contents = new PdfContents(page);
                         yPos = 100;
                     }
                     else
                     {
-                        yPos = 10;
+                        yPos = 10;                          // Image fits at bottom of page
                     }
 
-                    // load image and calculate best fit in a 150 x 150 mm box
+                    // load image and calculate best fit in a 170 x 100 mm box
                     PdfImage pdfImage = new PdfImage(document);
                     pdfImage.LoadImage(this.txtImage.Text);
-                    var pdfImageSize = pdfImage.ImageSize(150, 150);
+                    var pdfImageSize = pdfImage.ImageSize(170, 100);
                     contents.DrawImage(pdfImage, xPos, yPos, pdfImageSize.Width, pdfImageSize.Height);
                 }
 
