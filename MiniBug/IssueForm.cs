@@ -386,25 +386,24 @@ namespace MiniBug
             using (PdfDocument document = new PdfDocument(PaperType.A4, false, UnitOfMeasure.mm, fileName))
             {
                 // Add new page
-                PdfPage Page = new PdfPage(document);
-                PdfContents Contents = new PdfContents(Page);
+                PdfPage page = new PdfPage(document);
+                PdfContents contents = new PdfContents(page);
                 int pageNo = 1;
-                int pageHeight = 290;           // A4 page heigtht
+                int pageHeight = 290;           // A4 page height
 
-                // create font
                 //DefaultFont = PdfFont.CreatePdfFont(Document, "Courier New", FontStyle.Regular, true);
                 var defaultFont = PdfFont.CreatePdfFont(document, "Arial", FontStyle.Regular, true);
-                int xPos = 30;
-                int yPos = 10;
+                double xPos = 25;
+                double yPos = pageHeight - 10;
                 int fontSize = 10;
-                int LineHeight = fontSize / 2;
+                int startLine = 0;
 
                 //// print some test lines
                 //for (int LineNo = 1; ; LineNo++)
                 //{
                 //    string text = string.Format("Page {0}, Line {1}", PageNo, LineNo);
                 //    Contents.DrawText(DefaultFont, fontSize, xPos, pageHeight - yPos, text);
-                //    yPos += LineHeight;
+                //    yPos += fontSize / 2;
 
                 //    if (yPos > 150)
                 //    {
@@ -412,32 +411,27 @@ namespace MiniBug
                 //    }
                 //}
 
-
-                //// TODO: wrap very long text
-                //// define text box with width of 160 mm
-                //var Box = new PdfFileWriter.TextBox(160);
-                //Box.AddText(defaultFont, fontSize, "");
-                ////Contents.BeginTextMode();
-                ////Contents.DrawText(30.0, 10.0, 10, 1, Box, Page);
-                ////Contents.DrawText((double)xPos, (double)pageHeight - yPos, 10, 1, Box, Page);
-
-
+                contents.BeginTextMode();
 
                 foreach (var line in lines)
                 {
-                    //Contents.ClipText
                     string output = new string(line.Where(c => !char.IsControl(c)).ToArray());      // Strip control characters
-                    Contents.DrawText(defaultFont, fontSize, xPos, pageHeight - yPos, output);
-                    yPos += LineHeight;
 
-                    if (yPos > pageHeight - 20)
+                    // Wrap very long text: define text box with a width of 175 mm
+                    PdfFileWriter.TextBox textBox = new PdfFileWriter.TextBox(175.0);
+                    textBox.AddText(defaultFont, fontSize, output);
+                    contents.DrawText(xPos, ref yPos, 1.0, startLine, 1.0, 2.0, TextBoxJustify.FitToWidth, textBox, page);
+
+                    if (yPos < 20)
                     {
-                        yPos = 10;
+                        yPos = pageHeight - 10;
                         pageNo++;
-                        Page = new PdfPage(document);
-                        Contents = new PdfContents(Page);
+                        page = new PdfPage(document);
+                        contents = new PdfContents(page);
                     }
                 }
+
+                contents.EndTextMode();
 
                 if (!string.IsNullOrEmpty(this.txtImage.Text) && File.Exists(this.txtImage.Text))
                 {
@@ -445,8 +439,8 @@ namespace MiniBug
                     if (yPos > 140)
                     {
                         pageNo++;
-                        Page = new PdfPage(document);
-                        Contents = new PdfContents(Page);
+                        page = new PdfPage(document);
+                        contents = new PdfContents(page);
                         yPos = 100;
                     }
                     else
@@ -458,7 +452,7 @@ namespace MiniBug
                     PdfImage pdfImage = new PdfImage(document);
                     pdfImage.LoadImage(this.txtImage.Text);
                     var pdfImageSize = pdfImage.ImageSize(150, 150);
-                    Contents.DrawImage(pdfImage, xPos, yPos, pdfImageSize.Width, pdfImageSize.Height);
+                    contents.DrawImage(pdfImage, xPos, yPos, pdfImageSize.Width, pdfImageSize.Height);
                 }
 
                 // create pdf file
