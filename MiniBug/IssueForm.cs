@@ -4,9 +4,11 @@
 using PdfFileWriter;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Windows.Forms;
 
 namespace MiniBug
@@ -349,7 +351,26 @@ namespace MiniBug
         {
             this.Cursor = Cursors.WaitCursor;
             this.Enabled = false;
-            CreatePdfDocument($"MiniBug issue {lblID.Text}.pdf");
+            string pdfFilename;
+
+            try
+            {
+                pdfFilename = $"MiniBug issue {lblID.Text}.pdf";
+                CreatePdfDocument(pdfFilename);
+
+                if (ApplicationSettings.OpenPdf)
+                {
+                    // start default PDF reader and display the file
+                    Process Proc = new Process();
+                    Proc.StartInfo = new ProcessStartInfo(pdfFilename) { UseShellExecute = true };
+                    Proc.Start();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, Program.myName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
             this.Enabled = true;
             this.Cursor = Cursors.Default;
         }
@@ -443,11 +464,6 @@ namespace MiniBug
                 // create pdf file
                 document.CreateFile();
             }
-
-            //// start default PDF reader and display the file
-            //Process Proc = new Process();
-            //Proc.StartInfo = new ProcessStartInfo("HelloPdfDocument.pdf") { UseShellExecute = true };
-            //Proc.Start();
         }
     }
 }

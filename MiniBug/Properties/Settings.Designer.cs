@@ -256,5 +256,17 @@ namespace MiniBug.Properties {
                 this["SearchCaseInsensitive"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool OpenPdf {
+            get {
+                return ((bool)(this["OpenPdf"]));
+            }
+            set {
+                this["OpenPdf"] = value;
+            }
+        }
     }
 }

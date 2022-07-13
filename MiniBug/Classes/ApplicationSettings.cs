@@ -65,7 +65,12 @@ namespace MiniBug
         /// <summary>
         /// Case insensitive search.
         /// </summary>
-        public static bool SearchCaseInsensitive = true;
+        public static bool SearchCaseInsensitive = false;
+
+        /// <summary>
+        /// Open PDF after creating with default PDF reader.
+        /// </summary>
+        public static bool OpenPdf = false;
 
         /// <summary>
         /// Application font name and size.
@@ -204,6 +209,7 @@ namespace MiniBug
             AppFont = Properties.Settings.Default.AppFont;
             ScrollToLastRow = Properties.Settings.Default.ScrollToLastRow;
             SearchCaseInsensitive = Properties.Settings.Default.SearchCaseInsensitive;
+            OpenPdf = Properties.Settings.Default.OpenPdf;
 
             // Load the settings for the issues DataGridView columns
             if (Properties.Settings.Default.GridIssuesColumnsSettings != null)
@@ -307,6 +313,7 @@ namespace MiniBug
                 Properties.Settings.Default.AppFont = AppFont;
                 Properties.Settings.Default.ScrollToLastRow = ScrollToLastRow;
                 Properties.Settings.Default.SearchCaseInsensitive = SearchCaseInsensitive;
+                Properties.Settings.Default.OpenPdf = OpenPdf;
             }
 
             // Save some settings for the issues and tasks DataGridView columns
@@ -373,6 +380,7 @@ namespace MiniBug
             AppFont = new Font("Segoe UI", 10);
             ScrollToLastRow = true;
             SearchCaseInsensitive = false;
+            OpenPdf = false;
         }
     }
 }

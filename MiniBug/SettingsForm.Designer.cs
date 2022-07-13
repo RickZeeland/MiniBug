@@ -52,6 +52,7 @@
             this.btLoadDefaults = new System.Windows.Forms.Button();
             this.chkScrollToLastRow = new System.Windows.Forms.CheckBox();
             this.chkCaseInsensitive = new System.Windows.Forms.CheckBox();
+            this.chkOpenPdf = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -59,7 +60,8 @@
             // 
             // btOk
             // 
-            this.btOk.Location = new System.Drawing.Point(308, 365);
+            this.btOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btOk.Location = new System.Drawing.Point(308, 394);
             this.btOk.Name = "btOk";
             this.btOk.Size = new System.Drawing.Size(75, 23);
             this.btOk.TabIndex = 8;
@@ -69,7 +71,8 @@
             // 
             // btCancel
             // 
-            this.btCancel.Location = new System.Drawing.Point(389, 364);
+            this.btCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btCancel.Location = new System.Drawing.Point(389, 393);
             this.btCancel.Name = "btCancel";
             this.btCancel.Size = new System.Drawing.Size(75, 24);
             this.btCancel.TabIndex = 9;
@@ -80,7 +83,7 @@
             // lblGridlineColor
             // 
             this.lblGridlineColor.AutoSize = true;
-            this.lblGridlineColor.Location = new System.Drawing.Point(175, 31);
+            this.lblGridlineColor.Location = new System.Drawing.Point(226, 31);
             this.lblGridlineColor.Name = "lblGridlineColor";
             this.lblGridlineColor.Size = new System.Drawing.Size(82, 13);
             this.lblGridlineColor.TabIndex = 1;
@@ -112,7 +115,7 @@
             // 
             this.GridlineColor.BackColor = System.Drawing.Color.White;
             this.GridlineColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.GridlineColor.Location = new System.Drawing.Point(276, 30);
+            this.GridlineColor.Location = new System.Drawing.Point(327, 30);
             this.GridlineColor.Name = "GridlineColor";
             this.GridlineColor.Size = new System.Drawing.Size(35, 22);
             this.GridlineColor.TabIndex = 2;
@@ -174,7 +177,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(196, 28);
+            this.label7.Location = new System.Drawing.Point(247, 28);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(61, 13);
             this.label7.TabIndex = 2;
@@ -197,7 +200,7 @@
             // 
             this.SelectionTextColor.BackColor = System.Drawing.Color.White;
             this.SelectionTextColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SelectionTextColor.Location = new System.Drawing.Point(276, 23);
+            this.SelectionTextColor.Location = new System.Drawing.Point(327, 23);
             this.SelectionTextColor.Name = "SelectionTextColor";
             this.SelectionTextColor.Size = new System.Drawing.Size(35, 22);
             this.SelectionTextColor.TabIndex = 3;
@@ -259,7 +262,8 @@
             // 
             // btLoadDefaults
             // 
-            this.btLoadDefaults.Location = new System.Drawing.Point(44, 364);
+            this.btLoadDefaults.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btLoadDefaults.Location = new System.Drawing.Point(44, 393);
             this.btLoadDefaults.Name = "btLoadDefaults";
             this.btLoadDefaults.Size = new System.Drawing.Size(96, 23);
             this.btLoadDefaults.TabIndex = 7;
@@ -289,11 +293,22 @@
             this.chkCaseInsensitive.Text = "&Case insensitive search";
             this.chkCaseInsensitive.UseVisualStyleBackColor = true;
             // 
+            // chkOpenPdf
+            // 
+            this.chkOpenPdf.AutoSize = true;
+            this.chkOpenPdf.Location = new System.Drawing.Point(44, 350);
+            this.chkOpenPdf.Name = "chkOpenPdf";
+            this.chkOpenPdf.Size = new System.Drawing.Size(150, 17);
+            this.chkOpenPdf.TabIndex = 11;
+            this.chkOpenPdf.Text = "&Open PDF after creating";
+            this.chkOpenPdf.UseVisualStyleBackColor = true;
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(489, 400);
+            this.ClientSize = new System.Drawing.Size(489, 428);
+            this.Controls.Add(this.chkOpenPdf);
             this.Controls.Add(this.chkCaseInsensitive);
             this.Controls.Add(this.chkScrollToLastRow);
             this.Controls.Add(this.btLoadDefaults);
@@ -353,5 +368,6 @@
         private System.Windows.Forms.Button btLoadDefaults;
         private System.Windows.Forms.CheckBox chkScrollToLastRow;
         private System.Windows.Forms.CheckBox chkCaseInsensitive;
+        private System.Windows.Forms.CheckBox chkOpenPdf;
     }
 }

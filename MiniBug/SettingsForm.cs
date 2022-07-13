@@ -103,6 +103,7 @@ namespace MiniBug
 
             chkScrollToLastRow.Checked = ApplicationSettings.ScrollToLastRow;
             chkCaseInsensitive.Checked = ApplicationSettings.SearchCaseInsensitive;
+            chkOpenPdf.Checked = ApplicationSettings.OpenPdf;
         }
 
         #region ControlEvents
@@ -231,6 +232,7 @@ namespace MiniBug
 
             ApplicationSettings.ScrollToLastRow = chkScrollToLastRow.Checked;
             ApplicationSettings.SearchCaseInsensitive = chkCaseInsensitive.Checked;
+            ApplicationSettings.OpenPdf = chkOpenPdf.Checked;
 
             // Persist the new settings
             ApplicationSettings.Save();
