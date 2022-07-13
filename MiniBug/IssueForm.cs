@@ -347,7 +347,11 @@ namespace MiniBug
 
         private void buttonPdf_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
+            this.Enabled = false;
             CreatePdfDocument($"MiniBug issue {lblID.Text}.pdf");
+            this.Enabled = true;
+            this.Cursor = Cursors.Default;
         }
 
         /// <summary>
@@ -388,11 +392,9 @@ namespace MiniBug
                 //}
 
 
-
+                //// TODO: wrap very long text
                 //// define text box with width of 160 mm
                 //var Box = new PdfFileWriter.TextBox(160);
-
-                //// add very long text
                 //Box.AddText(defaultFont, fontSize, "");
                 ////Contents.BeginTextMode();
                 ////Contents.DrawText(30.0, 10.0, 10, 1, Box, Page);
