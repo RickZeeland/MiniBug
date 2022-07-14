@@ -73,7 +73,7 @@
             // 
             this.label1.Location = new System.Drawing.Point(12, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 13);
+            this.label1.Size = new System.Drawing.Size(56, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Issue ID:";
             // 
@@ -82,13 +82,13 @@
             this.lblID.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblID.Location = new System.Drawing.Point(74, 13);
             this.lblID.Name = "lblID";
-            this.lblID.Size = new System.Drawing.Size(32, 13);
+            this.lblID.Size = new System.Drawing.Size(63, 13);
             this.lblID.TabIndex = 1;
             this.lblID.Text = "ID";
             // 
             // lblDateCreatedTitle
             // 
-            this.lblDateCreatedTitle.Location = new System.Drawing.Point(122, 13);
+            this.lblDateCreatedTitle.Location = new System.Drawing.Point(145, 13);
             this.lblDateCreatedTitle.Name = "lblDateCreatedTitle";
             this.lblDateCreatedTitle.Size = new System.Drawing.Size(87, 13);
             this.lblDateCreatedTitle.TabIndex = 2;
@@ -217,7 +217,7 @@
             // lblDateCreated
             // 
             this.lblDateCreated.BackColor = System.Drawing.Color.LightCyan;
-            this.lblDateCreated.Location = new System.Drawing.Point(208, 13);
+            this.lblDateCreated.Location = new System.Drawing.Point(235, 13);
             this.lblDateCreated.Name = "lblDateCreated";
             this.lblDateCreated.Size = new System.Drawing.Size(120, 13);
             this.lblDateCreated.TabIndex = 3;
@@ -226,7 +226,7 @@
             // lblDateModified
             // 
             this.lblDateModified.BackColor = System.Drawing.Color.LightCyan;
-            this.lblDateModified.Location = new System.Drawing.Point(525, 13);
+            this.lblDateModified.Location = new System.Drawing.Point(534, 13);
             this.lblDateModified.Name = "lblDateModified";
             this.lblDateModified.Size = new System.Drawing.Size(120, 13);
             this.lblDateModified.TabIndex = 5;
