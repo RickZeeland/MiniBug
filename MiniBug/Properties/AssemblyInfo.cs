@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("MiniBug v2 - Fork")]
 [assembly: AssemblyDescription("Issue Tracker and Todo List")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("João Martiniano / RickZeeland")]
+[assembly: AssemblyCompany("João Martiniano - RickZeeland")]
 [assembly: AssemblyProduct("MiniBug - Fork by RickZeeland")]
 [assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]
@@ -33,7 +33,7 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.5.4.0")]
-[assembly: AssemblyFileVersion("2.5.4.0")]
+[assembly: AssemblyVersion("2.5.5.0")]
+[assembly: AssemblyFileVersion("2.5.5.0")]
 [assembly: NeutralResourcesLanguage("")]
 
