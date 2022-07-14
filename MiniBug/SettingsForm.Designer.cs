@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btOk = new System.Windows.Forms.Button();
             this.btCancel = new System.Windows.Forms.Button();
             this.lblGridlineColor = new System.Windows.Forms.Label();
@@ -53,6 +54,8 @@
             this.chkScrollToLastRow = new System.Windows.Forms.CheckBox();
             this.chkCaseInsensitive = new System.Windows.Forms.CheckBox();
             this.chkOpenPdf = new System.Windows.Forms.CheckBox();
+            this.buttonPath = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -303,11 +306,27 @@
             this.chkOpenPdf.Text = "&Open PDF after creating";
             this.chkOpenPdf.UseVisualStyleBackColor = true;
             // 
+            // buttonPath
+            // 
+            this.buttonPath.BackColor = System.Drawing.SystemColors.Control;
+            this.buttonPath.FlatAppearance.BorderSize = 0;
+            this.buttonPath.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonPath.Font = new System.Drawing.Font("Wingdings", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.buttonPath.Location = new System.Drawing.Point(161, 394);
+            this.buttonPath.Name = "buttonPath";
+            this.buttonPath.Size = new System.Drawing.Size(33, 23);
+            this.buttonPath.TabIndex = 12;
+            this.buttonPath.Text = "1";
+            this.toolTip1.SetToolTip(this.buttonPath, "Open user config directory");
+            this.buttonPath.UseVisualStyleBackColor = false;
+            this.buttonPath.Click += new System.EventHandler(this.buttonPath_Click);
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(489, 428);
+            this.Controls.Add(this.buttonPath);
             this.Controls.Add(this.chkOpenPdf);
             this.Controls.Add(this.chkCaseInsensitive);
             this.Controls.Add(this.chkScrollToLastRow);
@@ -369,5 +388,7 @@
         private System.Windows.Forms.CheckBox chkScrollToLastRow;
         private System.Windows.Forms.CheckBox chkCaseInsensitive;
         private System.Windows.Forms.CheckBox chkOpenPdf;
+        private System.Windows.Forms.Button buttonPath;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

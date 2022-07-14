@@ -5,6 +5,9 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Drawing.Text;
+using System.Configuration;
+using System.Diagnostics;
+using System.IO;
 
 namespace MiniBug
 {
@@ -248,6 +251,23 @@ namespace MiniBug
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
+        }
+
+        /// <summary>
+        /// Open the directory with the user config, e.g. C:\Users\John.Doe\AppData\Local
+        /// </summary>
+        private void buttonPath_Click(object sender, EventArgs e)
+        {
+            var pathUserConfig = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).FilePath;
+            Debug.Print(pathUserConfig);
+
+            ProcessStartInfo startInfo = new ProcessStartInfo
+            {
+                Arguments = Path.GetDirectoryName(pathUserConfig),
+                FileName = "explorer.exe"
+            };
+
+            Process.Start(startInfo);
         }
     }
 }

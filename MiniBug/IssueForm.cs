@@ -398,11 +398,13 @@ namespace MiniBug
                 int fontSize = 10;
                 int startLine = 0;
 
+                contents.DrawText(defaultFont, fontSize, 170, 10, $"Page {pageNo}");
+
                 //// print some test lines
                 //for (int LineNo = 1; ; LineNo++)
                 //{
                 //    string text = string.Format("Page {0}, Line {1}", PageNo, LineNo);
-                //    Contents.DrawText(DefaultFont, fontSize, xPos, pageHeight - yPos, text);
+                //    contents.DrawText(DefaultFont, fontSize, xPos, pageHeight - yPos, text);
                 //    yPos += fontSize / 2;
 
                 //    if (yPos > 150)
@@ -410,8 +412,6 @@ namespace MiniBug
                 //        break;
                 //    }
                 //}
-
-                contents.BeginTextMode();
 
                 foreach (var line in lines)
                 {
@@ -428,10 +428,9 @@ namespace MiniBug
                         pageNo++;
                         page = new PdfPage(document);
                         contents = new PdfContents(page);
+                        contents.DrawText(defaultFont, fontSize, 170, 10, $"Page {pageNo}");
                     }
                 }
-
-                contents.EndTextMode();
 
                 if (!string.IsNullOrEmpty(this.txtImage.Text) && File.Exists(this.txtImage.Text))
                 {
@@ -441,18 +440,15 @@ namespace MiniBug
                         pageNo++;
                         page = new PdfPage(document);       // New page with image in the middle
                         contents = new PdfContents(page);
+                        contents.DrawText(defaultFont, fontSize, 170, 10, $"Page {pageNo}");
                         yPos = 100;
-                    }
-                    else
-                    {
-                        yPos = 10;                          // Image fits at bottom of page
                     }
 
                     // load image and calculate best fit in a 170 x 100 mm box
                     PdfImage pdfImage = new PdfImage(document);
                     pdfImage.LoadImage(this.txtImage.Text);
                     var pdfImageSize = pdfImage.ImageSize(170, 100);
-                    contents.DrawImage(pdfImage, xPos, yPos, pdfImageSize.Width, pdfImageSize.Height);
+                    contents.DrawImage(pdfImage, xPos, yPos - pdfImageSize.Height - 10, pdfImageSize.Width, pdfImageSize.Height);
                 }
 
                 // create pdf file
