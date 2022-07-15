@@ -8,7 +8,7 @@ using System.Windows.Forms;
 namespace MiniBug
 {
     /// <summary>
-    /// Create a new project, or edit an existing project.
+    /// Create a new project, or edit existing project settings.
     /// </summary>
     public partial class ProjectForm : Form
     {
@@ -33,7 +33,7 @@ namespace MiniBug
         public string ProjectLocation { get; private set; } = Application.StartupPath;
 
         /// <summary>
-        /// Create a new project, or edit an existing project.
+        /// Create a new project, or edit existing project settings.
         /// </summary>
         public ProjectForm(OperationType operation, string projectName = "", string projectFilename = "", string projectLocation = "")
         {
@@ -43,17 +43,7 @@ namespace MiniBug
 
             if (Operation == OperationType.Edit)
             {
-                // Edit an existing project, if it is not in use
-                if (Program.IsLocked(projectFilename))
-                {
-                    var result = MessageBox.Show($"Project is in use by another user!\n{projectFilename}\nContinue anyway?", Program.myName, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-
-                    if (result == DialogResult.Cancel)
-                    {
-                        return;
-                    }
-                }
-
+                // Edit existing project settings
                 ProjectName = projectName;
                 ProjectFilename = projectFilename;
                 ProjectLocation = projectLocation;
@@ -128,9 +118,27 @@ namespace MiniBug
                 ProjectFilename = txtFilename.Text;
                 ProjectLocation = txtLocation.Text;
 
-                Program.CreateLockFile(ProjectFilename);        // Create .lock file
-                this.DialogResult = DialogResult.OK;
-                this.Close();
+                if (File.Exists(ProjectFilename))
+                {
+                    MessageBox.Show($"{ProjectFilename} already exists!\nPlease choose another name.", Program.myName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    if (Program.IsLocked(ProjectFilename))
+                    {
+                        var result = MessageBox.Show($"Project is in use by another user!\n{ProjectFilename}\nContinue anyway?", Program.myName, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+
+                        if (result == DialogResult.Cancel)
+                        {
+                            this.DialogResult = DialogResult.Cancel;
+                            this.Close();
+                        }
+                    }
+
+                    Program.CreateLockFile(ProjectFilename);        // Create .lock file
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
             }
         }
 

@@ -92,7 +92,6 @@
             // lblIssues
             // 
             this.lblIssues.AutoSize = true;
-            this.lblIssues.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIssues.Location = new System.Drawing.Point(14, 125);
             this.lblIssues.Name = "lblIssues";
             this.lblIssues.Size = new System.Drawing.Size(94, 13);
@@ -102,7 +101,6 @@
             // lblTasks
             // 
             this.lblTasks.AutoSize = true;
-            this.lblTasks.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTasks.Location = new System.Drawing.Point(14, 153);
             this.lblTasks.Name = "lblTasks";
             this.lblTasks.Size = new System.Drawing.Size(90, 13);
