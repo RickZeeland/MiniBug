@@ -519,6 +519,8 @@ namespace MiniBug
             if (flagValidFilename)
             {
                 this.Cursor = Cursors.WaitCursor;
+                //Stopwatch stopwatch = new Stopwatch();
+                //stopwatch.Start();
 
                 if (Program.SoftwareProject != null)
                 {
@@ -570,6 +572,10 @@ namespace MiniBug
                     // Resume the layout logic
                     this.ResumeLayout();
                 }
+
+                //stopwatch.Stop();
+                //Debug.Print($"Loaded project in {stopwatch.Elapsed.TotalSeconds} seconds");
+                //File.AppendAllText("MiniBug.log", $"Loaded project in {stopwatch.Elapsed.TotalSeconds} seconds\n");
 
                 this.Cursor = Cursors.Default;
             }
