@@ -81,16 +81,23 @@ namespace MiniBug
         }
 
         /// <summary>
-        /// Delete the current project .lock file.
+        /// Delete project .lock file.
         /// </summary>
-        internal static void DeleteLockFile()
+        /// <param name="fullFilename">The full file name</param>
+        internal static void DeleteLockFile(string fullFilename = "")
         {
             try
             {
-                if (!string.IsNullOrEmpty(SoftwareProject?.Filename))
+                if (string.IsNullOrEmpty(fullFilename))
+                {
+                    // Use current project file name
+                    fullFilename = Path.Combine(SoftwareProject.Location, SoftwareProject.Filename);
+                }
+
+                if (File.Exists(fullFilename))
                 {
                     // Delete lock file
-                    File.Delete(SoftwareProject.Filename.Replace(".json", ".lock"));
+                    File.Delete(fullFilename.Replace(".json", ".lock"));
                 }
             }
             catch
@@ -111,15 +118,13 @@ namespace MiniBug
                 {
                     return true;
                 }
-
-                FileStream fs = File.OpenWrite(fullFilename);
-                fs.Close();
-                return false;
             }
             catch
             {
-                return true;
+                return false;
             }
+
+            return false;
         }
     }
 }

@@ -477,10 +477,10 @@ namespace MiniBug
         /// <summary>
         /// Open an existing project.
         /// </summary>
-        /// <param name="filename">(optional) The file to open. If present, the project file is opened directly.</param>
-        private void OpenProject(string filename = "")
+        /// <param name="fullFilename">(optional) The file to open. If present, the project file is opened directly.</param>
+        private void OpenProject(string fullFilename = "")
         {
-            bool flagValidFilename = !string.IsNullOrEmpty(filename);
+            bool flagValidFilename = !string.IsNullOrEmpty(fullFilename);
 
             if (!flagValidFilename)
             {
@@ -494,21 +494,21 @@ namespace MiniBug
 
                 if (openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
-                    filename = openFileDialog1.FileName;
+                    fullFilename = openFileDialog1.FileName;
                     flagValidFilename = true;
                 }
             }
 
-            if (!File.Exists(filename))
+            if (!File.Exists(fullFilename))
             {
                 // Not found
                 return;
             }
 
-            if (Program.IsLocked(filename))
+            if (Program.IsLocked(fullFilename))
             {
                 // file is in use
-                var result = MessageBox.Show($"Project is in use by another user!\n{filename}\nContinue anyway?", Program.myName, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                var result = MessageBox.Show($"Project is in use by another user!\n{fullFilename}\nContinue anyway?", Program.myName, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
 
                 if (result == DialogResult.Cancel)
                 {
@@ -528,7 +528,7 @@ namespace MiniBug
                 }
 
                 Project newProject = new Project();
-                var status = ApplicationData.LoadProject(filename, out newProject);
+                var status = ApplicationData.LoadProject(fullFilename, out newProject);
 
                 // If there was an error loading the new project file, show feedback
                 if (status != FileSystemOperationStatus.OK)
@@ -541,7 +541,7 @@ namespace MiniBug
                 else
                 {
                     // Lock the project file
-                    Program.CreateLockFile(filename);
+                    Program.CreateLockFile(fullFilename);
 
                     Program.SoftwareProject = null;
                     Program.SoftwareProject = newProject;
@@ -588,31 +588,43 @@ namespace MiniBug
         /// </summary>
         private void EditProject()
         {
-            FileSystemOperationStatus status = FileSystemOperationStatus.None;
-            ProjectForm frmProject = new ProjectForm(OperationType.Edit, Program.SoftwareProject.Name, Program.SoftwareProject.Filename, Program.SoftwareProject.Location);
-
-            if (frmProject.ShowDialog() == DialogResult.OK)
+            try
             {
-                this.Cursor = Cursors.WaitCursor;
+                string oldFilename = Path.Combine(Program.SoftwareProject.Location, Program.SoftwareProject.Filename);
+                ProjectForm frmProject = new ProjectForm(OperationType.Edit, Program.SoftwareProject.Name, Program.SoftwareProject.Filename, Program.SoftwareProject.Location);
 
-                // Set the main form title bar text
-                this.Text = $"{frmProject.ProjectName} - {Program.myName}";
+                if (frmProject.ShowDialog() == DialogResult.OK)
+                {
+                    this.Cursor = Cursors.WaitCursor;
+                    string fullFilename = Path.Combine(frmProject.ProjectLocation, frmProject.ProjectFilename);
 
-                Program.SoftwareProject.Name = frmProject.ProjectName;
-                Program.SoftwareProject.Filename = frmProject.ProjectFilename;
-                Program.SoftwareProject.Location = frmProject.ProjectLocation;
+                    if (fullFilename != oldFilename)
+                    {
+                        Program.DeleteLockFile(oldFilename);
+                        Program.CreateLockFile(fullFilename);
 
-                status = ApplicationData.SaveProject(Program.SoftwareProject);
-                this.Cursor = Cursors.Default;
+                        // Set the main form title bar text
+                        this.Text = $"{frmProject.ProjectName} - {Program.myName}";
+
+                        Program.SoftwareProject.Name = frmProject.ProjectName;
+                        Program.SoftwareProject.Filename = frmProject.ProjectFilename;
+                        Program.SoftwareProject.Location = frmProject.ProjectLocation;
+
+                        //status = ApplicationData.SaveProject(Program.SoftwareProject);
+                        ClearRecentProjects();
+                        File.Move(oldFilename, fullFilename);
+                        AddRecentProject(frmProject.ProjectName, fullFilename);
+                    }
+                }
+
+                frmProject.Dispose();
+            }
+            catch (Exception ex)
+            {
+                ShowProjectErrorFeedback(ex.Message);
             }
 
-            frmProject.Dispose();
-
-            // If there was an error creating the new project file, show feedback
-            if (status != FileSystemOperationStatus.OK)
-            {
-                ShowProjectErrorFeedback(status);
-            }
+            this.Cursor = Cursors.Default;
         }
 
         /// <summary>
@@ -665,7 +677,7 @@ namespace MiniBug
         /// <summary>
         /// Show feedback when an error occurs, when saving the project file.
         /// </summary>
-        /// <param name="status"></param>
+        /// <param name="status">The FileSystemOperationStatus</param>
         private void ShowProjectErrorFeedback(FileSystemOperationStatus status)
         {
             if (status != FileSystemOperationStatus.None)
@@ -676,6 +688,22 @@ namespace MiniBug
                 frmFeedback.Dispose();
             }
         }
+
+        /// <summary>
+        /// Show feedback overload with a string message when an error occurs.
+        /// </summary>
+        /// <param name="errorMessage">The error string</param>
+        private void ShowProjectErrorFeedback(string errorMessage)
+        {
+            FeedbackForm frmFeedback = new FeedbackForm();
+            frmFeedback.FormCaption = "Project Save Error";
+            frmFeedback.MessageTitle = "Error Saving Project File";
+            frmFeedback.Message = errorMessage;
+            frmFeedback.FormImage = Properties.Resources.CriticalError_64x64;
+            frmFeedback.ShowDialog();
+            frmFeedback.Dispose();
+        }
+
         #endregion
 
         #region "Menu"

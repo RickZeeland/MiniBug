@@ -106,13 +106,13 @@ namespace MiniBug
         /// <summary>
         /// Load project data from a file.
         /// </summary>
-        /// <param name="filename">Name and location of the project file.</param>
+        /// <param name="fullFilename">Name and location of the project file.</param>
         /// <param name="softwareProject">An instance of the Project class.</param>
-        public static FileSystemOperationStatus LoadProject(string filename, out Project softwareProject)
+        public static FileSystemOperationStatus LoadProject(string fullFilename, out Project softwareProject)
         {
             try
             {
-                string input = File.ReadAllText(filename);
+                string input = File.ReadAllText(fullFilename);
                 softwareProject = JsonConvert.DeserializeObject<Project>(input);
 
                 // Check the version of the project file: if not supported, abort the operation
@@ -123,8 +123,8 @@ namespace MiniBug
                 }
 
                 // Insert the path and filename into the project
-                softwareProject.Location = Path.GetDirectoryName(filename);
-                softwareProject.Filename = Path.GetFileName(filename);
+                softwareProject.Location = Path.GetDirectoryName(fullFilename);
+                softwareProject.Filename = Path.GetFileName(fullFilename);
             }
             catch (System.IO.DirectoryNotFoundException) // The directory does not exist
             {

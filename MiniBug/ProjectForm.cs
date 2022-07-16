@@ -117,14 +117,15 @@ namespace MiniBug
                 ProjectName = txtName.Text;
                 ProjectFilename = txtFilename.Text;
                 ProjectLocation = txtLocation.Text;
+                string fullFilename = Path.Combine(ProjectLocation, ProjectFilename);
 
-                if (File.Exists(ProjectFilename))
+                if (File.Exists(fullFilename))
                 {
                     MessageBox.Show($"{ProjectFilename} already exists!\nPlease choose another name.", Program.myName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
-                    if (Program.IsLocked(ProjectFilename))
+                    if (Program.IsLocked(fullFilename))
                     {
                         var result = MessageBox.Show($"Project is in use by another user!\n{ProjectFilename}\nContinue anyway?", Program.myName, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
 
@@ -135,7 +136,6 @@ namespace MiniBug
                         }
                     }
 
-                    Program.CreateLockFile(ProjectFilename);        // Create .lock file
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
