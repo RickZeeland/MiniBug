@@ -700,6 +700,7 @@ namespace MiniBug
             frmFeedback.MessageTitle = "Error Saving Project File";
             frmFeedback.Message = errorMessage;
             frmFeedback.FormImage = Properties.Resources.CriticalError_64x64;
+            frmFeedback.SetUserInterface();
             frmFeedback.ShowDialog();
             frmFeedback.Dispose();
         }
