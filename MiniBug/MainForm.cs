@@ -586,7 +586,7 @@ namespace MiniBug
         /// <summary>
         /// Edit the current project settings.
         /// </summary>
-        private void EditProject()
+        private void EditProjectSettings()
         {
             try
             {
@@ -729,7 +729,7 @@ namespace MiniBug
         /// </summary>
         private void editProjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            EditProject();
+            EditProjectSettings();
         }
 
         /// <summary>
@@ -758,7 +758,7 @@ namespace MiniBug
             if (frmSettings.ShowDialog() == DialogResult.OK)
             {
                 this.Font = ApplicationSettings.AppFont;
-                this.CenterToScreen();
+                //this.CenterToScreen();
                 ApplySettingsToGrids();
             }
 
