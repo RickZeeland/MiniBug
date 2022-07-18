@@ -328,11 +328,11 @@ namespace MiniBug
             pageLines.Add(string.Empty);
             pageLines.Add($"Date Created:   {this.lblDateCreated.Text}");
             pageLines.Add($"Date Modified:  {this.lblDateModified.Text}");
-            pageLines.Add($"Summary:        {this.txtSummary.Text}");
             pageLines.Add($"Status:         {this.cboStatus.Text}");
             pageLines.Add($"Priority:       {this.cboPriority.Text}");
             pageLines.Add($"Version:        {this.txtVersion.Text}");
             pageLines.Add($"Target Version: {this.txtTargetVersion.Text}");
+            pageLines.Add($"Summary:        {this.txtSummary.Text}");
             pageLines.Add($"Description:");
 
             var descLines = this.txtDescription.Text.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);
@@ -413,8 +413,50 @@ namespace MiniBug
                 //    }
                 //}
 
-                foreach (var line in lines)
+                // Header table
+                PdfTable pdfTable = new PdfTable(page, contents, defaultFont, 10.0);
+                pdfTable.SetColumnWidth(30, 60);
+                pdfTable.Borders.SetAllBorders(0.01, Color.LightGray, 0.01, Color.LightGray);
+                pdfTable.DefaultCellStyle.Alignment = ContentAlignment.MiddleLeft;
+
+                // Fill table
+                pdfTable.Cell[0].Value = "ID";
+                pdfTable.Cell[1].Value = this.lblID.Text;
+                pdfTable.DrawRow();
+
+                pdfTable.Cell[0].Value = "Date created";
+                pdfTable.Cell[1].Value = this.lblDateCreated.Text;
+                pdfTable.DrawRow();
+
+                pdfTable.Cell[0].Value = "Date modified";
+                pdfTable.Cell[1].Value = this.lblDateModified.Text;
+                pdfTable.DrawRow();
+
+                pdfTable.Cell[0].Value = "Status";
+                pdfTable.Cell[1].Value = this.cboStatus.Text;
+                pdfTable.DrawRow();
+
+                pdfTable.Cell[0].Value = "Priority";
+                pdfTable.Cell[1].Value = this.cboPriority.Text;
+                pdfTable.DrawRow();
+
+                pdfTable.Cell[0].Value = "Version";
+                pdfTable.Cell[1].Value = this.txtVersion.Text;
+                pdfTable.DrawRow();
+
+                pdfTable.Cell[0].Value = "Target version";
+                pdfTable.Cell[1].Value = this.txtTargetVersion.Text;
+                pdfTable.DrawRow();
+
+                pdfTable.Close();
+
+                yPos = yPos - pdfTable.RowHeight * 11;
+
+                var index = lines.IndexOf("Description:", 0) - 1;        // Skip header, start at Summary
+
+                for (int i = index; i < lines.Count; i++)
                 {
+                    var line = lines[i];
                     string output = new string(line.Where(c => !char.IsControl(c)).ToArray());      // Strip control characters
 
                     // Wrap very long text: define text box with a width of 175 mm
