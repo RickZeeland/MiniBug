@@ -113,6 +113,11 @@ namespace MiniBug
                     OpenProject(Properties.Settings.Default.RecentProjectsPaths[0]);
                     this.tabPage1.Invalidate();
                 }
+
+                if (projectsCount > 0)
+                {
+                    panelPie.Visible = true;            // Show the Pie chart
+                }
             }
             catch
             {

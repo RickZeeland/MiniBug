@@ -481,20 +481,21 @@ namespace MiniBug
                 // Print attached image if it exists
                 if (!string.IsNullOrEmpty(this.txtImage.Text) && File.Exists(this.txtImage.Text))
                 {
+                    // load image and calculate best fit in a 170 x 100 mm box
+                    PdfImage pdfImage = new PdfImage(document);
+                    pdfImage.LoadImage(this.txtImage.Text);
+                    var pdfImageSize = pdfImage.ImageSize(170, 100);
+
                     if (yPos < 120)
                     {
                         pageNo++;
                         page = new PdfPage(document);       // New page with image in the middle
                         contents = new PdfContents(page);
                         contents.DrawText(defaultFont, fontSize, 170, 10, $"Page {pageNo}");
-                        yPos = 100;
+                        yPos = 150 - (pdfImageSize.Height / 2);
                     }
 
-                    // load image and calculate best fit in a 170 x 100 mm box
-                    PdfImage pdfImage = new PdfImage(document);
-                    pdfImage.LoadImage(this.txtImage.Text);
-                    var pdfImageSize = pdfImage.ImageSize(170, 100);
-                    contents.DrawImage(pdfImage, xPos, yPos - pdfImageSize.Height - 10, pdfImageSize.Width, pdfImageSize.Height);
+                    contents.DrawImage(pdfImage, xPos, yPos, pdfImageSize.Width, pdfImageSize.Height);
                 }
 
                 // create pdf file

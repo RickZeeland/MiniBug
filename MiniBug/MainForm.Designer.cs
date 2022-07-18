@@ -592,6 +592,7 @@
             this.panelPie.Name = "panelPie";
             this.panelPie.Size = new System.Drawing.Size(386, 286);
             this.panelPie.TabIndex = 5;
+            this.panelPie.Visible = false;
             // 
             // MainForm
             // 

@@ -90,8 +90,15 @@ namespace MiniBug
             {
                 if (string.IsNullOrEmpty(fullFilename))
                 {
-                    // Use current project file name
-                    fullFilename = Path.Combine(SoftwareProject.Location, SoftwareProject.Filename);
+                    if (SoftwareProject == null)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        // Use current project file name
+                        fullFilename = Path.Combine(SoftwareProject.Location, SoftwareProject.Filename);
+                    }
                 }
 
                 if (File.Exists(fullFilename))
