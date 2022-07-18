@@ -106,7 +106,7 @@
             // 
             this.label4.Location = new System.Drawing.Point(12, 44);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 18);
+            this.label4.Size = new System.Drawing.Size(80, 18);
             this.label4.TabIndex = 6;
             this.label4.Text = "&Summary:";
             // 
@@ -114,39 +114,39 @@
             // 
             this.txtSummary.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSummary.Location = new System.Drawing.Point(74, 40);
+            this.txtSummary.Location = new System.Drawing.Point(91, 40);
             this.txtSummary.Name = "txtSummary";
-            this.txtSummary.Size = new System.Drawing.Size(814, 22);
+            this.txtSummary.Size = new System.Drawing.Size(797, 22);
             this.txtSummary.TabIndex = 7;
             // 
             // label5
             // 
             this.label5.Location = new System.Drawing.Point(12, 79);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(56, 17);
+            this.label5.Size = new System.Drawing.Size(80, 17);
             this.label5.TabIndex = 8;
             this.label5.Text = "St&atus:";
             // 
             // cboStatus
             // 
             this.cboStatus.FormattingEnabled = true;
-            this.cboStatus.Location = new System.Drawing.Point(74, 75);
+            this.cboStatus.Location = new System.Drawing.Point(91, 76);
             this.cboStatus.Name = "cboStatus";
             this.cboStatus.Size = new System.Drawing.Size(233, 21);
             this.cboStatus.TabIndex = 9;
             // 
             // label6
             // 
-            this.label6.Location = new System.Drawing.Point(334, 79);
+            this.label6.Location = new System.Drawing.Point(351, 80);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(83, 17);
+            this.label6.Size = new System.Drawing.Size(107, 17);
             this.label6.TabIndex = 10;
             this.label6.Text = "&Priority:";
             // 
             // cboPriority
             // 
             this.cboPriority.FormattingEnabled = true;
-            this.cboPriority.Location = new System.Drawing.Point(424, 75);
+            this.cboPriority.Location = new System.Drawing.Point(457, 76);
             this.cboPriority.Name = "cboPriority";
             this.cboPriority.Size = new System.Drawing.Size(233, 21);
             this.cboPriority.TabIndex = 11;
@@ -155,28 +155,28 @@
             // 
             this.label7.Location = new System.Drawing.Point(12, 114);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(56, 18);
+            this.label7.Size = new System.Drawing.Size(80, 18);
             this.label7.TabIndex = 12;
             this.label7.Text = "&Version:";
             // 
             // txtVersion
             // 
-            this.txtVersion.Location = new System.Drawing.Point(74, 110);
+            this.txtVersion.Location = new System.Drawing.Point(91, 111);
             this.txtVersion.Name = "txtVersion";
             this.txtVersion.Size = new System.Drawing.Size(233, 22);
             this.txtVersion.TabIndex = 13;
             // 
             // label8
             // 
-            this.label8.Location = new System.Drawing.Point(334, 114);
+            this.label8.Location = new System.Drawing.Point(351, 115);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(83, 25);
+            this.label8.Size = new System.Drawing.Size(107, 25);
             this.label8.TabIndex = 14;
             this.label8.Text = "&Target Version:";
             // 
             // txtTargetVersion
             // 
-            this.txtTargetVersion.Location = new System.Drawing.Point(424, 110);
+            this.txtTargetVersion.Location = new System.Drawing.Point(457, 111);
             this.txtTargetVersion.Name = "txtTargetVersion";
             this.txtTargetVersion.Size = new System.Drawing.Size(233, 22);
             this.txtTargetVersion.TabIndex = 15;

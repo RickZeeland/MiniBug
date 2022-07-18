@@ -454,6 +454,7 @@ namespace MiniBug
 
                 var index = lines.IndexOf("Description:", 0) - 1;        // Skip header, start at Summary
 
+                // Print summary and description
                 for (int i = index; i < lines.Count; i++)
                 {
                     var line = lines[i];
@@ -464,7 +465,7 @@ namespace MiniBug
                     textBox.AddText(defaultFont, fontSize, output);
                     contents.DrawText(xPos, ref yPos, 1.0, startLine, 1.0, 2.0, TextBoxJustify.FitToWidth, textBox, page);
 
-                    if (yPos < 20)
+                    if (yPos < 30)
                     {
                         yPos = pageHeight - 10;
                         pageNo++;
@@ -474,9 +475,9 @@ namespace MiniBug
                     }
                 }
 
+                // Print attached image if it exists
                 if (!string.IsNullOrEmpty(this.txtImage.Text) && File.Exists(this.txtImage.Text))
                 {
-                    // Print attached image
                     if (yPos < 120)
                     {
                         pageNo++;
