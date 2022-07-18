@@ -73,6 +73,11 @@ namespace MiniBug
         public static bool OpenPdf = false;
 
         /// <summary>
+        /// The PDF title.
+        /// </summary>
+        public static string PdfTitle = "MiniBug issue";
+
+        /// <summary>
         /// Application font name and size.
         /// </summary>
         public static Font AppFont = new Font("Segoe UI", 10);
@@ -210,6 +215,7 @@ namespace MiniBug
             ScrollToLastRow = Properties.Settings.Default.ScrollToLastRow;
             SearchCaseInsensitive = Properties.Settings.Default.SearchCaseInsensitive;
             OpenPdf = Properties.Settings.Default.OpenPdf;
+            PdfTitle = Properties.Settings.Default.PdfTitle;
 
             // Load the settings for the issues DataGridView columns
             if (Properties.Settings.Default.GridIssuesColumnsSettings != null)
@@ -314,6 +320,7 @@ namespace MiniBug
                 Properties.Settings.Default.ScrollToLastRow = ScrollToLastRow;
                 Properties.Settings.Default.SearchCaseInsensitive = SearchCaseInsensitive;
                 Properties.Settings.Default.OpenPdf = OpenPdf;
+                Properties.Settings.Default.PdfTitle = PdfTitle;
             }
 
             // Save some settings for the issues and tasks DataGridView columns
@@ -381,6 +388,7 @@ namespace MiniBug
             ScrollToLastRow = true;
             SearchCaseInsensitive = false;
             OpenPdf = false;
+            PdfTitle = "MiniBug issue";
         }
     }
 }

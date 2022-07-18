@@ -107,6 +107,7 @@ namespace MiniBug
             chkScrollToLastRow.Checked = ApplicationSettings.ScrollToLastRow;
             chkCaseInsensitive.Checked = ApplicationSettings.SearchCaseInsensitive;
             chkOpenPdf.Checked = ApplicationSettings.OpenPdf;
+            txtPdfTitle.Text = ApplicationSettings.PdfTitle;
         }
 
         #region ControlEvents
@@ -217,6 +218,12 @@ namespace MiniBug
                 size = ApplicationSettings.AppFont.Size;
             }
 
+            // Limit font size to maximum 20
+            if (size > 20)
+            {
+                size = ApplicationSettings.AppFont.Size;
+            }
+
             ApplicationSettings.AppFont = new Font(cboFont.SelectedItem.ToString(), size);
             this.Font = ApplicationSettings.AppFont;
 
@@ -236,6 +243,7 @@ namespace MiniBug
             ApplicationSettings.ScrollToLastRow = chkScrollToLastRow.Checked;
             ApplicationSettings.SearchCaseInsensitive = chkCaseInsensitive.Checked;
             ApplicationSettings.OpenPdf = chkOpenPdf.Checked;
+            ApplicationSettings.PdfTitle = txtPdfTitle.Text;
 
             // Persist the new settings
             ApplicationSettings.Save();

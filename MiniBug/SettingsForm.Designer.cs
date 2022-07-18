@@ -56,6 +56,8 @@
             this.chkOpenPdf = new System.Windows.Forms.CheckBox();
             this.buttonPath = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.labelPdfTitle = new System.Windows.Forms.Label();
+            this.txtPdfTitle = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -321,11 +323,30 @@
             this.buttonPath.UseVisualStyleBackColor = false;
             this.buttonPath.Click += new System.EventHandler(this.buttonPath_Click);
             // 
+            // labelPdfTitle
+            // 
+            this.labelPdfTitle.AutoSize = true;
+            this.labelPdfTitle.Location = new System.Drawing.Point(236, 351);
+            this.labelPdfTitle.Name = "labelPdfTitle";
+            this.labelPdfTitle.Size = new System.Drawing.Size(50, 13);
+            this.labelPdfTitle.TabIndex = 13;
+            this.labelPdfTitle.Text = "PDF title";
+            // 
+            // txtPdfTitle
+            // 
+            this.txtPdfTitle.Location = new System.Drawing.Point(310, 348);
+            this.txtPdfTitle.Name = "txtPdfTitle";
+            this.txtPdfTitle.Size = new System.Drawing.Size(154, 22);
+            this.txtPdfTitle.TabIndex = 14;
+            this.txtPdfTitle.Text = "MiniBug issue";
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(489, 428);
+            this.Controls.Add(this.txtPdfTitle);
+            this.Controls.Add(this.labelPdfTitle);
             this.Controls.Add(this.buttonPath);
             this.Controls.Add(this.chkOpenPdf);
             this.Controls.Add(this.chkCaseInsensitive);
@@ -390,5 +411,7 @@
         private System.Windows.Forms.CheckBox chkOpenPdf;
         private System.Windows.Forms.Button buttonPath;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Label labelPdfTitle;
+        private System.Windows.Forms.TextBox txtPdfTitle;
     }
 }

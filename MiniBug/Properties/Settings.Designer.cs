@@ -268,5 +268,17 @@ namespace MiniBug.Properties {
                 this["OpenPdf"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("MiniBug issue")]
+        public string PdfTitle {
+            get {
+                return ((string)(this["PdfTitle"]));
+            }
+            set {
+                this["PdfTitle"] = value;
+            }
+        }
     }
 }

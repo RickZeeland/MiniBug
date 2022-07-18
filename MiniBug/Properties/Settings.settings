@@ -65,5 +65,8 @@
     <Setting Name="OpenPdf" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="PdfTitle" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MiniBug issue</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -355,7 +355,7 @@ namespace MiniBug
 
             try
             {
-                pdfFilename = $"MiniBug issue {lblID.Text}.pdf";
+                pdfFilename = $"{ApplicationSettings.PdfTitle} {lblID.Text}.pdf";
                 CreatePdfDocument(pdfFilename);
 
                 if (ApplicationSettings.OpenPdf)
@@ -393,10 +393,13 @@ namespace MiniBug
 
                 //DefaultFont = PdfFont.CreatePdfFont(Document, "Courier New", FontStyle.Regular, true);
                 var defaultFont = PdfFont.CreatePdfFont(document, "Arial", FontStyle.Regular, true);
+                var boldFont = PdfFont.CreatePdfFont(document, "Arial", FontStyle.Bold, true);
                 double xPos = 25;
                 double yPos = pageHeight - 10;
                 int fontSize = 10;
                 int startLine = 0;
+
+                contents.DrawText(boldFont, 14, xPos, yPos, ApplicationSettings.PdfTitle);          // Title (configurable in settings)
 
                 contents.DrawText(defaultFont, fontSize, 170, 10, $"Page {pageNo}");
 
