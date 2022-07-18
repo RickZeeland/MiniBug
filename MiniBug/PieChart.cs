@@ -59,7 +59,7 @@ namespace MiniBug
                     break;
             }
 
-            if (modernPieChart1.Visible)
+            if (panelPie.Visible)
             {
                 ShowPieChart();
             }
@@ -70,9 +70,9 @@ namespace MiniBug
         /// </summary>
         private void IconPieChart_Click(object sender, EventArgs e)
         {
-            if (modernPieChart1.Visible)
+            if (panelPie.Visible)
             {
-                modernPieChart1.Visible = false;
+                panelPie.Visible = false;
             }
             else
             {
@@ -105,7 +105,7 @@ namespace MiniBug
                 modernPieChart1.FocusedItemStyle.SurfaceBrightnessFactor = 0.3F;
                 modernPieChart1.PieStyle.Thickness = 30;
                 modernPieChart1.Radius = 140;
-                modernPieChart1.Visible = true;
+                panelPie.Visible = true;
             }
             catch
             {
@@ -138,9 +138,14 @@ namespace MiniBug
         {
             if (e.Button == MouseButtons.Left)
             {
-                modernPieChart1.Left = e.X + modernPieChart1.Left - MouseDownLocation.X;
-                modernPieChart1.Top = e.Y + modernPieChart1.Top - MouseDownLocation.Y;
+                panelPie.Left = e.X + panelPie.Left - MouseDownLocation.X;
+                panelPie.Top = e.Y + panelPie.Top - MouseDownLocation.Y;
             }
+        }
+
+        private void buttonPieClose_Click(object sender, EventArgs e)
+        {
+            panelPie.Visible = false;
         }
     }
 }

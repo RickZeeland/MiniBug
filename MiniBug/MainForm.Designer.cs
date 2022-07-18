@@ -31,9 +31,9 @@
             this.GridIssues = new System.Windows.Forms.DataGridView();
             this.TabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.modernPieChart1 = new ModernUI.Charting.ModernPieChart();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.GridTasks = new System.Windows.Forms.DataGridView();
+            this.modernPieChart1 = new ModernUI.Charting.ModernPieChart();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.IconNewIssue = new System.Windows.Forms.ToolStripButton();
             this.IconEditIssue = new System.Windows.Forms.ToolStripButton();
@@ -75,6 +75,8 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutMiniBugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.buttonPieClose = new System.Windows.Forms.Button();
+            this.panelPie = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.GridIssues)).BeginInit();
             this.TabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -82,6 +84,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridTasks)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.panelPie.SuspendLayout();
             this.SuspendLayout();
             // 
             // GridIssues
@@ -128,33 +131,6 @@
             this.tabPage1.Text = "Issues";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // modernPieChart1
-            // 
-            this.modernPieChart1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.modernPieChart1.BackColor = System.Drawing.Color.Gray;
-            this.modernPieChart1.DisplayDoughnut = false;
-            this.modernPieChart1.DoughnutWidth = 100F;
-            this.modernPieChart1.DrawBorder = true;
-            this.modernPieChart1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.modernPieChart1.ForeColor = System.Drawing.Color.White;
-            this.modernPieChart1.GraphTitle = "";
-            this.modernPieChart1.ItemTextTemplate = "Val: #VALUE - Perc: #PERCENTAGE - Text: #ITEMTEXT";
-            this.modernPieChart1.Location = new System.Drawing.Point(493, 306);
-            this.modernPieChart1.Name = "modernPieChart1";
-            this.modernPieChart1.PecentageDecimals = 2;
-            this.modernPieChart1.Radius = 200F;
-            this.modernPieChart1.Size = new System.Drawing.Size(380, 280);
-            this.modernPieChart1.TabIndex = 3;
-            this.modernPieChart1.Text = "modernPieChart1";
-            this.modernPieChart1.TextDisplayMode = ModernUI.Charting.ModernPieChart.TextDisplayTypes.Always;
-            this.modernPieChart1.Thickness = 10F;
-            this.modernPieChart1.TitleTextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.modernPieChart1.UseItemTextTemplate = false;
-            this.modernPieChart1.UseStyledForeColor = false;
-            this.modernPieChart1.Visible = false;
-            this.modernPieChart1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.modernPieChart1_MouseDown);
-            this.modernPieChart1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.modernPieChart1_MouseMove);
-            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.GridTasks);
@@ -182,6 +158,32 @@
             this.GridTasks.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.GridTasks_ColumnHeaderMouseClick);
             this.GridTasks.SelectionChanged += new System.EventHandler(this.GridTasks_SelectionChanged);
             this.GridTasks.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GridTasks_KeyDown);
+            // 
+            // modernPieChart1
+            // 
+            this.modernPieChart1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.modernPieChart1.BackColor = System.Drawing.Color.Gray;
+            this.modernPieChart1.DisplayDoughnut = false;
+            this.modernPieChart1.DoughnutWidth = 100F;
+            this.modernPieChart1.DrawBorder = true;
+            this.modernPieChart1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modernPieChart1.ForeColor = System.Drawing.Color.White;
+            this.modernPieChart1.GraphTitle = "";
+            this.modernPieChart1.ItemTextTemplate = "Val: #VALUE - Perc: #PERCENTAGE - Text: #ITEMTEXT";
+            this.modernPieChart1.Location = new System.Drawing.Point(3, 3);
+            this.modernPieChart1.Name = "modernPieChart1";
+            this.modernPieChart1.PecentageDecimals = 2;
+            this.modernPieChart1.Radius = 200F;
+            this.modernPieChart1.Size = new System.Drawing.Size(380, 280);
+            this.modernPieChart1.TabIndex = 3;
+            this.modernPieChart1.Text = "modernPieChart1";
+            this.modernPieChart1.TextDisplayMode = ModernUI.Charting.ModernPieChart.TextDisplayTypes.Always;
+            this.modernPieChart1.Thickness = 10F;
+            this.modernPieChart1.TitleTextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.modernPieChart1.UseItemTextTemplate = false;
+            this.modernPieChart1.UseStyledForeColor = false;
+            this.modernPieChart1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.modernPieChart1_MouseDown);
+            this.modernPieChart1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.modernPieChart1_MouseMove);
             // 
             // toolStrip1
             // 
@@ -566,12 +568,37 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // buttonPieClose
+            // 
+            this.buttonPieClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonPieClose.BackColor = System.Drawing.Color.Gray;
+            this.buttonPieClose.FlatAppearance.BorderSize = 0;
+            this.buttonPieClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonPieClose.ForeColor = System.Drawing.Color.White;
+            this.buttonPieClose.Location = new System.Drawing.Point(340, 3);
+            this.buttonPieClose.Name = "buttonPieClose";
+            this.buttonPieClose.Size = new System.Drawing.Size(43, 33);
+            this.buttonPieClose.TabIndex = 4;
+            this.buttonPieClose.Text = "X";
+            this.buttonPieClose.UseVisualStyleBackColor = false;
+            this.buttonPieClose.Click += new System.EventHandler(this.buttonPieClose_Click);
+            // 
+            // panelPie
+            // 
+            this.panelPie.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelPie.Controls.Add(this.buttonPieClose);
+            this.panelPie.Controls.Add(this.modernPieChart1);
+            this.panelPie.Location = new System.Drawing.Point(538, 59);
+            this.panelPie.Name = "panelPie";
+            this.panelPie.Size = new System.Drawing.Size(386, 286);
+            this.panelPie.TabIndex = 5;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1037, 620);
-            this.Controls.Add(this.modernPieChart1);
+            this.Controls.Add(this.panelPie);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.TabControl);
@@ -593,6 +620,7 @@
             this.toolStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.panelPie.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -647,6 +675,8 @@
         private ModernUI.Charting.ModernPieChart modernPieChart1;
         private System.Windows.Forms.ToolStripButton IconPieChart;
         private System.Windows.Forms.ToolStripTextBox txtSearch;
+        private System.Windows.Forms.Panel panelPie;
+        private System.Windows.Forms.Button buttonPieClose;
     }
 }
 
