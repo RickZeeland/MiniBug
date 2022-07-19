@@ -201,12 +201,14 @@ namespace MiniBug
         private void SetControlsState()
         {
             // The user can edit the project settings only if the current project != null
-            editProjectToolStripMenuItem.Enabled = (Program.SoftwareProject == null) ? false : true;
+            bool projectExists = Program.SoftwareProject != null;
+
+            editProjectToolStripMenuItem.Enabled = projectExists;
 
             // The user can export the project only if the current project != null AND there are issues OR tasks
             exportToolStripMenuItem.Enabled = false;
 
-            if (Program.SoftwareProject != null)
+            if (projectExists)
             {
                 if (((Program.SoftwareProject.Issues != null) && (Program.SoftwareProject.Issues.Count > 0)) ||
                     ((Program.SoftwareProject.Tasks != null) && (Program.SoftwareProject.Tasks.Count > 0)))
@@ -218,9 +220,9 @@ namespace MiniBug
             if (TabControl.SelectedIndex == 0)          // The tab 'Issues' is selected
             {
                 // The user can create a new issue only if the current project != null
-                newIssueToolStripMenuItem.Enabled = IconNewIssue.Enabled = (Program.SoftwareProject == null) ? false : true;
+                newIssueToolStripMenuItem.Enabled = IconNewIssue.Enabled = projectExists;
 
-                if ((Program.SoftwareProject != null) && (Program.SoftwareProject.Issues != null) && (GridIssues.Rows.Count > 0))
+                if (projectExists && (Program.SoftwareProject.Issues != null) && (GridIssues.Rows.Count > 0))
                 {
                     // ENABLE these controls if there are issues
                     editIssueToolStripMenuItem.Enabled = true;
@@ -258,9 +260,9 @@ namespace MiniBug
             else if (TabControl.SelectedIndex == 1)         // The tab 'Tasks' is selected
             {
                 // The user can create a new task only if the current project != null
-                newTaskToolStripMenuItem.Enabled = IconNewTask.Enabled = (Program.SoftwareProject == null) ? false : true;
+                newTaskToolStripMenuItem.Enabled = IconNewTask.Enabled = projectExists;
 
-                if ((Program.SoftwareProject != null) && (Program.SoftwareProject.Tasks != null) && (GridTasks.Rows.Count > 0))
+                if (projectExists && (Program.SoftwareProject.Tasks != null) && (GridTasks.Rows.Count > 0))
                 {
                     // ENABLE these controls if there are tasks
                     editTaskToolStripMenuItem.Enabled = true;
