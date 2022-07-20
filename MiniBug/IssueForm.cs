@@ -321,17 +321,27 @@ namespace MiniBug
             }
         }
 
-        private List<string> PageLines()
+        /// <summary>
+        /// Get all text as a list, or only Summary and Description when header is false.
+        /// </summary>
+        /// <param name="header">Include header text (default)</param>
+        /// <returns>A List with strings</returns>
+        private List<string> PageLines(bool header = true)
         {
             var pageLines = new List<string>(10);
-            pageLines.Add($"MiniBug v2 issue ID {this.lblID.Text}");
-            pageLines.Add(string.Empty);
-            pageLines.Add($"Date Created:   {this.lblDateCreated.Text}");
-            pageLines.Add($"Date Modified:  {this.lblDateModified.Text}");
-            pageLines.Add($"Status:         {this.cboStatus.Text}");
-            pageLines.Add($"Priority:       {this.cboPriority.Text}");
-            pageLines.Add($"Version:        {this.txtVersion.Text}");
-            pageLines.Add($"Target Version: {this.txtTargetVersion.Text}");
+
+            if (header)
+            {
+                pageLines.Add($"MiniBug v2 issue ID {this.lblID.Text}");
+                pageLines.Add(string.Empty);
+                pageLines.Add($"Date Created:   {this.lblDateCreated.Text}");
+                pageLines.Add($"Date Modified:  {this.lblDateModified.Text}");
+                pageLines.Add($"Status:         {this.cboStatus.Text}");
+                pageLines.Add($"Priority:       {this.cboPriority.Text}");
+                pageLines.Add($"Version:        {this.txtVersion.Text}");
+                pageLines.Add($"Target Version: {this.txtTargetVersion.Text}");
+            }
+
             pageLines.Add($"Summary:        {this.txtSummary.Text}");
             pageLines.Add($"Description:");
 
@@ -381,7 +391,7 @@ namespace MiniBug
         /// </summary>
         public void CreatePdfDocument(string fileName)
         {
-            var lines = PageLines();
+            var lines = PageLines(false);
 
             using (PdfDocument document = new PdfDocument(PaperType.A4, false, UnitOfMeasure.mm, fileName))
             {
@@ -400,21 +410,7 @@ namespace MiniBug
                 int startLine = 0;
 
                 contents.DrawText(boldFont, 14, xPos, yPos, ApplicationSettings.PdfTitle);          // Title (configurable in settings)
-
                 contents.DrawText(defaultFont, fontSize, 170, 10, $"Page {pageNo}");
-
-                //// print some test lines
-                //for (int LineNo = 1; ; LineNo++)
-                //{
-                //    string text = string.Format("Page {0}, Line {1}", PageNo, LineNo);
-                //    contents.DrawText(DefaultFont, fontSize, xPos, pageHeight - yPos, text);
-                //    yPos += fontSize / 2;
-
-                //    if (yPos > 150)
-                //    {
-                //        break;
-                //    }
-                //}
 
                 // Header table
                 PdfTable pdfTable = new PdfTable(page, contents, defaultFont, 10.0);
@@ -452,21 +448,23 @@ namespace MiniBug
                 pdfTable.DrawRow();
 
                 pdfTable.Close();
-
                 yPos = yPos - pdfTable.RowHeight * 11;
 
-                var index = lines.IndexOf("Description:", 0) - 1;        // Skip header, start at Summary
-
                 // Print summary and description
-                for (int i = index; i < lines.Count; i++)
+                foreach (var line in lines)
                 {
-                    var line = lines[i];
-                    string output = new string(line.Where(c => !char.IsControl(c)).ToArray());      // Strip control characters
+                    if (line.Trim().Equals(string.Empty))
+                    {
+                        yPos -= fontSize;       // Also include empty lines
+                    }
+                    else
+                    {
+                        string output = new string(line.Where(c => !char.IsControl(c)).ToArray());      // Strip control characters
+                        PdfFileWriter.TextBox textBox = new PdfFileWriter.TextBox(175.0);               // Wrap long text in a text box with a width of 175 mm
+                        textBox.AddText(defaultFont, fontSize, output);
+                        contents.DrawText(xPos, ref yPos, 1.0, startLine, 1.0, 2.0, TextBoxJustify.FitToWidth, textBox, page);
+                    }
 
-                    // Wrap very long text: define text box with a width of 175 mm
-                    PdfFileWriter.TextBox textBox = new PdfFileWriter.TextBox(175.0);
-                    textBox.AddText(defaultFont, fontSize, output);
-                    contents.DrawText(xPos, ref yPos, 1.0, startLine, 1.0, 2.0, TextBoxJustify.FitToWidth, textBox, page);
 
                     if (yPos < 30)
                     {
