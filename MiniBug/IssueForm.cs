@@ -485,8 +485,9 @@ namespace MiniBug
                     PdfImage pdfImage = new PdfImage(document);
                     pdfImage.LoadImage(this.txtImage.Text);
                     var pdfImageSize = pdfImage.ImageSize(170, 100);
+                    yPos = yPos - pdfImageSize.Height;
 
-                    if (yPos < 120)
+                    if (yPos < 40)
                     {
                         pageNo++;
                         page = new PdfPage(document);       // New page with image in the middle
