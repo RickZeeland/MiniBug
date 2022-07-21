@@ -78,43 +78,11 @@ namespace MiniBug
             // Suspend the layout logic for the form, while the application is initializing
             this.SuspendLayout();
             this.Font = ApplicationSettings.AppFont;
-
             this.Icon = MiniBug.Properties.Resources.Minibug;
-            //this.AcceptButton = btOk;
-            //this.CancelButton = btCancel;
-            //this.MinimumSize = new Size(685, 351);
-
             Point startPosition = Properties.Settings.Default.IssueFormStartPosition;
             Size formSize = Properties.Settings.Default.IssueFormSize;
 
-            txtDescription.AcceptsReturn = true;
-            txtDescription.ScrollBars = ScrollBars.Vertical;
-
-            // Initialize and populate the Status combobox
-            cboStatus.AutoCompleteMode = AutoCompleteMode.None;
-            cboStatus.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboStatus.DataSource = StatusOptionsList;
-            cboStatus.ValueMember = "Value";
-            cboStatus.DisplayMember = "Text";
-
-            // Initialize and populate the Priority combobox
-            cboPriority.AutoCompleteMode = AutoCompleteMode.None;
-            cboPriority.DropDownStyle = ComboBoxStyle.DropDownList;            
-            cboPriority.DataSource = PriorityList;
-            cboPriority.ValueMember = "Value";
-            cboPriority.DisplayMember = "Text";
-
-            if (Font.SizeInPoints > 12)
-            {
-                // Make sure the bottom panel is visible using a temporary panel for scaling
-                this.groupBoxDescription.Height = this.panelTemp.Height;
-                this.panelBottom.Top = this.panelTemp.Bottom + 5;
-            }
-
-            if (string.IsNullOrEmpty(CurrentIssue.ImageFilename))
-            {
-                this.splitContainer1.SplitterDistance = this.splitContainer1.Height;        // No image, maximize description height
-            }
+            InitForm();
 
             // Make initializations based on the type of operation
             if (Operation == OperationType.New)
@@ -131,49 +99,7 @@ namespace MiniBug
             else if (Operation == OperationType.Edit)
             {
                 this.Text = "Edit Issue";
-
-                // Populate the controls
-                lblDateCreated.Text = CurrentIssue.DateCreated.ToString();
-                lblDateModified.Text = CurrentIssue.DateModified.ToString();
-                txtSummary.Text = CurrentIssue.Summary;
-                txtVersion.Text = CurrentIssue.Version;
-                txtTargetVersion.Text = CurrentIssue.TargetVersion;
-                txtDescription.Text = CurrentIssue.Description;
-                this.txtImage.Text = CurrentIssue.ImageFilename;
-                this.txtImage.ForeColor = Color.Black;
-
-                if (!string.IsNullOrEmpty(CurrentIssue.ImageFilename))
-                {
-                    // If there is an attached image, display it
-                    string fullFilename = CurrentIssue.ImageFilename;
-                    string filename = Path.GetFileName(fullFilename);
-
-                    if (!File.Exists(fullFilename))
-                    {
-                        // Try to find image in the current apllication directory
-                        if (Directory.Exists("Images"))
-                        {
-                            filename = @"Images\" + filename;
-                        }
-
-                        fullFilename = Path.Combine(Application.StartupPath, filename);
-                    }
-
-                    if (File.Exists(fullFilename))
-                    {
-                        this.splitContainer1.SplitterDistance = this.splitContainer1.Height / 2;
-                        this.pictureBox1.Image = Image.FromFile(fullFilename);
-                        this.pictureBox1.Visible = true;
-                    }
-                    else
-                    {
-                        this.txtImage.ForeColor = Color.Red;            // Not found, display file name in red
-                    }
-                }
-
-                lblID.Text = CurrentIssue.ID.ToString();
-                cboStatus.SelectedValue = Convert.ToInt32(CurrentIssue.Status);
-                cboPriority.SelectedValue = Convert.ToInt32(CurrentIssue.Priority);
+                EditIssue();
             }
 
             //txtDescription.Font = ApplicationSettings.FormDescriptionFieldFont;
@@ -193,6 +119,90 @@ namespace MiniBug
             }
 
             SetAccessibilityInformation();
+        }
+
+        /// <summary>
+        /// Initialize issue form.
+        /// </summary>
+        private void InitForm()
+        {
+            txtDescription.AcceptsReturn = true;
+            txtDescription.ScrollBars = ScrollBars.Vertical;
+
+            // Initialize and populate the Status combobox
+            cboStatus.AutoCompleteMode = AutoCompleteMode.None;
+            cboStatus.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboStatus.DataSource = StatusOptionsList;
+            cboStatus.ValueMember = "Value";
+            cboStatus.DisplayMember = "Text";
+
+            // Initialize and populate the Priority combobox
+            cboPriority.AutoCompleteMode = AutoCompleteMode.None;
+            cboPriority.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboPriority.DataSource = PriorityList;
+            cboPriority.ValueMember = "Value";
+            cboPriority.DisplayMember = "Text";
+
+            if (Font.SizeInPoints > 12)
+            {
+                // Make sure the bottom panel is visible using a temporary panel for scaling
+                this.groupBoxDescription.Height = this.panelTemp.Height;
+                this.panelBottom.Top = this.panelTemp.Bottom + 5;
+            }
+
+            if (string.IsNullOrEmpty(CurrentIssue.ImageFilename))
+            {
+                this.splitContainer1.SplitterDistance = this.splitContainer1.Height;        // No image, maximize description height
+            }
+        }
+
+        /// <summary>
+        /// Edit an issue, populate the controls.
+        /// If there is an attached image, display it.
+        /// </summary>
+        private void EditIssue()
+        {
+            lblDateCreated.Text = CurrentIssue.DateCreated.ToString();
+            lblDateModified.Text = CurrentIssue.DateModified.ToString();
+            txtSummary.Text = CurrentIssue.Summary;
+            txtVersion.Text = CurrentIssue.Version;
+            txtTargetVersion.Text = CurrentIssue.TargetVersion;
+            txtDescription.Text = CurrentIssue.Description;
+            this.txtImage.Text = CurrentIssue.ImageFilename;
+            this.txtImage.ForeColor = Color.Black;
+
+            if (!string.IsNullOrEmpty(CurrentIssue.ImageFilename))
+            {
+                // If there is an attached image, display it
+                string fullFilename = CurrentIssue.ImageFilename;
+                string filename = Path.GetFileName(fullFilename);
+
+                if (!File.Exists(fullFilename))
+                {
+                    // Try to find image in the current apllication directory
+                    if (Directory.Exists("Images"))
+                    {
+                        filename = @"Images\" + filename;
+                    }
+
+                    fullFilename = Path.Combine(Application.StartupPath, filename);
+                }
+
+                if (File.Exists(fullFilename))
+                {
+                    this.splitContainer1.SplitterDistance = this.splitContainer1.Height / 2;
+                    this.pictureBox1.Image = Image.FromFile(fullFilename);
+                    this.pictureBox1.Visible = true;
+                }
+                else
+                {
+                    this.txtImage.ForeColor = Color.Red;            // Not found, display file name in red
+                }
+            }
+
+            lblID.Text = CurrentIssue.ID.ToString();
+            cboStatus.SelectedValue = Convert.ToInt32(CurrentIssue.Status);
+            cboPriority.SelectedValue = Convert.ToInt32(CurrentIssue.Priority);
         }
 
         /// <summary>
@@ -486,10 +496,23 @@ namespace MiniBug
                 // Print attached image if it exists
                 if (!string.IsNullOrEmpty(this.txtImage.Text) && File.Exists(this.txtImage.Text))
                 {
-                    // load image and calculate best fit in a 170 x 100 mm box
+                    // load image
                     PdfImage pdfImage = new PdfImage(document);
+                    //pdfImage.ImageQuality = 90;            // Default quality is 75
                     pdfImage.LoadImage(this.txtImage.Text);
-                    var pdfImageSize = pdfImage.ImageSize(170, 100);
+                    SizeD pdfImageSize;
+
+                    if (pdfImage.WidthPix > 340 || pdfImage.HeightPix > 200)
+                    {
+                        // Scale image to fit in a 170 x 100 mm box
+                        pdfImageSize = pdfImage.ImageSize(170, 100);
+                    }
+                    else
+                    {
+                        // Prevent pixelation of small images
+                        pdfImageSize = new SizeD(pdfImage.WidthPix / 4, pdfImage.HeightPix / 4);
+                    }
+
                     yPos = yPos - pdfImageSize.Height;
 
                     if (yPos < 40)
