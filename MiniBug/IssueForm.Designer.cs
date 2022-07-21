@@ -391,6 +391,7 @@
             this.MinimumSize = new System.Drawing.Size(700, 400);
             this.Name = "IssueForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.IssueForm_FormClosed);
             this.Load += new System.EventHandler(this.IssueForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);

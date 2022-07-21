@@ -146,10 +146,17 @@ namespace MiniBug
                 {
                     // If there is an attached image, display it
                     string fullFilename = CurrentIssue.ImageFilename;
+                    string filename = Path.GetFileName(fullFilename);
 
                     if (!File.Exists(fullFilename))
                     {
-                        fullFilename = Path.Combine(Application.StartupPath, fullFilename);
+                        // Try to find image in the current apllication directory
+                        if (Directory.Exists("Images"))
+                        {
+                            filename = @"Images\" + filename;
+                        }
+
+                        fullFilename = Path.Combine(Application.StartupPath, filename);
                     }
 
                     if (File.Exists(fullFilename))
@@ -500,6 +507,11 @@ namespace MiniBug
                 // create pdf file
                 document.CreateFile();
             }
+        }
+
+        private void IssueForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.pictureBox1.Image?.Dispose();
         }
     }
 }
