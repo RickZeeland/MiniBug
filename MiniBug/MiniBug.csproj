@@ -356,6 +356,8 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Filter_clear_32x32.png" />
+    <None Include="Resources\Filter_32x32.png" />
     <None Include="Resources\pdf_64x64.png" />
     <None Include="Resources\Clipboard_64x64.png" />
     <None Include="Resources\Chart_32x32.png" />

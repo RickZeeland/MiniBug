@@ -46,6 +46,7 @@
             this.IconCloneTask = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.IconPieChart = new System.Windows.Forms.ToolStripButton();
+            this.IconShowClosed = new System.Windows.Forms.ToolStripButton();
             this.IconConfigureColumns = new System.Windows.Forms.ToolStripButton();
             this.txtSearch = new System.Windows.Forms.ToolStripTextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -118,6 +119,8 @@
             this.TabControl.Size = new System.Drawing.Size(1035, 539);
             this.TabControl.TabIndex = 2;
             this.TabControl.SelectedIndexChanged += new System.EventHandler(this.TabControl_SelectedIndexChanged);
+            this.TabControl.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TabControl_KeyDown);
+            this.TabControl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TabControl_KeyPress);
             // 
             // tabPage1
             // 
@@ -201,6 +204,7 @@
             this.IconCloneTask,
             this.toolStripSeparator5,
             this.IconPieChart,
+            this.IconShowClosed,
             this.IconConfigureColumns,
             this.txtSearch});
             this.toolStrip1.Location = new System.Drawing.Point(0, 25);
@@ -326,6 +330,17 @@
             this.IconPieChart.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.IconPieChart.ToolTipText = "Show or hide Pie chart";
             this.IconPieChart.Click += new System.EventHandler(this.IconPieChart_Click);
+            // 
+            // IconShowClosed
+            // 
+            this.IconShowClosed.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.IconShowClosed.Image = global::MiniBug.Properties.Resources.Filter_32x32;
+            this.IconShowClosed.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.IconShowClosed.Name = "IconShowClosed";
+            this.IconShowClosed.Size = new System.Drawing.Size(36, 49);
+            this.IconShowClosed.Text = "Filter";
+            this.IconShowClosed.ToolTipText = "Filter closed and unresolved";
+            this.IconShowClosed.Click += new System.EventHandler(this.IconShowClosed_Click);
             // 
             // IconConfigureColumns
             // 
@@ -678,6 +693,7 @@
         private System.Windows.Forms.ToolStripTextBox txtSearch;
         private System.Windows.Forms.Panel panelPie;
         private System.Windows.Forms.Button buttonPieClose;
+        private System.Windows.Forms.ToolStripButton IconShowClosed;
     }
 }
 

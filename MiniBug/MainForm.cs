@@ -26,6 +26,11 @@ namespace MiniBug
         /// </summary>
         private bool initializingGridTasks = false;
 
+        /// <summary>
+        /// Do not show closed and resolved issues when false.
+        /// </summary>
+        public bool ShowClosedIssues { get; set; }
+
         public MainForm()
         {
             InitializeComponent();
@@ -59,6 +64,7 @@ namespace MiniBug
                 ApplySettingsToGrids();
 
                 // Populate the Issues and Tasks grids
+                ShowClosedIssues = true;
                 PopulateGridIssues();
                 PopulateGridTasks();
 
@@ -1093,14 +1099,21 @@ namespace MiniBug
             IssuesResolved = 0;
             IssuesUnconfirmed = 0;
             IssuesConfirmed = 0;
+            IssuesFilteredTotal = 0;
 
             if ((Program.SoftwareProject != null) && (Program.SoftwareProject.Issues != null))
             {
                 foreach (KeyValuePair<int, Issue> item in Program.SoftwareProject.Issues)
                 {
-                    AddIssueToGrid(item.Value);
+                    var issueStatus = Program.SoftwareProject.Issues[item.Key].Status;
 
-                    PiechartCountersAdd(Program.SoftwareProject.Issues[item.Key].Status);
+                    if (!ShowClosedIssues && (issueStatus == IssueStatus.Closed || issueStatus == IssueStatus.Resolved))
+                    {
+                        continue;
+                    }
+
+                    AddIssueToGrid(item.Value);
+                    PiechartCountersAdd(issueStatus);
                 }
 
                 ShowPieChart();
@@ -1517,6 +1530,11 @@ namespace MiniBug
             {
                 e.Handled = true;
                 EditIssue();
+            }
+            else
+            {
+                e.Handled = false;
+                Debug.Print("Key = " + e.KeyCode);
             }
         }
 
@@ -2454,6 +2472,45 @@ namespace MiniBug
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Show or hide the closed and unresolved issues.
+        /// </summary>
+        private void IconShowClosed_Click(object sender, EventArgs e)
+        {
+            // Toggle show closed issues flag
+            ShowClosedIssues = !ShowClosedIssues;
+
+            if (ShowClosedIssues)
+            {
+                IconShowClosed.Image = Properties.Resources.Filter_32x32;
+            }
+            else
+            {
+                IconShowClosed.Image = Properties.Resources.Filter_clear_32x32;
+            }
+
+            GridIssues.Rows.Clear();
+            GridIssues.Refresh();
+            PopulateGridIssues();
+
+            if (panelPie.Visible)
+            {
+                ShowPieChart();
+            }
+        }
+
+        private void TabControl_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Do not allow switching tabs with e.g. Ctrl-Home or Ctrl-End
+            this.GridIssues.Focus();
+        }
+
+        private void TabControl_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Do not allow switching tabs with e.g. Ctrl-Home or Ctrl-End
+            this.GridIssues.Focus();
         }
     }
 }

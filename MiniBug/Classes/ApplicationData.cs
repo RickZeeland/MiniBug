@@ -76,6 +76,7 @@ namespace MiniBug
         /// <param name="softwareProject">An instance of the Project class.</param>
         public static FileSystemOperationStatus SaveProject(in Project softwareProject)
         {
+            //string output = JsonConvert.SerializeObject(softwareProject, Formatting.Indented);        // Save with indentation
             string output = JsonConvert.SerializeObject(softwareProject);
             string filename = Path.Combine(softwareProject.Location, softwareProject.Filename);
 

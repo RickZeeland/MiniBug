@@ -193,6 +193,26 @@ namespace MiniBug.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Filter_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("Filter_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Filter_clear_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("Filter_clear_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap FolderError_64x64 {
             get {
                 object obj = ResourceManager.GetObject("FolderError_64x64", resourceCulture);

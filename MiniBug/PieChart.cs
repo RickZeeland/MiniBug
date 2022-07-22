@@ -25,6 +25,11 @@ namespace MiniBug
         public int IssuesConfirmed { get; set; }
 
         /// <summary>
+        /// The (filtered) total issues.
+        /// </summary>
+        public int IssuesFilteredTotal { get; set; }
+
+        /// <summary>
         /// Allow to drag the Pie chart.
         /// </summary>
         private Point MouseDownLocation;
@@ -59,6 +64,8 @@ namespace MiniBug
                     break;
             }
 
+            IssuesFilteredTotal += add;
+
             if (panelPie.Visible)
             {
                 ShowPieChart();
@@ -87,7 +94,15 @@ namespace MiniBug
         {
             try
             {
-                modernPieChart1.GraphTitle = Program.SoftwareProject.Issues.Count + " Issues";      // Total number of issues
+                if (ShowClosedIssues)
+                {
+                    modernPieChart1.GraphTitle = Program.SoftwareProject.Issues.Count + " Issues";                              // Total number of issues
+                }
+                else
+                {
+                    modernPieChart1.GraphTitle = $"{IssuesFilteredTotal} Issues shown of {Program.SoftwareProject.Issues.Count}";    // Filtered and total number of issues
+                }
+
                 //modernPieChart1.Font = new Font(this.Font, FontStyle.Bold);
                 //modernPieChart1.DisplayDoughnut = true;
                 modernPieChart1.Items.Clear();
