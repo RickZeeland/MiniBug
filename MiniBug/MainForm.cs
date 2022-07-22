@@ -238,6 +238,7 @@ namespace MiniBug
                     IconDeleteIssue.Enabled = true;
                     IconCloneIssue.Enabled = true;
                     IconPieChart.Enabled = true;
+                    IconShowClosed.Enabled = true;
                 }
                 else
                 {
@@ -249,6 +250,7 @@ namespace MiniBug
                     IconDeleteIssue.Enabled = false;
                     IconCloneIssue.Enabled = false;
                     IconPieChart.Enabled = false;
+                    IconShowClosed.Enabled = false;
                 }
 
                 // Disable tasks menu items
@@ -303,6 +305,7 @@ namespace MiniBug
                 IconEditIssue.Enabled = false;
                 IconDeleteIssue.Enabled = false;
                 IconCloneIssue.Enabled = false;
+                IconShowClosed.Enabled = true;
             }
         }
 
