@@ -407,11 +407,11 @@ namespace MiniBug
         /// PDF coordinate system origin is at the bottom left corner of the page.
         /// See: https://www.codeproject.com/Articles/570682/PDF-File-Writer-Csharp-Class-Library-Version-2-0-0#ImageSupport
         /// </summary>
-        public void CreatePdfDocument(string fileName)
+        public void CreatePdfDocument(string pdfFileName)
         {
             var lines = PageLines(false);
 
-            using (PdfDocument document = new PdfDocument(PaperType.A4, false, UnitOfMeasure.mm, fileName))
+            using (PdfDocument document = new PdfDocument(PaperType.A4, false, UnitOfMeasure.mm, pdfFileName))
             {
                 // Add new page
                 PdfPage page = new PdfPage(document);
@@ -494,14 +494,35 @@ namespace MiniBug
                     }
                 }
 
+                string filename = this.txtImage.Text;
+
                 // Print attached image if it exists
-                if (!string.IsNullOrEmpty(this.txtImage.Text) && File.Exists(this.txtImage.Text))
+                if (!string.IsNullOrEmpty(filename) && File.Exists(filename))
                 {
                     // load image
                     PdfImage pdfImage = new PdfImage(document);
                     //pdfImage.ImageQuality = 90;            // Default quality is 75
                     //pdfImage.SaveAs = SaveImageAs.Jpeg;
-                    pdfImage.LoadImage(this.txtImage.Text);
+
+                    if (!filename.ToLower().EndsWith(".png"))
+                    {
+                        pdfImage.LoadImage(filename);
+                    }
+                    else
+                    {
+                        // Make sure transparent PNG gets a white background
+                        Image img = Image.FromFile(filename);
+                        Bitmap bmp = new Bitmap(img.Width, img.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+
+                        using (Graphics g = Graphics.FromImage(bmp))
+                        {
+                            g.Clear(Color.White);
+                            g.DrawImage(img, new Rectangle(new Point(), img.Size), new Rectangle(new Point(), img.Size), GraphicsUnit.Pixel);
+                        }
+
+                        pdfImage.LoadImage(bmp);
+                    }
+
                     SizeD pdfImageSize;
 
                     if (pdfImage.WidthPix > 340 || pdfImage.HeightPix > 200)
@@ -512,7 +533,6 @@ namespace MiniBug
                     else
                     {
                         // Prevent pixelation of small images
-                        //pdfImage.Resolution = 600;          // Pixels per inch
                         pdfImageSize = new SizeD(pdfImage.WidthPix / 4, pdfImage.HeightPix / 4);
                     }
 
@@ -527,7 +547,6 @@ namespace MiniBug
                         yPos = 150 - (pdfImageSize.Height / 2);
                     }
 
-                    //contents.SetBlendMode(BlendMode.Screen);
                     contents.DrawImage(pdfImage, xPos, yPos, pdfImageSize.Width, pdfImageSize.Height);
                 }
 
