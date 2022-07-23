@@ -291,8 +291,9 @@ namespace MiniBug
                     IconCloneTask.Enabled = false;
                 }
 
-                IconPieChart.Enabled = false;               // Pie chart is only for issues at the moment
-                modernPieChart1.Visible = false;
+                // Pie chart is only for issues at the moment
+                IconPieChart.Enabled = false;
+                panelPie.Visible = false;
 
                 // Disable issues menu items
                 newIssueToolStripMenuItem.Enabled = false;
