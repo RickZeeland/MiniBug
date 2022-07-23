@@ -405,6 +405,7 @@ namespace MiniBug
         /// <summary>
         /// Create PDF using PdfFileWriter library by Uzi Granot.
         /// PDF coordinate system origin is at the bottom left corner of the page.
+        /// See: https://www.codeproject.com/Articles/570682/PDF-File-Writer-Csharp-Class-Library-Version-2-0-0#ImageSupport
         /// </summary>
         public void CreatePdfDocument(string fileName)
         {
@@ -499,6 +500,7 @@ namespace MiniBug
                     // load image
                     PdfImage pdfImage = new PdfImage(document);
                     //pdfImage.ImageQuality = 90;            // Default quality is 75
+                    //pdfImage.SaveAs = SaveImageAs.Jpeg;
                     pdfImage.LoadImage(this.txtImage.Text);
                     SizeD pdfImageSize;
 
@@ -510,6 +512,7 @@ namespace MiniBug
                     else
                     {
                         // Prevent pixelation of small images
+                        //pdfImage.Resolution = 600;          // Pixels per inch
                         pdfImageSize = new SizeD(pdfImage.WidthPix / 4, pdfImage.HeightPix / 4);
                     }
 
@@ -524,6 +527,7 @@ namespace MiniBug
                         yPos = 150 - (pdfImageSize.Height / 2);
                     }
 
+                    //contents.SetBlendMode(BlendMode.Screen);
                     contents.DrawImage(pdfImage, xPos, yPos, pdfImageSize.Width, pdfImageSize.Height);
                 }
 

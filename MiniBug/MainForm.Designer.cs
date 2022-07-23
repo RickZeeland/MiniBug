@@ -339,7 +339,8 @@
             this.IconShowClosed.Name = "IconShowClosed";
             this.IconShowClosed.Size = new System.Drawing.Size(36, 49);
             this.IconShowClosed.Text = "Filter";
-            this.IconShowClosed.ToolTipText = "Filter closed and unresolved";
+            this.IconShowClosed.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.IconShowClosed.ToolTipText = "Filter closed and resolved";
             this.IconShowClosed.Click += new System.EventHandler(this.IconShowClosed_Click);
             // 
             // IconConfigureColumns

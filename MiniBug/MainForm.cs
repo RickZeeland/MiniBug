@@ -306,7 +306,7 @@ namespace MiniBug
                 IconEditIssue.Enabled = false;
                 IconDeleteIssue.Enabled = false;
                 IconCloneIssue.Enabled = false;
-                IconShowClosed.Enabled = true;
+                IconShowClosed.Enabled = false;
             }
         }
 
@@ -2479,7 +2479,7 @@ namespace MiniBug
         }
 
         /// <summary>
-        /// Show or hide the closed and unresolved issues.
+        /// Show or hide the closed and resolved issues.
         /// </summary>
         private void IconShowClosed_Click(object sender, EventArgs e)
         {
@@ -2498,6 +2498,12 @@ namespace MiniBug
             GridIssues.Rows.Clear();
             GridIssues.Refresh();
             PopulateGridIssues();
+
+            // Scroll to last row if setting is set
+            if (Properties.Settings.Default.ScrollToLastRow && this.GridIssues.RowCount > 10)
+            {
+                this.GridIssues.FirstDisplayedScrollingRowIndex = this.GridIssues.RowCount - 1;
+            }
 
             if (panelPie.Visible)
             {

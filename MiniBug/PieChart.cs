@@ -10,7 +10,7 @@ namespace MiniBug
     /// <summary>
     /// Pie chart with modified ModernUI.Charting.dll by Angelo Cresta:
     /// https://www.codeproject.com/Articles/5299801/A-Control-to-Display-Pie-and-Doughtnut-Charts-with
-    /// It can be rotated using the mousewheel.
+    /// It can be dragged with the mouse and rotated using the mousewheel.
     /// </summary>
     public partial class MainForm
     {
@@ -96,11 +96,11 @@ namespace MiniBug
             {
                 if (ShowClosedIssues)
                 {
-                    modernPieChart1.GraphTitle = Program.SoftwareProject.Issues.Count + " Issues";                              // Total number of issues
+                    modernPieChart1.GraphTitle = Program.SoftwareProject.Issues.Count + " Issues";                          // Total number of issues
                 }
                 else
                 {
-                    modernPieChart1.GraphTitle = $"{IssuesFilteredTotal} Issues shown of {Program.SoftwareProject.Issues.Count}";    // Filtered and total number of issues
+                    modernPieChart1.GraphTitle = $"{IssuesFilteredTotal} of {Program.SoftwareProject.Issues.Count}";        // Filtered + total number of issues
                 }
 
                 //modernPieChart1.Font = new Font(this.Font, FontStyle.Bold);
