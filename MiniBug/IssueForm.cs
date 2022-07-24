@@ -190,6 +190,7 @@ namespace MiniBug
 
                 if (File.Exists(fullFilename))
                 {
+                    this.txtImage.Text = fullFilename.Replace(Application.StartupPath + @"\", string.Empty);
                     this.splitContainer1.SplitterDistance = this.splitContainer1.Height / 2;
                     this.pictureBox1.Image = Image.FromFile(fullFilename);
                     this.pictureBox1.Visible = true;
@@ -506,7 +507,8 @@ namespace MiniBug
 
                     if (!filename.ToLower().EndsWith(".png"))
                     {
-                        pdfImage.LoadImage(filename);
+                        //pdfImage.LoadImage(filename);
+                        pdfImage.LoadImage(this.pictureBox1.Image);
                     }
                     else
                     {
