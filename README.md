@@ -52,21 +52,12 @@ Download the file <a href="MiniBug Sample Project.json">MiniBug Sample Project.j
 MiniBug v2.5.5 compiled with .NET 4.8 versus .NET 6.0.
 A comparison of speed differences loading a test project of 4000 issues on a Windows 10 PC with an SSD gave the following results:
 
-.NET 4.8 from VS2019
-- Loaded project in 1,2707805 seconds
-- Reloaded project in 1,786954 seconds
-
-.NET 6.0 from VS2022
-- Loaded project in 1,0638802 seconds
-- Reloaded project in 1,3707548 seconds
-
-.NET 4.8 exe
-- Loaded project in 1,0807529 seconds
-- Reloaded project in 2,2314549 seconds
-
-.NET 6.0 exe
-- Loaded project in 0,8620784 seconds
-- Reloaded project in 1,7411413 seconds
+| Version              | Load project | Reload project  |
+| -------------------- | ------------ | --------------- |
+| .NET 4.8 / VS2019    |  1,2707805 s |     1,786954 s  |
+| .NET 6.0 / VS2022    |  1,0638802 s |     1,3707548 s |
+| .NET 4.8 exe         |  1,0807529 s |     2,2314549 s |
+| .NET 6.0 exe         |  0,8620784 s |     1,7411413 s |
 
 As the .NET 6.0 speed improvement is not very significant, and the executable is much bigger and not as neatly packed into a single exe, I decided to not publish this version on GitHub for the time being. Also the .NET 6.0 version is not cross-platform, it is purely a Winforms application, so that is no argument to port it either.
 
