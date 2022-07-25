@@ -495,25 +495,23 @@ namespace MiniBug
                     }
                 }
 
-                string filename = this.txtImage.Text;
+                string imgFilename = this.txtImage.Text;
 
                 // Print attached image if it exists
-                if (!string.IsNullOrEmpty(filename) && File.Exists(filename))
+                if (!string.IsNullOrEmpty(imgFilename) && this.pictureBox1.Image != null)
                 {
                     // load image
                     PdfImage pdfImage = new PdfImage(document);
                     //pdfImage.ImageQuality = 90;            // Default quality is 75
-                    //pdfImage.SaveAs = SaveImageAs.Jpeg;
 
-                    if (!filename.ToLower().EndsWith(".png"))
+                    if (!imgFilename.ToLower().EndsWith(".png"))
                     {
-                        //pdfImage.LoadImage(filename);
                         pdfImage.LoadImage(this.pictureBox1.Image);
                     }
                     else
                     {
                         // Make sure transparent PNG gets a white background
-                        Image img = Image.FromFile(filename);
+                        Image img = this.pictureBox1.Image;
                         Bitmap bmp = new Bitmap(img.Width, img.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 
                         using (Graphics g = Graphics.FromImage(bmp))
@@ -538,7 +536,7 @@ namespace MiniBug
                         pdfImageSize = new SizeD(pdfImage.WidthPix / 4, pdfImage.HeightPix / 4);
                     }
 
-                    yPos = yPos - pdfImageSize.Height;
+                    yPos -= pdfImageSize.Height;
 
                     if (yPos < 40)
                     {
