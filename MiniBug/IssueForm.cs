@@ -9,6 +9,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace MiniBug
@@ -558,6 +559,51 @@ namespace MiniBug
         private void IssueForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.pictureBox1.Image?.Dispose();
+        }
+
+        private void txtDescription_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                var targetTextBox = sender as System.Windows.Forms.TextBox;
+                if (targetTextBox.TextLength < 1) return;
+
+                var currentTextIndex = targetTextBox.GetCharIndexFromPosition(e.Location);
+
+                var wordRegex = new Regex(@"(\w+)");
+                var words = wordRegex.Matches(targetTextBox.Text);
+
+                if (words.Count > 0)
+                {
+                    var currentWord = string.Empty;
+
+                    for (var i = words.Count - 1; i >= 0; i--)
+                    {
+                        if (words[i].Index <= currentTextIndex)
+                        {
+                            currentWord = words[i].Value;
+                            break;
+                        }
+                    }
+
+                    if (currentWord == string.Empty) return;
+                    int id = int.Parse(currentWord);
+
+                    if (id > 0 && id < Program.SoftwareProject.IssueIdCounter)
+                    {
+                        Debug.Print("ID = " + id);
+                        //this.pictureBox1.Image?.Dispose();
+                        //this.pictureBox1.Visible = false;
+                        //CurrentIssue = Program.SoftwareProject.Issues[id];
+                        //EditIssue();
+                        //this.Invalidate();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, Program.myName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

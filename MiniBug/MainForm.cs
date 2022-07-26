@@ -1372,6 +1372,7 @@ namespace MiniBug
 
                 if (frmIssue.ShowDialog() == DialogResult.OK)
                 {
+                    id = frmIssue.CurrentIssue.ID;
                     Program.SoftwareProject.Issues[id] = frmIssue.CurrentIssue;
 
                     if (previousStatus != frmIssue.CurrentIssue.Status)

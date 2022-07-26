@@ -189,6 +189,7 @@
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(873, 288);
             this.txtDescription.TabIndex = 17;
+            this.txtDescription.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.txtDescription_MouseDoubleClick);
             // 
             // btOk
             // 
