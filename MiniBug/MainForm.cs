@@ -55,6 +55,7 @@ namespace MiniBug
                 this.MinimumSize = new Size(478, 303);
                 //this.modernPieChart1.Size = new Size(400, 300);                     // Do not scale Pie chart with font size
                 this.panelPie.Location = new Point(this.Width - 600, this.Height - 400);
+                this.panelPie.Visible = true;
 
                 // Initialization of the Issues and Tasks grids
                 InitializeGridIssues();
@@ -1121,7 +1122,10 @@ namespace MiniBug
                     PiechartCountersAdd(issueStatus);
                 }
 
-                ShowPieChart();
+                if (this.panelPie.Visible)
+                {
+                    ShowPieChart();
+                }
             }
 
             // Sort the contents according to the sort criteria
@@ -1331,7 +1335,7 @@ namespace MiniBug
                 Program.SoftwareProject.AddIssue(frmIssue.CurrentIssue);
 
                 // Update the status count for the Pie chart
-                PiechartCountersAdd(frmIssue.CurrentIssue.Status);
+                PiechartCountersAdd(frmIssue.CurrentIssue.Status, 1, this.panelPie.Visible);
 
                 // Add the new issue to the grid
                 AddIssueToGrid(frmIssue.CurrentIssue);
@@ -1380,7 +1384,7 @@ namespace MiniBug
                     {
                         // Update the counters for the Pie chart
                         PiechartCountersAdd(frmIssue.PreviousStatus, -1);
-                        PiechartCountersAdd(frmIssue.CurrentIssue.Status);
+                        PiechartCountersAdd(frmIssue.CurrentIssue.Status, 1, this.panelPie.Visible);
                     }
 
                     if (id == idOld)
@@ -1444,7 +1448,7 @@ namespace MiniBug
                         Program.SoftwareProject.Issues.Remove(key);
 
                         // Update the counters for the Pie chart
-                        PiechartCountersAdd(status, -1);
+                        PiechartCountersAdd(status, -1, this.panelPie.Visible);
 
                         // Remove the row from the grid
                         GridIssues.Rows.RemoveAt(i);
@@ -1499,7 +1503,7 @@ namespace MiniBug
                 Program.SoftwareProject.Issues[id].Clone(ref newIssue);
                 Program.SoftwareProject.AddIssue(newIssue);
 
-                PiechartCountersAdd(status);
+                PiechartCountersAdd(status, 1, this.panelPie.Visible);
 
                 // Add the new issue to the grid
                 AddIssueToGrid(newIssue);
@@ -2535,18 +2539,11 @@ namespace MiniBug
                 {
                     if (int.Parse(row.Cells["id"].Value.ToString()) == id)
                     {
-                        //this.GridIssues.ClearSelection();
                         this.GridIssues.FirstDisplayedScrollingRowIndex = row.Index;
                         row.Selected = true;
-                        //RefreshIssueInGrid(row.Index, id);
                         break;
                     }
                 }
-            }
-
-            if (panelPie.Visible)
-            {
-                ShowPieChart();
             }
         }
 

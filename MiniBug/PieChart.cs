@@ -39,7 +39,7 @@ namespace MiniBug
         /// </summary>
         /// <param name="issueStatus">The issue status</param>
         /// <param name="add">Amount to add, default 1</param>
-        private void PiechartCountersAdd(IssueStatus issueStatus, int add = 1)
+        private void PiechartCountersAdd(IssueStatus issueStatus, int add = 1, bool redraw = false)
         {
             switch (issueStatus)
             {
@@ -66,7 +66,7 @@ namespace MiniBug
 
             IssuesFilteredTotal += add;
 
-            if (panelPie.Visible)
+            if (redraw)
             {
                 ShowPieChart();
             }
