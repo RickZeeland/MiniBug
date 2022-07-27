@@ -1390,12 +1390,14 @@ namespace MiniBug
                     }
                     else
                     {
-                        // Scroll to issue
+                        // Scroll to issue and select
                         foreach (DataGridViewRow row in GridIssues.Rows)
                         {
                             if (int.Parse(row.Cells["id"].Value.ToString()) == id)
                             {
+                                this.GridIssues.ClearSelection();
                                 this.GridIssues.FirstDisplayedScrollingRowIndex = row.Index;
+                                row.Selected = true;
                                 RefreshIssueInGrid(row.Index, id);
                                 break;
                             }
