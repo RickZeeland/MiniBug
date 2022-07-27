@@ -27,6 +27,11 @@ namespace MiniBug
         public Issue CurrentIssue { get; private set; } = null;
 
         /// <summary>
+        /// The status before any user changes.
+        /// </summary>
+        public IssueStatus PreviousStatus { get; private set; } = IssueStatus.None;
+
+        /// <summary>
         /// List of status options.
         /// </summary>
         private List<ComboBoxItem> StatusOptionsList = new List<ComboBoxItem>();
@@ -52,6 +57,7 @@ namespace MiniBug
             else if ((Operation == OperationType.Edit) && (issue != null))
             {
                 // Edit an existing issue
+                PreviousStatus = issue.Status;
                 CurrentIssue = issue;
             }
 
@@ -561,22 +567,25 @@ namespace MiniBug
             this.pictureBox1.Image?.Dispose();
         }
 
+        /// <summary>
+        /// Jump to issue number after double click.
+        /// </summary>
         private void txtDescription_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            int id;
+            string currentWord = string.Empty;
+
             try
             {
                 var targetTextBox = sender as System.Windows.Forms.TextBox;
                 if (targetTextBox.TextLength < 1) return;
 
                 var currentTextIndex = targetTextBox.GetCharIndexFromPosition(e.Location);
-
                 var wordRegex = new Regex(@"(\w+)");
                 var words = wordRegex.Matches(targetTextBox.Text);
 
                 if (words.Count > 0)
                 {
-                    var currentWord = string.Empty;
-
                     for (var i = words.Count - 1; i >= 0; i--)
                     {
                         if (words[i].Index <= currentTextIndex)
@@ -586,17 +595,18 @@ namespace MiniBug
                         }
                     }
 
-                    if (currentWord == string.Empty) return;
-                    int id = int.Parse(currentWord);
+                    if (string.IsNullOrEmpty(currentWord)) return;
+
+                    if (!int.TryParse(currentWord, out id)) return;
 
                     if (id > 0 && id < Program.SoftwareProject.IssueIdCounter)
                     {
-                        Debug.Print("ID = " + id);
-                        //this.pictureBox1.Image?.Dispose();
-                        //this.pictureBox1.Visible = false;
-                        //CurrentIssue = Program.SoftwareProject.Issues[id];
-                        //EditIssue();
-                        //this.Invalidate();
+                        Debug.Print("Jump to issue " + id);
+                        this.pictureBox1.Visible = false;
+                        CurrentIssue = Program.SoftwareProject.Issues[id];
+                        PreviousStatus = CurrentIssue.Status;
+                        EditIssue();
+                        this.Invalidate();
                     }
                 }
             }

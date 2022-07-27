@@ -581,6 +581,7 @@ namespace MiniBug
                     // Add this project to the recent projects submenu and application settings
                     AddRecentProject(Program.SoftwareProject.Name, System.IO.Path.Combine(Program.SoftwareProject.Location, Program.SoftwareProject.Filename));
 
+                    // Jump to last row
                     if (Properties.Settings.Default.ScrollToLastRow && this.GridIssues.RowCount > 10)
                     {
                         this.GridIssues.FirstDisplayedScrollingRowIndex = this.GridIssues.RowCount - 1;
@@ -1329,7 +1330,7 @@ namespace MiniBug
             {
                 Program.SoftwareProject.AddIssue(frmIssue.CurrentIssue);
 
-                // Add the status count for the Pie chart
+                // Update the status count for the Pie chart
                 PiechartCountersAdd(frmIssue.CurrentIssue.Status);
 
                 // Add the new issue to the grid
@@ -1366,7 +1367,7 @@ namespace MiniBug
             {
                 // Get the key of the issue in the selected row 
                 int id = int.Parse(GridIssues.SelectedRows[0].Cells["id"].Value.ToString());
-                var previousStatus = Program.SoftwareProject.Issues[id].Status;
+                int idOld = id;     // The id can change if user jumps to another issue
 
                 IssueForm frmIssue = new IssueForm(OperationType.Edit, Program.SoftwareProject.Issues[id]);
 
@@ -1375,15 +1376,31 @@ namespace MiniBug
                     id = frmIssue.CurrentIssue.ID;
                     Program.SoftwareProject.Issues[id] = frmIssue.CurrentIssue;
 
-                    if (previousStatus != frmIssue.CurrentIssue.Status)
+                    if (frmIssue.PreviousStatus != frmIssue.CurrentIssue.Status)
                     {
                         // Update the counters for the Pie chart
-                        PiechartCountersAdd(previousStatus, -1);
+                        PiechartCountersAdd(frmIssue.PreviousStatus, -1);
                         PiechartCountersAdd(frmIssue.CurrentIssue.Status);
                     }
 
-                    // Refresh the issue information in the grid
-                    RefreshIssueInGrid(GridIssues.SelectedRows[0].Index, id);
+                    if (id == idOld)
+                    {
+                        // Refresh the issue information in the grid
+                        RefreshIssueInGrid(GridIssues.SelectedRows[0].Index, id);
+                    }
+                    else
+                    {
+                        // Scroll to issue
+                        foreach (DataGridViewRow row in GridIssues.Rows)
+                        {
+                            if (int.Parse(row.Cells["id"].Value.ToString()) == id)
+                            {
+                                this.GridIssues.FirstDisplayedScrollingRowIndex = row.Index;
+                                RefreshIssueInGrid(row.Index, id);
+                                break;
+                            }
+                        }
+                    }
 
                     // Save the project file
                     SaveProject();
