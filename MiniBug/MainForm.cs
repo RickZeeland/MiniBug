@@ -2515,14 +2515,33 @@ namespace MiniBug
                 IconShowClosed.Image = Properties.Resources.Filter_clear_32x32;
             }
 
+            int id = 0;
+
+            if (GridIssues.SelectedRows.Count > 0)
+            {
+                // Get the key of the issue in the selected row 
+                id = int.Parse(GridIssues.SelectedRows[0].Cells["id"].Value.ToString());
+            }
+
             GridIssues.Rows.Clear();
             GridIssues.Refresh();
             PopulateGridIssues();
 
-            // Scroll to last row if setting is set
-            if (Properties.Settings.Default.ScrollToLastRow && this.GridIssues.RowCount > 10)
+            // Scroll to selected row if set
+            if (id > 0)
             {
-                this.GridIssues.FirstDisplayedScrollingRowIndex = this.GridIssues.RowCount - 1;
+                // Scroll to issue and select
+                foreach (DataGridViewRow row in GridIssues.Rows)
+                {
+                    if (int.Parse(row.Cells["id"].Value.ToString()) == id)
+                    {
+                        //this.GridIssues.ClearSelection();
+                        this.GridIssues.FirstDisplayedScrollingRowIndex = row.Index;
+                        row.Selected = true;
+                        //RefreshIssueInGrid(row.Index, id);
+                        break;
+                    }
+                }
             }
 
             if (panelPie.Visible)
