@@ -2545,6 +2545,8 @@ namespace MiniBug
                     }
                 }
             }
+
+            SetControlsState();
         }
 
         private void TabControl_KeyPress(object sender, KeyPressEventArgs e)
