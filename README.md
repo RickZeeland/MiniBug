@@ -18,10 +18,10 @@ Some of the changes:
 - Search issue
 - Create PDF from issue
 
-
-
-MiniBug is a barebones, simple issue tracker and to-do list. It is a Windows desktop single-user application.
-
+------------------------------------
+MiniBug is a simple issue tracker and to-do list, it is a Windows desktop single-user application. 
+ 
+ 
 <img src="Screenshots/main-window.png" alt="MiniBug main window">
 
 MiniBug does not use a database to store data: instead the application stores each project in a .json file. This means that if you need to work on projects, in different computers, you can share a MiniBug project between computers, by putting the .json file in something like Dropbox.
@@ -54,10 +54,10 @@ A comparison of speed differences loading a test project of 4000 issues on a Win
 
 | Version              | Load project | Reload project  |
 | -------------------- | ------------ | --------------- |
-| .NET 4.8 / VS2019    |  1,2707805 s |     1,786954 s  |
-| .NET 6.0 / VS2022    |  1,0638802 s |     1,3707548 s |
-| .NET 4.8 exe         |  1,0807529 s |     2,2314549 s |
-| .NET 6.0 exe         |  0,8620784 s |     1,7411413 s |
+| .NET 4.8 / VS2019    |       1,27 s |          1,78 s |
+| .NET 6.0 / VS2022    |       1,06 s |          1,37 s |
+| .NET 4.8 exe         |       1,08 s |          2,23 s |
+| .NET 6.0 exe         |       0,86 s |          1,74 s |
 
 As the .NET 6.0 speed improvement is not very significant, and the executable is much bigger and not as neatly packed into a single exe, I decided to not publish this version on GitHub for the time being. Also the .NET 6.0 version is not cross-platform, it is purely a Winforms application, so that is no argument to port it either.
 
