@@ -777,7 +777,6 @@ namespace MiniBug
             if (frmSettings.ShowDialog() == DialogResult.OK)
             {
                 this.Font = ApplicationSettings.AppFont;
-                //this.CenterToScreen();
                 ApplySettingsToGrids();
             }
 
@@ -2254,12 +2253,10 @@ namespace MiniBug
         private void ApplySettingsToGrids()
         {
             // Apply settings to the Issues grid
-            #region "Issues"
-            // Grid Font
-            GridIssues.Font = ApplicationSettings.AppFont;
+            //GridIssues.Font = ApplicationSettings.AppFont;
             GridIssues.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
 
-            // Grid borders
+            // Grid cell borders
             if (ApplicationSettings.GridShowBorders)
             {
                 GridIssues.CellBorderStyle = DataGridViewCellBorderStyle.Single;
@@ -2284,17 +2281,15 @@ namespace MiniBug
             {
                 GridIssues.AlternatingRowsDefaultCellStyle.BackColor = ApplicationSettings.GridRowBackColor;
             }
-            #endregion
 
             // Apply settings to the Tasks grid
-            #region "Tasks"
-            // Grid Font
-            GridTasks.Font = ApplicationSettings.AppFont;
+            //GridTasks.Font = ApplicationSettings.AppFont;
             GridTasks.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
 
-            // Grid borders
+            // Grid cell borders
             if (ApplicationSettings.GridShowBorders)
             {
+                GridTasks.CellBorderStyle = DataGridViewCellBorderStyle.Single;
                 GridTasks.GridColor = ApplicationSettings.GridBorderColor;
             }
             else
@@ -2312,7 +2307,10 @@ namespace MiniBug
             {
                 GridTasks.AlternatingRowsDefaultCellStyle.BackColor = ApplicationSettings.GridAlternateRowBackColor;
             }
-            #endregion
+            else
+            {
+                GridTasks.AlternatingRowsDefaultCellStyle.BackColor = ApplicationSettings.GridRowBackColor;
+            }
         }
 
         /// <summary>
