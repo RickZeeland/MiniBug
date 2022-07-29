@@ -55,7 +55,6 @@ namespace MiniBug
                 this.MinimumSize = new Size(478, 303);
                 //this.modernPieChart1.Size = new Size(400, 300);                     // Do not scale Pie chart with font size
                 this.panelPie.Location = new Point(this.Width - 600, this.Height - 400);
-                this.panelPie.Visible = true;
 
                 // Initialization of the Issues and Tasks grids
                 InitializeGridIssues();
@@ -123,7 +122,7 @@ namespace MiniBug
 
                 if (projectsCount > 0)
                 {
-                    panelPie.Visible = true;            // Show the Pie chart
+                    ShowPieChart();
                 }
             }
             catch
@@ -590,6 +589,8 @@ namespace MiniBug
 
                     // Resume the layout logic
                     this.ResumeLayout();
+
+                    ShowPieChart();
                 }
 
                 //stopwatch.Stop();
