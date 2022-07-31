@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelId = new System.Windows.Forms.Label();
             this.lblID = new System.Windows.Forms.Label();
             this.lblDateCreatedTitle = new System.Windows.Forms.Label();
             this.lblDateModifiedTitle = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.labelSummary = new System.Windows.Forms.Label();
             this.txtSummary = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.labelStatus = new System.Windows.Forms.Label();
             this.cboStatus = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.labelPriority = new System.Windows.Forms.Label();
             this.cboPriority = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.labelVersion = new System.Windows.Forms.Label();
             this.txtVersion = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
+            this.labelTarget = new System.Windows.Forms.Label();
             this.txtTargetVersion = new System.Windows.Forms.TextBox();
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.btOk = new System.Windows.Forms.Button();
@@ -60,6 +60,7 @@
             this.panelBottom = new System.Windows.Forms.Panel();
             this.groupBoxDescription = new System.Windows.Forms.GroupBox();
             this.panelTemp = new System.Windows.Forms.Panel();
+            this.panelStatus = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -69,13 +70,13 @@
             this.groupBoxDescription.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
+            // labelId
             // 
-            this.label1.Location = new System.Drawing.Point(12, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Issue ID:";
+            this.labelId.Location = new System.Drawing.Point(12, 13);
+            this.labelId.Name = "labelId";
+            this.labelId.Size = new System.Drawing.Size(56, 13);
+            this.labelId.TabIndex = 0;
+            this.labelId.Text = "Issue ID:";
             // 
             // lblID
             // 
@@ -102,13 +103,13 @@
             this.lblDateModifiedTitle.TabIndex = 4;
             this.lblDateModifiedTitle.Text = "Date Modified:";
             // 
-            // label4
+            // labelSummary
             // 
-            this.label4.Location = new System.Drawing.Point(12, 44);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(80, 18);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "&Summary:";
+            this.labelSummary.Location = new System.Drawing.Point(12, 44);
+            this.labelSummary.Name = "labelSummary";
+            this.labelSummary.Size = new System.Drawing.Size(73, 18);
+            this.labelSummary.TabIndex = 6;
+            this.labelSummary.Text = "&Summary:";
             // 
             // txtSummary
             // 
@@ -119,13 +120,13 @@
             this.txtSummary.Size = new System.Drawing.Size(797, 22);
             this.txtSummary.TabIndex = 7;
             // 
-            // label5
+            // labelStatus
             // 
-            this.label5.Location = new System.Drawing.Point(12, 79);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(80, 17);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "St&atus:";
+            this.labelStatus.Location = new System.Drawing.Point(12, 79);
+            this.labelStatus.Name = "labelStatus";
+            this.labelStatus.Size = new System.Drawing.Size(73, 17);
+            this.labelStatus.TabIndex = 8;
+            this.labelStatus.Text = "St&atus:";
             // 
             // cboStatus
             // 
@@ -134,14 +135,15 @@
             this.cboStatus.Name = "cboStatus";
             this.cboStatus.Size = new System.Drawing.Size(233, 21);
             this.cboStatus.TabIndex = 9;
+            this.cboStatus.SelectedIndexChanged += new System.EventHandler(this.cboStatus_SelectedIndexChanged);
             // 
-            // label6
+            // labelPriority
             // 
-            this.label6.Location = new System.Drawing.Point(351, 80);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(107, 17);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "&Priority:";
+            this.labelPriority.Location = new System.Drawing.Point(351, 80);
+            this.labelPriority.Name = "labelPriority";
+            this.labelPriority.Size = new System.Drawing.Size(107, 17);
+            this.labelPriority.TabIndex = 10;
+            this.labelPriority.Text = "&Priority:";
             // 
             // cboPriority
             // 
@@ -151,13 +153,13 @@
             this.cboPriority.Size = new System.Drawing.Size(233, 21);
             this.cboPriority.TabIndex = 11;
             // 
-            // label7
+            // labelVersion
             // 
-            this.label7.Location = new System.Drawing.Point(12, 114);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(80, 18);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "&Version:";
+            this.labelVersion.Location = new System.Drawing.Point(12, 114);
+            this.labelVersion.Name = "labelVersion";
+            this.labelVersion.Size = new System.Drawing.Size(73, 18);
+            this.labelVersion.TabIndex = 12;
+            this.labelVersion.Text = "&Version:";
             // 
             // txtVersion
             // 
@@ -166,13 +168,13 @@
             this.txtVersion.Size = new System.Drawing.Size(233, 22);
             this.txtVersion.TabIndex = 13;
             // 
-            // label8
+            // labelTarget
             // 
-            this.label8.Location = new System.Drawing.Point(351, 115);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(107, 25);
-            this.label8.TabIndex = 14;
-            this.label8.Text = "&Target Version:";
+            this.labelTarget.Location = new System.Drawing.Point(351, 115);
+            this.labelTarget.Name = "labelTarget";
+            this.labelTarget.Size = new System.Drawing.Size(107, 25);
+            this.labelTarget.TabIndex = 14;
+            this.labelTarget.Text = "&Target Version:";
             // 
             // txtTargetVersion
             // 
@@ -361,6 +363,14 @@
             this.panelTemp.TabIndex = 28;
             this.panelTemp.Visible = false;
             // 
+            // panelStatus
+            // 
+            this.panelStatus.BackColor = System.Drawing.Color.Goldenrod;
+            this.panelStatus.Location = new System.Drawing.Point(91, 92);
+            this.panelStatus.Name = "panelStatus";
+            this.panelStatus.Size = new System.Drawing.Size(233, 10);
+            this.panelStatus.TabIndex = 30;
+            // 
             // IssueForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -374,20 +384,21 @@
             this.Controls.Add(this.lblDateModified);
             this.Controls.Add(this.lblDateCreated);
             this.Controls.Add(this.txtTargetVersion);
-            this.Controls.Add(this.label8);
+            this.Controls.Add(this.labelTarget);
             this.Controls.Add(this.txtVersion);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.labelVersion);
             this.Controls.Add(this.cboPriority);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.labelPriority);
             this.Controls.Add(this.cboStatus);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.txtSummary);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.labelSummary);
             this.Controls.Add(this.lblDateModifiedTitle);
             this.Controls.Add(this.lblDateCreatedTitle);
             this.Controls.Add(this.lblID);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelId);
             this.Controls.Add(this.panelTemp);
+            this.Controls.Add(this.labelStatus);
+            this.Controls.Add(this.panelStatus);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MinimumSize = new System.Drawing.Size(700, 400);
             this.Name = "IssueForm";
@@ -411,19 +422,19 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelId;
         private System.Windows.Forms.Label lblID;
         private System.Windows.Forms.Label lblDateCreatedTitle;
         private System.Windows.Forms.Label lblDateModifiedTitle;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label labelSummary;
         private System.Windows.Forms.TextBox txtSummary;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label labelStatus;
         private System.Windows.Forms.ComboBox cboStatus;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label labelPriority;
         private System.Windows.Forms.ComboBox cboPriority;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label labelVersion;
         private System.Windows.Forms.TextBox txtVersion;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label labelTarget;
         private System.Windows.Forms.TextBox txtTargetVersion;
         private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.Button btOk;
@@ -442,5 +453,6 @@
         private System.Windows.Forms.Button buttonCopy;
         private System.Windows.Forms.Panel panelTemp;
         private System.Windows.Forms.Button buttonPdf;
+        private System.Windows.Forms.Panel panelStatus;
     }
 }

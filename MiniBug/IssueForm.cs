@@ -615,5 +615,15 @@ namespace MiniBug
                 MessageBox.Show(ex.Message, Program.myName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        /// <summary>
+        /// Show status color under ComboBox.
+        /// </summary>
+        private void cboStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var status = (IssueStatus)((MiniBug.ComboBoxItem)cboStatus.SelectedItem).Value;
+            var brush = ApplicationSettings.IssueStatusColors[status];
+            this.panelStatus.BackColor = ((SolidBrush)brush).Color;
+        }
     }
 }
