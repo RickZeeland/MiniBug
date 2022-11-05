@@ -58,6 +58,7 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.labelPdfTitle = new System.Windows.Forms.Label();
             this.txtPdfTitle = new System.Windows.Forms.TextBox();
+            this.chkShowPieChart = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -340,11 +341,24 @@
             this.txtPdfTitle.TabIndex = 14;
             this.txtPdfTitle.Text = "MiniBug issue";
             // 
+            // chkShowPieChart
+            // 
+            this.chkShowPieChart.AutoSize = true;
+            this.chkShowPieChart.Checked = true;
+            this.chkShowPieChart.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkShowPieChart.Location = new System.Drawing.Point(310, 318);
+            this.chkShowPieChart.Name = "chkShowPieChart";
+            this.chkShowPieChart.Size = new System.Drawing.Size(102, 17);
+            this.chkShowPieChart.TabIndex = 15;
+            this.chkShowPieChart.Text = "Show Pie chart";
+            this.chkShowPieChart.UseVisualStyleBackColor = true;
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(489, 428);
+            this.Controls.Add(this.chkShowPieChart);
             this.Controls.Add(this.txtPdfTitle);
             this.Controls.Add(this.labelPdfTitle);
             this.Controls.Add(this.buttonPath);
@@ -413,5 +427,6 @@
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Label labelPdfTitle;
         private System.Windows.Forms.TextBox txtPdfTitle;
+        private System.Windows.Forms.CheckBox chkShowPieChart;
     }
 }

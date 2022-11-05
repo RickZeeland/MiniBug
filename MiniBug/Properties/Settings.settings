@@ -68,5 +68,8 @@
     <Setting Name="PdfTitle" Type="System.String" Scope="User">
       <Value Profile="(Default)">MiniBug issue</Value>
     </Setting>
+    <Setting Name="ShowPieChart" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

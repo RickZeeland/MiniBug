@@ -105,6 +105,7 @@ namespace MiniBug
             AlternateRowColor.BackColor = ApplicationSettings.GridAlternateRowBackColor;
 
             chkScrollToLastRow.Checked = ApplicationSettings.ScrollToLastRow;
+            chkShowPieChart.Checked = ApplicationSettings.ShowPieChart;
             chkCaseInsensitive.Checked = ApplicationSettings.SearchCaseInsensitive;
             chkOpenPdf.Checked = ApplicationSettings.OpenPdf;
             txtPdfTitle.Text = ApplicationSettings.PdfTitle;
@@ -241,6 +242,7 @@ namespace MiniBug
             ApplicationSettings.GridAlternateRowBackColor = AlternateRowColor.BackColor;
 
             ApplicationSettings.ScrollToLastRow = chkScrollToLastRow.Checked;
+            ApplicationSettings.ShowPieChart = chkShowPieChart.Checked;
             ApplicationSettings.SearchCaseInsensitive = chkCaseInsensitive.Checked;
             ApplicationSettings.OpenPdf = chkOpenPdf.Checked;
             ApplicationSettings.PdfTitle = txtPdfTitle.Text;

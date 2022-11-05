@@ -120,7 +120,7 @@ namespace MiniBug
                     this.tabPage1.Invalidate();
                 }
 
-                if (projectsCount > 0)
+                if (ApplicationSettings.ShowPieChart && projectsCount > 0)
                 {
                     ShowPieChart();
                 }
@@ -590,7 +590,10 @@ namespace MiniBug
                     // Resume the layout logic
                     this.ResumeLayout();
 
-                    ShowPieChart();
+                    if (ApplicationSettings.ShowPieChart)
+                    {
+                        ShowPieChart();
+                    }
                 }
 
                 //stopwatch.Stop();

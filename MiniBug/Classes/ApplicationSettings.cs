@@ -63,6 +63,11 @@ namespace MiniBug
         public static bool ScrollToLastRow = true;
 
         /// <summary>
+        /// Show Pie chart after loading a project.
+        /// </summary>
+        public static bool ShowPieChart = true;
+
+        /// <summary>
         /// Case insensitive search.
         /// </summary>
         public static bool SearchCaseInsensitive = false;
@@ -213,6 +218,7 @@ namespace MiniBug
             GridAlternateRowBackColor = Properties.Settings.Default.GridAlternateRowBackColor;
             AppFont = Properties.Settings.Default.AppFont;
             ScrollToLastRow = Properties.Settings.Default.ScrollToLastRow;
+            ShowPieChart = Properties.Settings.Default.ShowPieChart;
             SearchCaseInsensitive = Properties.Settings.Default.SearchCaseInsensitive;
             OpenPdf = Properties.Settings.Default.OpenPdf;
             PdfTitle = Properties.Settings.Default.PdfTitle;
@@ -318,6 +324,7 @@ namespace MiniBug
                 Properties.Settings.Default.GridAlternateRowBackColor = GridAlternateRowBackColor;
                 Properties.Settings.Default.AppFont = AppFont;
                 Properties.Settings.Default.ScrollToLastRow = ScrollToLastRow;
+                Properties.Settings.Default.ShowPieChart = ShowPieChart;
                 Properties.Settings.Default.SearchCaseInsensitive = SearchCaseInsensitive;
                 Properties.Settings.Default.OpenPdf = OpenPdf;
                 Properties.Settings.Default.PdfTitle = PdfTitle;
@@ -386,6 +393,7 @@ namespace MiniBug
             GridAlternateRowBackColor = Color.White;
             AppFont = new Font("Segoe UI", 10);
             ScrollToLastRow = true;
+            ShowPieChart = true;
             SearchCaseInsensitive = false;
             OpenPdf = false;
             PdfTitle = "MiniBug issue";
