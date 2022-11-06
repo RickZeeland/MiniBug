@@ -4,7 +4,8 @@
 ![Visual Studio Badge](https://img.shields.io/badge/Visual%20Studio-5C2D91?logo=visualstudio&logoColor=fff&style=flat-square)
 ![JSON Badge](https://img.shields.io/badge/JSON-000?logo=json&logoColor=fff&style=flat-square)
 
-This is a fork of MiniBug for VS2019 and .NET 4.8.
+This is a fork of MiniBug for VS2019 and .NET 4.8.  
+For a multi-user version with PostgreSQL database see: [MaxiBug](https://github.com/RickZeeland/MaxiBug).
 
 Some of the changes:
 - Removed missing MiniBug_TemporaryKey.pfx and signing from project
