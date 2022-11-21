@@ -83,6 +83,7 @@ Next you can start adding issues and tasks:
 
 <img src="Screenshots/issue.png" alt="Edit issue">
 
+An image can be dragged & dropped on the Issue form.
 
 ## Tasks
 
