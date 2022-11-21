@@ -178,34 +178,11 @@ namespace MiniBug
             this.txtImage.Text = CurrentIssue.ImageFilename;
             this.txtImage.ForeColor = Color.Black;
 
+            // If there is an attached image, display it
             if (!string.IsNullOrEmpty(CurrentIssue.ImageFilename))
             {
-                // If there is an attached image, display it
-                string fullFilename = CurrentIssue.ImageFilename;
-                string filename = Path.GetFileName(fullFilename);
-
-                if (!File.Exists(fullFilename))
-                {
-                    // Try to find image in the current apllication directory
-                    if (Directory.Exists("Images"))
-                    {
-                        filename = @"Images\" + filename;
-                    }
-
-                    fullFilename = Path.Combine(Application.StartupPath, filename);
-                }
-
-                if (File.Exists(fullFilename))
-                {
-                    this.txtImage.Text = fullFilename.Replace(Application.StartupPath + @"\", string.Empty);
-                    this.splitContainer1.SplitterDistance = this.splitContainer1.Height / 2;
-                    this.pictureBox1.Image = Image.FromFile(fullFilename);
-                    this.pictureBox1.Visible = true;
-                }
-                else
-                {
-                    this.txtImage.ForeColor = Color.Red;            // Not found, display file name in red
-                }
+                this.splitContainer1.SplitterDistance = this.splitContainer1.Height / 2;
+                this.LoadImage(CurrentIssue.ImageFilename);
             }
 
             lblID.Text = CurrentIssue.ID.ToString();
@@ -284,19 +261,46 @@ namespace MiniBug
             openFileDialog1.FileName = string.Empty;
             openFileDialog1.InitialDirectory = Application.StartupPath;         // Open in current directory
 
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
+			if (openFileDialog1.ShowDialog() == DialogResult.OK)
+			{
                 this.splitContainer1.SplitterDistance = this.splitContainer1.Height / 2;                    // Make room in the splitcontainer
-                string imageFilename = openFileDialog1.FileName;
-                imageFilename = imageFilename.Replace(Application.StartupPath + @"\", string.Empty);        // Truncate file name if possible
-                this.txtImage.Text = imageFilename;
+				LoadImage(openFileDialog1.FileName);
+			}
+        }
 
-                if (File.Exists(imageFilename))
+        /// <summary>
+        /// Load an image in the PictureBox.
+        /// </summary>
+        /// <param name="imageFilename">The image file name</param>
+        private void LoadImage(string imageFilename)
+        {
+            string fullFilename = imageFilename;
+            string filename = Path.GetFileName(fullFilename);
+
+            if (!File.Exists(fullFilename))
+            {
+                // Try to find image in the current application directory
+                if (Directory.Exists("Images"))
                 {
-                    this.pictureBox1.Image = Image.FromFile(imageFilename);
-                    this.pictureBox1.Visible = true;
-                    this.txtImage.ForeColor = Color.Black;
+                    filename = @"Images\" + filename;
                 }
+
+                fullFilename = Path.Combine(Application.StartupPath, filename);
+            }
+
+            imageFilename = fullFilename.Replace(Application.StartupPath + @"\", string.Empty);            // Truncate file name if possible
+            this.txtImage.Text = imageFilename;
+
+            if (File.Exists(imageFilename))
+            {
+                this.txtImage.ForeColor = Color.Black;
+                this.splitContainer1.SplitterDistance = this.splitContainer1.Height / 2;                    // Make room in the splitcontainer
+                this.pictureBox1.Image = Image.FromFile(imageFilename);
+                this.pictureBox1.Visible = true;
+            }
+            else
+            {
+                this.txtImage.ForeColor = Color.Red;            // Not found, display file name in red
             }
         }
 
@@ -624,6 +628,33 @@ namespace MiniBug
             var status = (IssueStatus)((MiniBug.ComboBoxItem)cboStatus.SelectedItem).Value;
             var brush = ApplicationSettings.IssueStatusColors[status];
             this.panelStatus.BackColor = ((SolidBrush)brush).Color;
+        }
+		
+        /// <summary>
+        /// Note: drag and drop does not work in Visual Studio.
+        /// </summary>
+        private void IssueForm_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Move;
+        }
+
+        /// <summary>
+        /// Note: drag and drop does not work in Visual Studio.
+        /// </summary>
+        private void IssueForm_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+            if (files != null)
+            {
+                //foreach (string file in files)
+                //{
+                //    // Keep Messagebox on top of other applications
+                //    MessageBox.Show(file, Program.myName, MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                //}
+
+                this.LoadImage(files[0]);
+            }
         }
     }
 }
